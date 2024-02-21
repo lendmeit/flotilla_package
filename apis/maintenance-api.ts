@@ -19,6 +19,7 @@ import { Configuration } from '../configuration';
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 import { MaintenanceDTO } from '../models';
 import { MaintenanceDTOPagedResult } from '../models';
+import { SortOrderEnum } from '../models';
 /**
  * MaintenanceApi - axios parameter creator
  * @export
@@ -267,10 +268,12 @@ export const MaintenanceApiAxiosParamCreator = function (configuration?: Configu
          * @param {number} page 
          * @param {number} pageSize 
          * @param {string} [search] 
+         * @param {string} [orderByPropertyName] 
+         * @param {SortOrderEnum} [sortOrder] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiMaintenanceSearchGet: async (page: number, pageSize: number, search?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiMaintenanceSearchGet: async (page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'page' is not null or undefined
             if (page === null || page === undefined) {
                 throw new RequiredError('page','Required parameter page was null or undefined when calling apiMaintenanceSearchGet.');
@@ -304,6 +307,14 @@ export const MaintenanceApiAxiosParamCreator = function (configuration?: Configu
 
             if (search !== undefined) {
                 localVarQueryParameter['Search'] = search;
+            }
+
+            if (orderByPropertyName !== undefined) {
+                localVarQueryParameter['OrderByPropertyName'] = orderByPropertyName;
+            }
+
+            if (sortOrder !== undefined) {
+                localVarQueryParameter['SortOrder'] = sortOrder;
             }
 
             if (pageSize !== undefined) {
@@ -405,11 +416,13 @@ export const MaintenanceApiFp = function(configuration?: Configuration) {
          * @param {number} page 
          * @param {number} pageSize 
          * @param {string} [search] 
+         * @param {string} [orderByPropertyName] 
+         * @param {SortOrderEnum} [sortOrder] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiMaintenanceSearchGet(page: number, pageSize: number, search?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<MaintenanceDTOPagedResult>>> {
-            const localVarAxiosArgs = await MaintenanceApiAxiosParamCreator(configuration).apiMaintenanceSearchGet(page, pageSize, search, options);
+        async apiMaintenanceSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<MaintenanceDTOPagedResult>>> {
+            const localVarAxiosArgs = await MaintenanceApiAxiosParamCreator(configuration).apiMaintenanceSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -474,11 +487,13 @@ export const MaintenanceApiFactory = function (configuration?: Configuration, ba
          * @param {number} page 
          * @param {number} pageSize 
          * @param {string} [search] 
+         * @param {string} [orderByPropertyName] 
+         * @param {SortOrderEnum} [sortOrder] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiMaintenanceSearchGet(page: number, pageSize: number, search?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<MaintenanceDTOPagedResult>> {
-            return MaintenanceApiFp(configuration).apiMaintenanceSearchGet(page, pageSize, search, options).then((request) => request(axios, basePath));
+        async apiMaintenanceSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig): Promise<AxiosResponse<MaintenanceDTOPagedResult>> {
+            return MaintenanceApiFp(configuration).apiMaintenanceSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -545,11 +560,13 @@ export class MaintenanceApi extends BaseAPI {
      * @param {number} page 
      * @param {number} pageSize 
      * @param {string} [search] 
+     * @param {string} [orderByPropertyName] 
+     * @param {SortOrderEnum} [sortOrder] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MaintenanceApi
      */
-    public async apiMaintenanceSearchGet(page: number, pageSize: number, search?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<MaintenanceDTOPagedResult>> {
-        return MaintenanceApiFp(this.configuration).apiMaintenanceSearchGet(page, pageSize, search, options).then((request) => request(this.axios, this.basePath));
+    public async apiMaintenanceSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig) : Promise<AxiosResponse<MaintenanceDTOPagedResult>> {
+        return MaintenanceApiFp(this.configuration).apiMaintenanceSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, options).then((request) => request(this.axios, this.basePath));
     }
 }

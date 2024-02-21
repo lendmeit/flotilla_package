@@ -13,9 +13,7 @@
  */
 
 import { PolicyPacketDTO } from './policy-packet-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export

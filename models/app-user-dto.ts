@@ -14,9 +14,7 @@
 
 import { GenderEnum } from './gender-enum';
 import { SelectDTO } from './select-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export

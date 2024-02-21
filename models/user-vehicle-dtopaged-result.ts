@@ -13,9 +13,7 @@
  */
 
 import { UserVehicleDTO } from './user-vehicle-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export

@@ -13,9 +13,7 @@
  */
 
 import { InsuranceCompanyDTO } from './insurance-company-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export

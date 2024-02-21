@@ -12,12 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { DocumentDTO } from './document-dto';
-import { MaintenanceDTO } from './maintenance-dto';
-import { PolicyDTO } from './policy-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export
@@ -62,32 +57,14 @@ export interface ProjectDTO {
     packetId?: string | null;
 
     /**
-     * @type {PolicyDTO}
-     * @memberof ProjectDTO
-     */
-    packet?: PolicyDTO;
-
-    /**
      * @type {string}
      * @memberof ProjectDTO
      */
     documentId?: string | null;
 
     /**
-     * @type {DocumentDTO}
-     * @memberof ProjectDTO
-     */
-    document?: DocumentDTO;
-
-    /**
      * @type {string}
      * @memberof ProjectDTO
      */
     maintenanceId?: string | null;
-
-    /**
-     * @type {MaintenanceDTO}
-     * @memberof ProjectDTO
-     */
-    maintenance?: MaintenanceDTO;
 }

@@ -12,55 +12,35 @@
  * Do not edit the class manually.
  */
 
-;
-
-/**
+ /**
  * 
  *
  * @export
- * @interface Brand
+ * @interface MachineDTO
  */
-export interface Brand {
+export interface MachineDTO {
 
     /**
      * @type {string}
-     * @memberof Brand
+     * @memberof MachineDTO
      */
     id?: string | null;
 
     /**
-     * @type {boolean}
-     * @memberof Brand
-     */
-    active?: boolean;
-
-    /**
-     * @type {number}
-     * @memberof Brand
-     */
-    isActive?: number;
-
-    /**
-     * @type {boolean}
-     * @memberof Brand
-     */
-    excludeFromLog?: boolean;
-
-    /**
      * @type {string}
-     * @memberof Brand
+     * @memberof MachineDTO
      */
     name?: string | null;
 
     /**
      * @type {string}
-     * @memberof Brand
+     * @memberof MachineDTO
      */
     code?: string | null;
 
     /**
      * @type {string}
-     * @memberof Brand
+     * @memberof MachineDTO
      */
     description?: string | null;
 }

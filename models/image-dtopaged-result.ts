@@ -13,9 +13,7 @@
  */
 
 import { ImageDTO } from './image-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export

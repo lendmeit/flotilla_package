@@ -12,11 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { MaintenanceDTO } from './maintenance-dto';
-import { PartDTO } from './part-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export
@@ -41,16 +37,4 @@ export interface MaintenancePartDTO {
      * @memberof MaintenancePartDTO
      */
     partId?: string | null;
-
-    /**
-     * @type {MaintenanceDTO}
-     * @memberof MaintenancePartDTO
-     */
-    maintenance?: MaintenanceDTO;
-
-    /**
-     * @type {PartDTO}
-     * @memberof MaintenancePartDTO
-     */
-    part?: PartDTO;
 }

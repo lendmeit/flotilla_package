@@ -12,10 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { MaintenanceDTO } from './maintenance-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export
@@ -46,10 +43,4 @@ export interface MaintenanceGroupDTO {
      * @memberof MaintenanceGroupDTO
      */
     description?: string | null;
-
-    /**
-     * @type {Array<MaintenanceDTO>}
-     * @memberof MaintenanceGroupDTO
-     */
-    maintenances?: Array<MaintenanceDTO> | null;
 }

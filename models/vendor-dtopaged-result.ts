@@ -13,9 +13,7 @@
  */
 
 import { VendorDTO } from './vendor-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export

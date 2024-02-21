@@ -12,11 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { AppUsuario } from './app-usuario';
-import { Vehicle } from './vehicle';
-;
-
-/**
+ /**
  * 
  *
  * @export
@@ -61,20 +57,8 @@ export interface UserVehicleDTO {
     userId?: string | null;
 
     /**
-     * @type {AppUsuario}
-     * @memberof UserVehicleDTO
-     */
-    user?: AppUsuario;
-
-    /**
      * @type {string}
      * @memberof UserVehicleDTO
      */
     vehicleId?: string | null;
-
-    /**
-     * @type {Vehicle}
-     * @memberof UserVehicleDTO
-     */
-    vehicle?: Vehicle;
 }

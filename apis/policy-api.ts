@@ -19,6 +19,7 @@ import { Configuration } from '../configuration';
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 import { PolicyDTO } from '../models';
 import { PolicyDTOPagedResult } from '../models';
+import { SortOrderEnum } from '../models';
 /**
  * PolicyApi - axios parameter creator
  * @export
@@ -267,10 +268,12 @@ export const PolicyApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {number} page 
          * @param {number} pageSize 
          * @param {string} [search] 
+         * @param {string} [orderByPropertyName] 
+         * @param {SortOrderEnum} [sortOrder] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiPolicySearchGet: async (page: number, pageSize: number, search?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiPolicySearchGet: async (page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'page' is not null or undefined
             if (page === null || page === undefined) {
                 throw new RequiredError('page','Required parameter page was null or undefined when calling apiPolicySearchGet.');
@@ -304,6 +307,14 @@ export const PolicyApiAxiosParamCreator = function (configuration?: Configuratio
 
             if (search !== undefined) {
                 localVarQueryParameter['Search'] = search;
+            }
+
+            if (orderByPropertyName !== undefined) {
+                localVarQueryParameter['OrderByPropertyName'] = orderByPropertyName;
+            }
+
+            if (sortOrder !== undefined) {
+                localVarQueryParameter['SortOrder'] = sortOrder;
             }
 
             if (pageSize !== undefined) {
@@ -405,11 +416,13 @@ export const PolicyApiFp = function(configuration?: Configuration) {
          * @param {number} page 
          * @param {number} pageSize 
          * @param {string} [search] 
+         * @param {string} [orderByPropertyName] 
+         * @param {SortOrderEnum} [sortOrder] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiPolicySearchGet(page: number, pageSize: number, search?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<PolicyDTOPagedResult>>> {
-            const localVarAxiosArgs = await PolicyApiAxiosParamCreator(configuration).apiPolicySearchGet(page, pageSize, search, options);
+        async apiPolicySearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<PolicyDTOPagedResult>>> {
+            const localVarAxiosArgs = await PolicyApiAxiosParamCreator(configuration).apiPolicySearchGet(page, pageSize, search, orderByPropertyName, sortOrder, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -474,11 +487,13 @@ export const PolicyApiFactory = function (configuration?: Configuration, basePat
          * @param {number} page 
          * @param {number} pageSize 
          * @param {string} [search] 
+         * @param {string} [orderByPropertyName] 
+         * @param {SortOrderEnum} [sortOrder] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiPolicySearchGet(page: number, pageSize: number, search?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<PolicyDTOPagedResult>> {
-            return PolicyApiFp(configuration).apiPolicySearchGet(page, pageSize, search, options).then((request) => request(axios, basePath));
+        async apiPolicySearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig): Promise<AxiosResponse<PolicyDTOPagedResult>> {
+            return PolicyApiFp(configuration).apiPolicySearchGet(page, pageSize, search, orderByPropertyName, sortOrder, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -545,11 +560,13 @@ export class PolicyApi extends BaseAPI {
      * @param {number} page 
      * @param {number} pageSize 
      * @param {string} [search] 
+     * @param {string} [orderByPropertyName] 
+     * @param {SortOrderEnum} [sortOrder] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PolicyApi
      */
-    public async apiPolicySearchGet(page: number, pageSize: number, search?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<PolicyDTOPagedResult>> {
-        return PolicyApiFp(this.configuration).apiPolicySearchGet(page, pageSize, search, options).then((request) => request(this.axios, this.basePath));
+    public async apiPolicySearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig) : Promise<AxiosResponse<PolicyDTOPagedResult>> {
+        return PolicyApiFp(this.configuration).apiPolicySearchGet(page, pageSize, search, orderByPropertyName, sortOrder, options).then((request) => request(this.axios, this.basePath));
     }
 }

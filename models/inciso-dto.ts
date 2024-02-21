@@ -12,11 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { PolicyDTO } from './policy-dto';
-import { VehicleDTO } from './vehicle-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export
@@ -43,20 +39,8 @@ export interface IncisoDTO {
     vehicleId?: string | null;
 
     /**
-     * @type {VehicleDTO}
-     * @memberof IncisoDTO
-     */
-    vehicle?: VehicleDTO;
-
-    /**
      * @type {string}
      * @memberof IncisoDTO
      */
     policyId?: string | null;
-
-    /**
-     * @type {PolicyDTO}
-     * @memberof IncisoDTO
-     */
-    policy?: PolicyDTO;
 }

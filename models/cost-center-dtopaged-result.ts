@@ -13,9 +13,7 @@
  */
 
 import { CostCenterDTO } from './cost-center-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export

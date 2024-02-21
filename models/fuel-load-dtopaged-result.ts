@@ -13,9 +13,7 @@
  */
 
 import { FuelLoadDTO } from './fuel-load-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export

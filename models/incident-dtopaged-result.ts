@@ -13,9 +13,7 @@
  */
 
 import { IncidentDTO } from './incident-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export

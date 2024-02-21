@@ -13,9 +13,7 @@
  */
 
 import { MaintenanceDTO } from './maintenance-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export

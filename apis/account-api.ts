@@ -19,6 +19,7 @@ import { Configuration } from '../configuration';
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 import { AuthResponseDTO } from '../models';
 import { LoginDTO } from '../models';
+import { ProblemDetails } from '../models';
 import { ResetPasswordModel } from '../models';
 /**
  * AccountApi - axios parameter creator

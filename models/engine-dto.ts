@@ -12,10 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { ModelDTO } from './model-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export
@@ -52,10 +49,4 @@ export interface EngineDTO {
      * @memberof EngineDTO
      */
     modelId?: string | null;
-
-    /**
-     * @type {ModelDTO}
-     * @memberof EngineDTO
-     */
-    model?: ModelDTO;
 }

@@ -13,9 +13,7 @@
  */
 
 import { GenderEnum } from './gender-enum';
-;
-
-/**
+ /**
  * 
  *
  * @export

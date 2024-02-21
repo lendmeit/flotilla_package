@@ -13,9 +13,7 @@
  */
 
 import { ServiceDTO } from './service-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export

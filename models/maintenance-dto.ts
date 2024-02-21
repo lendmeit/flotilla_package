@@ -12,16 +12,8 @@
  * Do not edit the class manually.
  */
 
-import { DocumentDTO } from './document-dto';
-import { MaintenanceGroupDTO } from './maintenance-group-dto';
-import { MaintenancePartDTO } from './maintenance-part-dto';
-import { MaintenanceTypeDTO } from './maintenance-type-dto';
 import { TimeSpan } from './time-span';
-import { VehicleDTO } from './vehicle-dto';
-import { VendorDTO } from './vendor-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export
@@ -106,40 +98,4 @@ export interface MaintenanceDTO {
      * @memberof MaintenanceDTO
      */
     documentId?: string | null;
-
-    /**
-     * @type {VendorDTO}
-     * @memberof MaintenanceDTO
-     */
-    vendor?: VendorDTO;
-
-    /**
-     * @type {DocumentDTO}
-     * @memberof MaintenanceDTO
-     */
-    document?: DocumentDTO;
-
-    /**
-     * @type {MaintenanceGroupDTO}
-     * @memberof MaintenanceDTO
-     */
-    maintenanceGroup?: MaintenanceGroupDTO;
-
-    /**
-     * @type {MaintenanceTypeDTO}
-     * @memberof MaintenanceDTO
-     */
-    maintenanceType?: MaintenanceTypeDTO;
-
-    /**
-     * @type {VehicleDTO}
-     * @memberof MaintenanceDTO
-     */
-    vehicle?: VehicleDTO;
-
-    /**
-     * @type {Array<MaintenancePartDTO>}
-     * @memberof MaintenanceDTO
-     */
-    maintenanceParts?: Array<MaintenancePartDTO> | null;
 }

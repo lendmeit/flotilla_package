@@ -12,13 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { InsuranceCompanyDTO } from './insurance-company-dto';
-import { PolicyPacketDTO } from './policy-packet-dto';
-import { PolicyStatusDTO } from './policy-status-dto';
-import { VehicleDTO } from './vehicle-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export
@@ -69,22 +63,10 @@ export interface PolicyDTO {
     quantityVehicles?: number;
 
     /**
-     * @type {Array<VehicleDTO>}
-     * @memberof PolicyDTO
-     */
-    vehicles?: Array<VehicleDTO> | null;
-
-    /**
      * @type {string}
      * @memberof PolicyDTO
      */
     policyStatusId?: string | null;
-
-    /**
-     * @type {PolicyStatusDTO}
-     * @memberof PolicyDTO
-     */
-    policyStatus?: PolicyStatusDTO;
 
     /**
      * @type {string}
@@ -93,20 +75,8 @@ export interface PolicyDTO {
     policyPacketId?: string | null;
 
     /**
-     * @type {PolicyPacketDTO}
-     * @memberof PolicyDTO
-     */
-    policyPacket?: PolicyPacketDTO;
-
-    /**
      * @type {string}
      * @memberof PolicyDTO
      */
     insuranceCompanyId?: string | null;
-
-    /**
-     * @type {InsuranceCompanyDTO}
-     * @memberof PolicyDTO
-     */
-    insuranceCompany?: InsuranceCompanyDTO;
 }

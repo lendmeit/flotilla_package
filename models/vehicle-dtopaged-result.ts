@@ -13,9 +13,7 @@
  */
 
 import { VehicleDTO } from './vehicle-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export

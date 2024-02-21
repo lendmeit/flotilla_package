@@ -13,9 +13,7 @@
  */
 
 import { DocumentDTO } from './document-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export

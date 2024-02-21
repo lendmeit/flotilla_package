@@ -13,9 +13,7 @@
  */
 
 import { ProjectDTO } from './project-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export

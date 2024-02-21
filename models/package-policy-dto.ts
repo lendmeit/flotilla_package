@@ -12,39 +12,35 @@
  * Do not edit the class manually.
  */
 
-import { AppUsuario } from './app-usuario';
-import { Role } from './role';
-;
-
-/**
+ /**
  * 
  *
  * @export
- * @interface UserRole
+ * @interface PackagePolicyDTO
  */
-export interface UserRole {
+export interface PackagePolicyDTO {
 
     /**
      * @type {string}
-     * @memberof UserRole
+     * @memberof PackagePolicyDTO
      */
-    userId?: string | null;
+    id?: string | null;
 
     /**
      * @type {string}
-     * @memberof UserRole
+     * @memberof PackagePolicyDTO
      */
-    roleId?: string | null;
+    name?: string | null;
 
     /**
-     * @type {AppUsuario}
-     * @memberof UserRole
+     * @type {string}
+     * @memberof PackagePolicyDTO
      */
-    user?: AppUsuario;
+    code?: string | null;
 
     /**
-     * @type {Role}
-     * @memberof UserRole
+     * @type {string}
+     * @memberof PackagePolicyDTO
      */
-    role?: Role;
+    description?: string | null;
 }

@@ -12,10 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { BrandDTO } from './brand-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export
@@ -48,14 +45,8 @@ export interface ModelDTO {
     description?: string | null;
 
     /**
-     * @type {number}
+     * @type {string}
      * @memberof ModelDTO
      */
-    brandId?: number;
-
-    /**
-     * @type {BrandDTO}
-     * @memberof ModelDTO
-     */
-    brand?: BrandDTO;
+    brandId?: string | null;
 }

@@ -13,9 +13,7 @@
  */
 
 import { VehicleTypeDTO } from './vehicle-type-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export

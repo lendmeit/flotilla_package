@@ -13,9 +13,7 @@
  */
 
 import { ModelDTO } from './model-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export

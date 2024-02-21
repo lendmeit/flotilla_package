@@ -13,9 +13,7 @@
  */
 
 import { AppUserDTO } from './app-user-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export

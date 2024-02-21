@@ -13,12 +13,8 @@
  */
 
 import { DocumentDTO } from './document-dto';
-import { ModelDTO } from './model-dto';
-import { PolicyDTO } from './policy-dto';
-import { VehicleTypeDTO } from './vehicle-type-dto';
-;
-
-/**
+import { ImageDTO } from './image-dto';
+ /**
  * 
  *
  * @export
@@ -54,7 +50,103 @@ export interface VehicleDTO {
      * @type {string}
      * @memberof VehicleDTO
      */
-    vin?: string | null;
+    vin: string;
+
+    /**
+     * @type {string}
+     * @memberof VehicleDTO
+     */
+    machineId: string;
+
+    /**
+     * @type {string}
+     * @memberof VehicleDTO
+     */
+    economicNumber?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof VehicleDTO
+     */
+    assignedId?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof VehicleDTO
+     */
+    brandId?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof VehicleDTO
+     */
+    modelId?: string | null;
+
+    /**
+     * @type {number}
+     * @memberof VehicleDTO
+     */
+    modelYear?: number;
+
+    /**
+     * @type {number}
+     * @memberof VehicleDTO
+     */
+    engineId?: number;
+
+    /**
+     * @type {string}
+     * @memberof VehicleDTO
+     */
+    policyId?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof VehicleDTO
+     */
+    incisoId?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof VehicleDTO
+     */
+    packagePolicyId?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof VehicleDTO
+     */
+    measureId?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof VehicleDTO
+     */
+    fuelMeasureId?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof VehicleDTO
+     */
+    fuelTypeId?: string | null;
+
+    /**
+     * @type {Array<ImageDTO>}
+     * @memberof VehicleDTO
+     */
+    photographs?: Array<ImageDTO> | null;
+
+    /**
+     * @type {DocumentDTO}
+     * @memberof VehicleDTO
+     */
+    bill?: DocumentDTO;
+
+    /**
+     * @type {DocumentDTO}
+     * @memberof VehicleDTO
+     */
+    pedimento?: DocumentDTO;
 
     /**
      * @type {string}
@@ -72,49 +164,7 @@ export interface VehicleDTO {
      * @type {string}
      * @memberof VehicleDTO
      */
-    inciso?: string | null;
-
-    /**
-     * @type {number}
-     * @memberof VehicleDTO
-     */
-    economicNumber?: number;
-
-    /**
-     * @type {string}
-     * @memberof VehicleDTO
-     */
-    modelId?: string | null;
-
-    /**
-     * @type {ModelDTO}
-     * @memberof VehicleDTO
-     */
-    model?: ModelDTO;
-
-    /**
-     * @type {string}
-     * @memberof VehicleDTO
-     */
     documentId?: string | null;
-
-    /**
-     * @type {DocumentDTO}
-     * @memberof VehicleDTO
-     */
-    document?: DocumentDTO;
-
-    /**
-     * @type {string}
-     * @memberof VehicleDTO
-     */
-    policyId?: string | null;
-
-    /**
-     * @type {PolicyDTO}
-     * @memberof VehicleDTO
-     */
-    policy?: PolicyDTO;
 
     /**
      * @type {string}
@@ -123,8 +173,8 @@ export interface VehicleDTO {
     vehicleTypeId?: string | null;
 
     /**
-     * @type {VehicleTypeDTO}
+     * @type {string}
      * @memberof VehicleDTO
      */
-    vehicleType?: VehicleTypeDTO;
+    companyId?: string | null;
 }

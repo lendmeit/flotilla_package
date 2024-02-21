@@ -13,9 +13,7 @@
  */
 
 import { BrandDTO } from './brand-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export

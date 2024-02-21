@@ -12,61 +12,35 @@
  * Do not edit the class manually.
  */
 
-;
-
-/**
+ /**
  * 
  *
  * @export
- * @interface VehicleType
+ * @interface MeasureDTO
  */
-export interface VehicleType {
+export interface MeasureDTO {
 
     /**
      * @type {string}
-     * @memberof VehicleType
+     * @memberof MeasureDTO
      */
     id?: string | null;
 
     /**
-     * @type {boolean}
-     * @memberof VehicleType
-     */
-    active?: boolean;
-
-    /**
-     * @type {number}
-     * @memberof VehicleType
-     */
-    isActive?: number;
-
-    /**
-     * @type {boolean}
-     * @memberof VehicleType
-     */
-    excludeFromLog?: boolean;
-
-    /**
      * @type {string}
-     * @memberof VehicleType
+     * @memberof MeasureDTO
      */
     name?: string | null;
 
     /**
      * @type {string}
-     * @memberof VehicleType
+     * @memberof MeasureDTO
      */
     code?: string | null;
 
     /**
      * @type {string}
-     * @memberof VehicleType
+     * @memberof MeasureDTO
      */
     description?: string | null;
-
-    /**
-     * @type {boolean}
-     * @memberof VehicleType
-     */
-    inUse?: boolean;
 }

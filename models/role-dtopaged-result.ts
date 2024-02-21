@@ -13,9 +13,7 @@
  */
 
 import { RoleDTO } from './role-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export

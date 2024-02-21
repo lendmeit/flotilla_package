@@ -12,12 +12,8 @@
  * Do not edit the class manually.
  */
 
-import { DocumentDTO } from './document-dto';
 import { TimeSpan } from './time-span';
-import { Vehicle } from './vehicle';
-;
-
-/**
+ /**
  * 
  *
  * @export
@@ -102,16 +98,4 @@ export interface FuelLoadDTO {
      * @memberof FuelLoadDTO
      */
     vehicleId?: number;
-
-    /**
-     * @type {Vehicle}
-     * @memberof FuelLoadDTO
-     */
-    vehicle?: Vehicle;
-
-    /**
-     * @type {DocumentDTO}
-     * @memberof FuelLoadDTO
-     */
-    document?: DocumentDTO;
 }

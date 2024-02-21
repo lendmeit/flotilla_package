@@ -13,9 +13,7 @@
  */
 
 import { PartDTO } from './part-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export

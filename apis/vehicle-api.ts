@@ -17,8 +17,11 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { SortOrderEnum } from '../models';
 import { VehicleDTO } from '../models';
 import { VehicleDTOPagedResult } from '../models';
+import { VehicleInboxDTOPagedResult } from '../models';
+import { VehicleNewEditDTO } from '../models';
 /**
  * VehicleApi - axios parameter creator
  * @export
@@ -48,6 +51,52 @@ export const VehicleApiAxiosParamCreator = function (configuration?: Configurati
                     ? await configuration.apiKey("Authorization")
                     : await configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} [id] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiVehicleGetFormGet: async (id?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Vehicle/GetForm`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("Authorization")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            if (id !== undefined) {
+                localVarQueryParameter['id'] = id;
             }
 
             const query = new URLSearchParams(localVarUrlObj.search);
@@ -196,53 +245,7 @@ export const VehicleApiAxiosParamCreator = function (configuration?: Configurati
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.params) {
-                query.set(key, options.params[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {VehicleDTO} [body] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiVehiclePost: async (body?: VehicleDTO, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/Vehicle`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("Authorization")
-                    : await configuration.apiKey;
-                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
-            }
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Content-Type'] = 'application/json;odata.metadata=minimal;odata.streaming=true';
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -267,10 +270,227 @@ export const VehicleApiAxiosParamCreator = function (configuration?: Configurati
          * @param {number} page 
          * @param {number} pageSize 
          * @param {string} [search] 
+         * @param {string} [orderByPropertyName] 
+         * @param {SortOrderEnum} [sortOrder] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiVehicleSearchGet: async (page: number, pageSize: number, search?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiVehicleInboxGet: async (page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'page' is not null or undefined
+            if (page === null || page === undefined) {
+                throw new RequiredError('page','Required parameter page was null or undefined when calling apiVehicleInboxGet.');
+            }
+            // verify required parameter 'pageSize' is not null or undefined
+            if (pageSize === null || pageSize === undefined) {
+                throw new RequiredError('pageSize','Required parameter pageSize was null or undefined when calling apiVehicleInboxGet.');
+            }
+            const localVarPath = `/api/Vehicle/Inbox`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("Authorization")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            if (page !== undefined) {
+                localVarQueryParameter['Page'] = page;
+            }
+
+            if (search !== undefined) {
+                localVarQueryParameter['Search'] = search;
+            }
+
+            if (orderByPropertyName !== undefined) {
+                localVarQueryParameter['OrderByPropertyName'] = orderByPropertyName;
+            }
+
+            if (sortOrder !== undefined) {
+                localVarQueryParameter['SortOrder'] = sortOrder;
+            }
+
+            if (pageSize !== undefined) {
+                localVarQueryParameter['PageSize'] = pageSize;
+            }
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} [VIN] 
+         * @param {string} [machineId] 
+         * @param {string} [economicNumber] 
+         * @param {string} [assignedId] 
+         * @param {string} [brandId] 
+         * @param {string} [modelId] 
+         * @param {number} [modelYear] 
+         * @param {number} [engineId] 
+         * @param {string} [placas] 
+         * @param {number} [drillRigId] 
+         * @param {string} [policyId] 
+         * @param {string} [incisoId] 
+         * @param {string} [packagePolicyId] 
+         * @param {string} [measureId] 
+         * @param {string} [fuelMeasureId] 
+         * @param {string} [fuelTypeId] 
+         * @param {Array<Blob>} [photographs] 
+         * @param {Blob} [bill] 
+         * @param {Blob} [pedimento] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiVehiclePostForm: async (VIN?: string, machineId?: string, economicNumber?: string, assignedId?: string, brandId?: string, modelId?: string, modelYear?: number, engineId?: number, placas?: string, drillRigId?: number, policyId?: string, incisoId?: string, packagePolicyId?: string, measureId?: string, fuelMeasureId?: string, fuelTypeId?: string, photographs?: Array<Blob>, bill?: Blob, pedimento?: Blob, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Vehicle`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new FormData();
+
+            // authentication Bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("Authorization")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+
+            if (VIN !== undefined) { 
+                localVarFormParams.append('VIN', VIN as any);
+            }
+
+            if (machineId !== undefined) { 
+                localVarFormParams.append('MachineId', machineId as any);
+            }
+
+            if (economicNumber !== undefined) { 
+                localVarFormParams.append('EconomicNumber', economicNumber as any);
+            }
+
+            if (assignedId !== undefined) { 
+                localVarFormParams.append('AssignedId', assignedId as any);
+            }
+
+            if (brandId !== undefined) { 
+                localVarFormParams.append('BrandId', brandId as any);
+            }
+
+            if (modelId !== undefined) { 
+                localVarFormParams.append('ModelId', modelId as any);
+            }
+
+            if (modelYear !== undefined) { 
+                localVarFormParams.append('ModelYear', modelYear as any);
+            }
+
+            if (engineId !== undefined) { 
+                localVarFormParams.append('EngineId', engineId as any);
+            }
+
+            if (placas !== undefined) { 
+                localVarFormParams.append('Placas', placas as any);
+            }
+
+            if (drillRigId !== undefined) { 
+                localVarFormParams.append('DrillRigId', drillRigId as any);
+            }
+
+            if (policyId !== undefined) { 
+                localVarFormParams.append('PolicyId', policyId as any);
+            }
+
+            if (incisoId !== undefined) { 
+                localVarFormParams.append('IncisoId', incisoId as any);
+            }
+
+            if (packagePolicyId !== undefined) { 
+                localVarFormParams.append('PackagePolicyId', packagePolicyId as any);
+            }
+
+            if (measureId !== undefined) { 
+                localVarFormParams.append('MeasureId', measureId as any);
+            }
+
+            if (fuelMeasureId !== undefined) { 
+                localVarFormParams.append('FuelMeasureId', fuelMeasureId as any);
+            }
+
+            if (fuelTypeId !== undefined) { 
+                localVarFormParams.append('FuelTypeId', fuelTypeId as any);
+            }
+            if (photographs) {
+                photographs.forEach((element) => {
+                    localVarFormParams.append('Photographs', element as any);
+                })
+            }
+
+            if (bill !== undefined) { 
+                localVarFormParams.append('Bill', bill as any);
+            }
+
+            if (pedimento !== undefined) { 
+                localVarFormParams.append('Pedimento', pedimento as any);
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} page 
+         * @param {number} pageSize 
+         * @param {string} [search] 
+         * @param {string} [orderByPropertyName] 
+         * @param {SortOrderEnum} [sortOrder] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiVehicleSearchGet: async (page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'page' is not null or undefined
             if (page === null || page === undefined) {
                 throw new RequiredError('page','Required parameter page was null or undefined when calling apiVehicleSearchGet.');
@@ -304,6 +524,14 @@ export const VehicleApiAxiosParamCreator = function (configuration?: Configurati
 
             if (search !== undefined) {
                 localVarQueryParameter['Search'] = search;
+            }
+
+            if (orderByPropertyName !== undefined) {
+                localVarQueryParameter['OrderByPropertyName'] = orderByPropertyName;
+            }
+
+            if (sortOrder !== undefined) {
+                localVarQueryParameter['SortOrder'] = sortOrder;
             }
 
             if (pageSize !== undefined) {
@@ -342,6 +570,19 @@ export const VehicleApiFp = function(configuration?: Configuration) {
          */
         async apiVehicleGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<VehicleDTO>>>> {
             const localVarAxiosArgs = await VehicleApiAxiosParamCreator(configuration).apiVehicleGet(options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {string} [id] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiVehicleGetFormGet(id?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<VehicleNewEditDTO>>> {
+            const localVarAxiosArgs = await VehicleApiAxiosParamCreator(configuration).apiVehicleGetFormGet(id, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -389,12 +630,47 @@ export const VehicleApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {VehicleDTO} [body] 
+         * @param {number} page 
+         * @param {number} pageSize 
+         * @param {string} [search] 
+         * @param {string} [orderByPropertyName] 
+         * @param {SortOrderEnum} [sortOrder] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiVehiclePost(body?: VehicleDTO, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<string>>> {
-            const localVarAxiosArgs = await VehicleApiAxiosParamCreator(configuration).apiVehiclePost(body, options);
+        async apiVehicleInboxGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<VehicleInboxDTOPagedResult>>> {
+            const localVarAxiosArgs = await VehicleApiAxiosParamCreator(configuration).apiVehicleInboxGet(page, pageSize, search, orderByPropertyName, sortOrder, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {string} [VIN] 
+         * @param {string} [machineId] 
+         * @param {string} [economicNumber] 
+         * @param {string} [assignedId] 
+         * @param {string} [brandId] 
+         * @param {string} [modelId] 
+         * @param {number} [modelYear] 
+         * @param {number} [engineId] 
+         * @param {string} [placas] 
+         * @param {number} [drillRigId] 
+         * @param {string} [policyId] 
+         * @param {string} [incisoId] 
+         * @param {string} [packagePolicyId] 
+         * @param {string} [measureId] 
+         * @param {string} [fuelMeasureId] 
+         * @param {string} [fuelTypeId] 
+         * @param {Array<Blob>} [photographs] 
+         * @param {Blob} [bill] 
+         * @param {Blob} [pedimento] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiVehiclePostForm(VIN?: string, machineId?: string, economicNumber?: string, assignedId?: string, brandId?: string, modelId?: string, modelYear?: number, engineId?: number, placas?: string, drillRigId?: number, policyId?: string, incisoId?: string, packagePolicyId?: string, measureId?: string, fuelMeasureId?: string, fuelTypeId?: string, photographs?: Array<Blob>, bill?: Blob, pedimento?: Blob, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<string>>> {
+            const localVarAxiosArgs = await VehicleApiAxiosParamCreator(configuration).apiVehiclePostForm(VIN, machineId, economicNumber, assignedId, brandId, modelId, modelYear, engineId, placas, drillRigId, policyId, incisoId, packagePolicyId, measureId, fuelMeasureId, fuelTypeId, photographs, bill, pedimento, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -405,11 +681,13 @@ export const VehicleApiFp = function(configuration?: Configuration) {
          * @param {number} page 
          * @param {number} pageSize 
          * @param {string} [search] 
+         * @param {string} [orderByPropertyName] 
+         * @param {SortOrderEnum} [sortOrder] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiVehicleSearchGet(page: number, pageSize: number, search?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<VehicleDTOPagedResult>>> {
-            const localVarAxiosArgs = await VehicleApiAxiosParamCreator(configuration).apiVehicleSearchGet(page, pageSize, search, options);
+        async apiVehicleSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<VehicleDTOPagedResult>>> {
+            const localVarAxiosArgs = await VehicleApiAxiosParamCreator(configuration).apiVehicleSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -431,6 +709,15 @@ export const VehicleApiFactory = function (configuration?: Configuration, basePa
          */
         async apiVehicleGet(options?: AxiosRequestConfig): Promise<AxiosResponse<Array<VehicleDTO>>> {
             return VehicleApiFp(configuration).apiVehicleGet(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} [id] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiVehicleGetFormGet(id?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<VehicleNewEditDTO>> {
+            return VehicleApiFp(configuration).apiVehicleGetFormGet(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -462,23 +749,56 @@ export const VehicleApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @param {VehicleDTO} [body] 
+         * @param {number} page 
+         * @param {number} pageSize 
+         * @param {string} [search] 
+         * @param {string} [orderByPropertyName] 
+         * @param {SortOrderEnum} [sortOrder] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiVehiclePost(body?: VehicleDTO, options?: AxiosRequestConfig): Promise<AxiosResponse<string>> {
-            return VehicleApiFp(configuration).apiVehiclePost(body, options).then((request) => request(axios, basePath));
+        async apiVehicleInboxGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig): Promise<AxiosResponse<VehicleInboxDTOPagedResult>> {
+            return VehicleApiFp(configuration).apiVehicleInboxGet(page, pageSize, search, orderByPropertyName, sortOrder, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} [VIN] 
+         * @param {string} [machineId] 
+         * @param {string} [economicNumber] 
+         * @param {string} [assignedId] 
+         * @param {string} [brandId] 
+         * @param {string} [modelId] 
+         * @param {number} [modelYear] 
+         * @param {number} [engineId] 
+         * @param {string} [placas] 
+         * @param {number} [drillRigId] 
+         * @param {string} [policyId] 
+         * @param {string} [incisoId] 
+         * @param {string} [packagePolicyId] 
+         * @param {string} [measureId] 
+         * @param {string} [fuelMeasureId] 
+         * @param {string} [fuelTypeId] 
+         * @param {Array<Blob>} [photographs] 
+         * @param {Blob} [bill] 
+         * @param {Blob} [pedimento] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiVehiclePostForm(VIN?: string, machineId?: string, economicNumber?: string, assignedId?: string, brandId?: string, modelId?: string, modelYear?: number, engineId?: number, placas?: string, drillRigId?: number, policyId?: string, incisoId?: string, packagePolicyId?: string, measureId?: string, fuelMeasureId?: string, fuelTypeId?: string, photographs?: Array<Blob>, bill?: Blob, pedimento?: Blob, options?: AxiosRequestConfig): Promise<AxiosResponse<string>> {
+            return VehicleApiFp(configuration).apiVehiclePostForm(VIN, machineId, economicNumber, assignedId, brandId, modelId, modelYear, engineId, placas, drillRigId, policyId, incisoId, packagePolicyId, measureId, fuelMeasureId, fuelTypeId, photographs, bill, pedimento, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @param {number} page 
          * @param {number} pageSize 
          * @param {string} [search] 
+         * @param {string} [orderByPropertyName] 
+         * @param {SortOrderEnum} [sortOrder] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiVehicleSearchGet(page: number, pageSize: number, search?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<VehicleDTOPagedResult>> {
-            return VehicleApiFp(configuration).apiVehicleSearchGet(page, pageSize, search, options).then((request) => request(axios, basePath));
+        async apiVehicleSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig): Promise<AxiosResponse<VehicleDTOPagedResult>> {
+            return VehicleApiFp(configuration).apiVehicleSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -498,6 +818,16 @@ export class VehicleApi extends BaseAPI {
      */
     public async apiVehicleGet(options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<VehicleDTO>>> {
         return VehicleApiFp(this.configuration).apiVehicleGet(options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
+     * @param {string} [id] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof VehicleApi
+     */
+    public async apiVehicleGetFormGet(id?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<VehicleNewEditDTO>> {
+        return VehicleApiFp(this.configuration).apiVehicleGetFormGet(id, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
@@ -532,24 +862,58 @@ export class VehicleApi extends BaseAPI {
     }
     /**
      * 
-     * @param {VehicleDTO} [body] 
+     * @param {number} page 
+     * @param {number} pageSize 
+     * @param {string} [search] 
+     * @param {string} [orderByPropertyName] 
+     * @param {SortOrderEnum} [sortOrder] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof VehicleApi
      */
-    public async apiVehiclePost(body?: VehicleDTO, options?: AxiosRequestConfig) : Promise<AxiosResponse<string>> {
-        return VehicleApiFp(this.configuration).apiVehiclePost(body, options).then((request) => request(this.axios, this.basePath));
+    public async apiVehicleInboxGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig) : Promise<AxiosResponse<VehicleInboxDTOPagedResult>> {
+        return VehicleApiFp(this.configuration).apiVehicleInboxGet(page, pageSize, search, orderByPropertyName, sortOrder, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
+     * @param {string} [VIN] 
+     * @param {string} [machineId] 
+     * @param {string} [economicNumber] 
+     * @param {string} [assignedId] 
+     * @param {string} [brandId] 
+     * @param {string} [modelId] 
+     * @param {number} [modelYear] 
+     * @param {number} [engineId] 
+     * @param {string} [placas] 
+     * @param {number} [drillRigId] 
+     * @param {string} [policyId] 
+     * @param {string} [incisoId] 
+     * @param {string} [packagePolicyId] 
+     * @param {string} [measureId] 
+     * @param {string} [fuelMeasureId] 
+     * @param {string} [fuelTypeId] 
+     * @param {Array<Blob>} [photographs] 
+     * @param {Blob} [bill] 
+     * @param {Blob} [pedimento] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof VehicleApi
+     */
+    public async apiVehiclePostForm(VIN?: string, machineId?: string, economicNumber?: string, assignedId?: string, brandId?: string, modelId?: string, modelYear?: number, engineId?: number, placas?: string, drillRigId?: number, policyId?: string, incisoId?: string, packagePolicyId?: string, measureId?: string, fuelMeasureId?: string, fuelTypeId?: string, photographs?: Array<Blob>, bill?: Blob, pedimento?: Blob, options?: AxiosRequestConfig) : Promise<AxiosResponse<string>> {
+        return VehicleApiFp(this.configuration).apiVehiclePostForm(VIN, machineId, economicNumber, assignedId, brandId, modelId, modelYear, engineId, placas, drillRigId, policyId, incisoId, packagePolicyId, measureId, fuelMeasureId, fuelTypeId, photographs, bill, pedimento, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
      * @param {number} page 
      * @param {number} pageSize 
      * @param {string} [search] 
+     * @param {string} [orderByPropertyName] 
+     * @param {SortOrderEnum} [sortOrder] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof VehicleApi
      */
-    public async apiVehicleSearchGet(page: number, pageSize: number, search?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<VehicleDTOPagedResult>> {
-        return VehicleApiFp(this.configuration).apiVehicleSearchGet(page, pageSize, search, options).then((request) => request(this.axios, this.basePath));
+    public async apiVehicleSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig) : Promise<AxiosResponse<VehicleDTOPagedResult>> {
+        return VehicleApiFp(this.configuration).apiVehicleSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, options).then((request) => request(this.axios, this.basePath));
     }
 }

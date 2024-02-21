@@ -13,9 +13,7 @@
  */
 
 import { FuelVendorDTO } from './fuel-vendor-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export

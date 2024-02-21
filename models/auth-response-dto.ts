@@ -12,9 +12,7 @@
  * Do not edit the class manually.
  */
 
-;
-
-/**
+ /**
  * 
  *
  * @export
@@ -81,10 +79,4 @@ export interface AuthResponseDTO {
      * @memberof AuthResponseDTO
      */
     active?: boolean;
-
-    /**
-     * @type {Array<string>}
-     * @memberof AuthResponseDTO
-     */
-    roles?: Array<string> | null;
 }

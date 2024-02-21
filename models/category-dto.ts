@@ -12,49 +12,35 @@
  * Do not edit the class manually.
  */
 
-;
-
-/**
+ /**
  * 
  *
  * @export
- * @interface Document
+ * @interface CategoryDTO
  */
-export interface Document {
+export interface CategoryDTO {
 
     /**
      * @type {string}
-     * @memberof Document
+     * @memberof CategoryDTO
      */
     id?: string | null;
 
     /**
-     * @type {boolean}
-     * @memberof Document
+     * @type {string}
+     * @memberof CategoryDTO
      */
-    active?: boolean;
-
-    /**
-     * @type {number}
-     * @memberof Document
-     */
-    isActive?: number;
-
-    /**
-     * @type {boolean}
-     * @memberof Document
-     */
-    excludeFromLog?: boolean;
+    name?: string | null;
 
     /**
      * @type {string}
-     * @memberof Document
+     * @memberof CategoryDTO
      */
-    path?: string | null;
+    code?: string | null;
 
     /**
      * @type {string}
-     * @memberof Document
+     * @memberof CategoryDTO
      */
-    fileName?: string | null;
+    description?: string | null;
 }

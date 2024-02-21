@@ -13,9 +13,7 @@
  */
 
 import { PolicyDTO } from './policy-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export

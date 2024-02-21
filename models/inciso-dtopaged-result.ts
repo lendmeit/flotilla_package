@@ -13,9 +13,7 @@
  */
 
 import { IncisoDTO } from './inciso-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export

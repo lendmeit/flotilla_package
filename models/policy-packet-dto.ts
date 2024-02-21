@@ -12,10 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { PolicyDTO } from './policy-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export
@@ -46,10 +43,4 @@ export interface PolicyPacketDTO {
      * @memberof PolicyPacketDTO
      */
     description?: string | null;
-
-    /**
-     * @type {Array<PolicyDTO>}
-     * @memberof PolicyPacketDTO
-     */
-    policies?: Array<PolicyDTO> | null;
 }

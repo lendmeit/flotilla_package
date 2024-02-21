@@ -13,9 +13,7 @@
  */
 
 import { CompanyDTO } from './company-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export

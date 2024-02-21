@@ -12,10 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { VehicleDTO } from './vehicle-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export
@@ -52,10 +49,4 @@ export interface IncidentDTO {
      * @memberof IncidentDTO
      */
     vehicleId?: string | null;
-
-    /**
-     * @type {VehicleDTO}
-     * @memberof IncidentDTO
-     */
-    vehicle?: VehicleDTO;
 }

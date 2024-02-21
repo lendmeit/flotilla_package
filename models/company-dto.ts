@@ -12,10 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { VehicleDTO } from './vehicle-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export
@@ -46,10 +43,4 @@ export interface CompanyDTO {
      * @memberof CompanyDTO
      */
     description?: string | null;
-
-    /**
-     * @type {Array<VehicleDTO>}
-     * @memberof CompanyDTO
-     */
-    vehicles?: Array<VehicleDTO> | null;
 }

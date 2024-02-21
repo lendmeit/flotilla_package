@@ -13,9 +13,7 @@
  */
 
 import { PolicyStatusDTO } from './policy-status-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export

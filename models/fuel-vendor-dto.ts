@@ -12,10 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { FuelLoadDTO } from './fuel-load-dto';
-;
-
-/**
+ /**
  * 
  *
  * @export
@@ -52,10 +49,4 @@ export interface FuelVendorDTO {
      * @memberof FuelVendorDTO
      */
     externalId?: number;
-
-    /**
-     * @type {Array<FuelLoadDTO>}
-     * @memberof FuelVendorDTO
-     */
-    fuelLoads?: Array<FuelLoadDTO> | null;
 }
