@@ -88,14 +88,14 @@ export interface FuelLoadDTO {
     full?: boolean;
 
     /**
-     * @type {number}
+     * @type {string}
      * @memberof FuelLoadDTO
      */
-    documentId?: number;
+    documentId?: string | null;
 
     /**
-     * @type {number}
+     * @type {string}
      * @memberof FuelLoadDTO
      */
-    vehicleId?: number;
+    vehicleId?: string | null;
 }

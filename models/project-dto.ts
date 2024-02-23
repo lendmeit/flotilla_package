@@ -49,22 +49,4 @@ export interface ProjectDTO {
      * @memberof ProjectDTO
      */
     externalId?: number;
-
-    /**
-     * @type {string}
-     * @memberof ProjectDTO
-     */
-    packetId?: string | null;
-
-    /**
-     * @type {string}
-     * @memberof ProjectDTO
-     */
-    documentId?: string | null;
-
-    /**
-     * @type {string}
-     * @memberof ProjectDTO
-     */
-    maintenanceId?: string | null;
 }

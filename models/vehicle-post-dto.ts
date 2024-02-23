@@ -36,7 +36,7 @@ export interface VehiclePostDTO {
      * @type {string}
      * @memberof VehiclePostDTO
      */
-    economicNumber?: string | null;
+    economicNumber: string;
 
     /**
      * @type {string}
@@ -63,10 +63,10 @@ export interface VehiclePostDTO {
     modelYear?: number;
 
     /**
-     * @type {number}
+     * @type {string}
      * @memberof VehiclePostDTO
      */
-    engineId?: number;
+    engineId?: string | null;
 
     /**
      * @type {string}

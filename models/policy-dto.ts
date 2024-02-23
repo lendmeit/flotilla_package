@@ -72,7 +72,7 @@ export interface PolicyDTO {
      * @type {string}
      * @memberof PolicyDTO
      */
-    policyPacketId?: string | null;
+    packagePolicyId?: string | null;
 
     /**
      * @type {string}

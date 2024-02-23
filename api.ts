@@ -36,7 +36,6 @@ export * from './apis/model-api';
 export * from './apis/package-policy-api';
 export * from './apis/part-api';
 export * from './apis/policy-api';
-export * from './apis/policy-packet-api';
 export * from './apis/policy-status-api';
 export * from './apis/project-api';
 export * from './apis/role-api';

@@ -22,6 +22,7 @@ import { VehicleDTO } from '../models';
 import { VehicleDTOPagedResult } from '../models';
 import { VehicleInboxDTOPagedResult } from '../models';
 import { VehicleNewEditDTO } from '../models';
+import { VehiclePostDTO } from '../models';
 /**
  * VehicleApi - axios parameter creator
  * @export
@@ -348,7 +349,7 @@ export const VehicleApiAxiosParamCreator = function (configuration?: Configurati
          * @param {string} [brandId] 
          * @param {string} [modelId] 
          * @param {number} [modelYear] 
-         * @param {number} [engineId] 
+         * @param {string} [engineId] 
          * @param {string} [placas] 
          * @param {number} [drillRigId] 
          * @param {string} [policyId] 
@@ -363,7 +364,7 @@ export const VehicleApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiVehiclePostForm: async (VIN?: string, machineId?: string, economicNumber?: string, assignedId?: string, brandId?: string, modelId?: string, modelYear?: number, engineId?: number, placas?: string, drillRigId?: number, policyId?: string, incisoId?: string, packagePolicyId?: string, measureId?: string, fuelMeasureId?: string, fuelTypeId?: string, photographs?: Array<Blob>, bill?: Blob, pedimento?: Blob, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiVehiclePostForm: async (VIN?: string, machineId?: string, economicNumber?: string, assignedId?: string, brandId?: string, modelId?: string, modelYear?: number, engineId?: string, placas?: string, drillRigId?: number, policyId?: string, incisoId?: string, packagePolicyId?: string, measureId?: string, fuelMeasureId?: string, fuelTypeId?: string, photographs?: Array<Blob>, bill?: Blob, pedimento?: Blob, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/Vehicle`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -474,6 +475,52 @@ export const VehicleApiAxiosParamCreator = function (configuration?: Configurati
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = localVarFormParams;
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {VehiclePostDTO} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiVehicleSavePost: async (body?: VehiclePostDTO, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Vehicle/Save`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("Authorization")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json;odata.metadata=minimal;odata.streaming=true';
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -654,7 +701,7 @@ export const VehicleApiFp = function(configuration?: Configuration) {
          * @param {string} [brandId] 
          * @param {string} [modelId] 
          * @param {number} [modelYear] 
-         * @param {number} [engineId] 
+         * @param {string} [engineId] 
          * @param {string} [placas] 
          * @param {number} [drillRigId] 
          * @param {string} [policyId] 
@@ -669,8 +716,21 @@ export const VehicleApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiVehiclePostForm(VIN?: string, machineId?: string, economicNumber?: string, assignedId?: string, brandId?: string, modelId?: string, modelYear?: number, engineId?: number, placas?: string, drillRigId?: number, policyId?: string, incisoId?: string, packagePolicyId?: string, measureId?: string, fuelMeasureId?: string, fuelTypeId?: string, photographs?: Array<Blob>, bill?: Blob, pedimento?: Blob, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<string>>> {
+        async apiVehiclePostForm(VIN?: string, machineId?: string, economicNumber?: string, assignedId?: string, brandId?: string, modelId?: string, modelYear?: number, engineId?: string, placas?: string, drillRigId?: number, policyId?: string, incisoId?: string, packagePolicyId?: string, measureId?: string, fuelMeasureId?: string, fuelTypeId?: string, photographs?: Array<Blob>, bill?: Blob, pedimento?: Blob, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<string>>> {
             const localVarAxiosArgs = await VehicleApiAxiosParamCreator(configuration).apiVehiclePostForm(VIN, machineId, economicNumber, assignedId, brandId, modelId, modelYear, engineId, placas, drillRigId, policyId, incisoId, packagePolicyId, measureId, fuelMeasureId, fuelTypeId, photographs, bill, pedimento, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {VehiclePostDTO} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiVehicleSavePost(body?: VehiclePostDTO, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<string>>> {
+            const localVarAxiosArgs = await VehicleApiAxiosParamCreator(configuration).apiVehicleSavePost(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -769,7 +829,7 @@ export const VehicleApiFactory = function (configuration?: Configuration, basePa
          * @param {string} [brandId] 
          * @param {string} [modelId] 
          * @param {number} [modelYear] 
-         * @param {number} [engineId] 
+         * @param {string} [engineId] 
          * @param {string} [placas] 
          * @param {number} [drillRigId] 
          * @param {string} [policyId] 
@@ -784,8 +844,17 @@ export const VehicleApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiVehiclePostForm(VIN?: string, machineId?: string, economicNumber?: string, assignedId?: string, brandId?: string, modelId?: string, modelYear?: number, engineId?: number, placas?: string, drillRigId?: number, policyId?: string, incisoId?: string, packagePolicyId?: string, measureId?: string, fuelMeasureId?: string, fuelTypeId?: string, photographs?: Array<Blob>, bill?: Blob, pedimento?: Blob, options?: AxiosRequestConfig): Promise<AxiosResponse<string>> {
+        async apiVehiclePostForm(VIN?: string, machineId?: string, economicNumber?: string, assignedId?: string, brandId?: string, modelId?: string, modelYear?: number, engineId?: string, placas?: string, drillRigId?: number, policyId?: string, incisoId?: string, packagePolicyId?: string, measureId?: string, fuelMeasureId?: string, fuelTypeId?: string, photographs?: Array<Blob>, bill?: Blob, pedimento?: Blob, options?: AxiosRequestConfig): Promise<AxiosResponse<string>> {
             return VehicleApiFp(configuration).apiVehiclePostForm(VIN, machineId, economicNumber, assignedId, brandId, modelId, modelYear, engineId, placas, drillRigId, policyId, incisoId, packagePolicyId, measureId, fuelMeasureId, fuelTypeId, photographs, bill, pedimento, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {VehiclePostDTO} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiVehicleSavePost(body?: VehiclePostDTO, options?: AxiosRequestConfig): Promise<AxiosResponse<string>> {
+            return VehicleApiFp(configuration).apiVehicleSavePost(body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -883,7 +952,7 @@ export class VehicleApi extends BaseAPI {
      * @param {string} [brandId] 
      * @param {string} [modelId] 
      * @param {number} [modelYear] 
-     * @param {number} [engineId] 
+     * @param {string} [engineId] 
      * @param {string} [placas] 
      * @param {number} [drillRigId] 
      * @param {string} [policyId] 
@@ -899,8 +968,18 @@ export class VehicleApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof VehicleApi
      */
-    public async apiVehiclePostForm(VIN?: string, machineId?: string, economicNumber?: string, assignedId?: string, brandId?: string, modelId?: string, modelYear?: number, engineId?: number, placas?: string, drillRigId?: number, policyId?: string, incisoId?: string, packagePolicyId?: string, measureId?: string, fuelMeasureId?: string, fuelTypeId?: string, photographs?: Array<Blob>, bill?: Blob, pedimento?: Blob, options?: AxiosRequestConfig) : Promise<AxiosResponse<string>> {
+    public async apiVehiclePostForm(VIN?: string, machineId?: string, economicNumber?: string, assignedId?: string, brandId?: string, modelId?: string, modelYear?: number, engineId?: string, placas?: string, drillRigId?: number, policyId?: string, incisoId?: string, packagePolicyId?: string, measureId?: string, fuelMeasureId?: string, fuelTypeId?: string, photographs?: Array<Blob>, bill?: Blob, pedimento?: Blob, options?: AxiosRequestConfig) : Promise<AxiosResponse<string>> {
         return VehicleApiFp(this.configuration).apiVehiclePostForm(VIN, machineId, economicNumber, assignedId, brandId, modelId, modelYear, engineId, placas, drillRigId, policyId, incisoId, packagePolicyId, measureId, fuelMeasureId, fuelTypeId, photographs, bill, pedimento, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
+     * @param {VehiclePostDTO} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof VehicleApi
+     */
+    public async apiVehicleSavePost(body?: VehiclePostDTO, options?: AxiosRequestConfig) : Promise<AxiosResponse<string>> {
+        return VehicleApiFp(this.configuration).apiVehicleSavePost(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 

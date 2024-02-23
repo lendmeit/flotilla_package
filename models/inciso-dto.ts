@@ -36,11 +36,5 @@ export interface IncisoDTO {
      * @type {string}
      * @memberof IncisoDTO
      */
-    vehicleId?: string | null;
-
-    /**
-     * @type {string}
-     * @memberof IncisoDTO
-     */
     policyId?: string | null;
 }

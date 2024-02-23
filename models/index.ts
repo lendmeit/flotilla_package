@@ -53,8 +53,6 @@ export * from './part-dto';
 export * from './part-dtopaged-result';
 export * from './policy-dto';
 export * from './policy-dtopaged-result';
-export * from './policy-packet-dto';
-export * from './policy-packet-dtopaged-result';
 export * from './policy-status-dto';
 export * from './policy-status-dtopaged-result';
 export * from './problem-details';

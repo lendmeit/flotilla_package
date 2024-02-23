@@ -36,7 +36,7 @@ export interface ApiVehicleBody {
      * @type {string}
      * @memberof ApiVehicleBody
      */
-    economicNumber?: string;
+    economicNumber: string;
 
     /**
      * @type {string}
@@ -63,10 +63,10 @@ export interface ApiVehicleBody {
     modelYear?: number;
 
     /**
-     * @type {number}
+     * @type {string}
      * @memberof ApiVehicleBody
      */
-    engineId?: number;
+    engineId?: string;
 
     /**
      * @type {string}
