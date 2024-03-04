@@ -36,6 +36,12 @@ export interface ApiVehicleBody {
      * @type {string}
      * @memberof ApiVehicleBody
      */
+    description: string;
+
+    /**
+     * @type {string}
+     * @memberof ApiVehicleBody
+     */
     economicNumber: string;
 
     /**

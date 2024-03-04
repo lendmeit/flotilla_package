@@ -24,6 +24,12 @@ export interface VehicleFormDTO {
      * @type {string}
      * @memberof VehicleFormDTO
      */
+    description: string;
+
+    /**
+     * @type {string}
+     * @memberof VehicleFormDTO
+     */
     assignedId?: string | null;
 
     /**

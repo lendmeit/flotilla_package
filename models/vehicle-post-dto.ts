@@ -36,6 +36,12 @@ export interface VehiclePostDTO {
      * @type {string}
      * @memberof VehiclePostDTO
      */
+    description: string;
+
+    /**
+     * @type {string}
+     * @memberof VehiclePostDTO
+     */
     economicNumber: string;
 
     /**

@@ -64,6 +64,12 @@ export interface FuelLoadDTO {
     liters?: number;
 
     /**
+     * @type {string}
+     * @memberof FuelLoadDTO
+     */
+    odometer?: string | null;
+
+    /**
      * @type {number}
      * @memberof FuelLoadDTO
      */
