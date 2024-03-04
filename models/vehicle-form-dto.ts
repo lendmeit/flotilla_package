@@ -16,133 +16,133 @@
  * 
  *
  * @export
- * @interface VehiclePostDTO
+ * @interface VehicleFormDTO
  */
-export interface VehiclePostDTO {
+export interface VehicleFormDTO {
 
     /**
      * @type {string}
-     * @memberof VehiclePostDTO
-     */
-    vin: string;
-
-    /**
-     * @type {string}
-     * @memberof VehiclePostDTO
-     */
-    machineId: string;
-
-    /**
-     * @type {string}
-     * @memberof VehiclePostDTO
-     */
-    economicNumber: string;
-
-    /**
-     * @type {string}
-     * @memberof VehiclePostDTO
+     * @memberof VehicleFormDTO
      */
     assignedId?: string | null;
 
     /**
      * @type {string}
-     * @memberof VehiclePostDTO
+     * @memberof VehicleFormDTO
      */
     brandId?: string | null;
 
     /**
      * @type {string}
-     * @memberof VehiclePostDTO
+     * @memberof VehicleFormDTO
      */
     modelId?: string | null;
 
     /**
      * @type {number}
-     * @memberof VehiclePostDTO
+     * @memberof VehicleFormDTO
      */
     modelYear?: number;
 
     /**
      * @type {string}
-     * @memberof VehiclePostDTO
+     * @memberof VehicleFormDTO
      */
     engineId?: string | null;
 
     /**
      * @type {string}
-     * @memberof VehiclePostDTO
+     * @memberof VehicleFormDTO
      */
     placas?: string | null;
 
     /**
      * @type {number}
-     * @memberof VehiclePostDTO
+     * @memberof VehicleFormDTO
      */
     drillRigId?: number;
 
     /**
      * @type {string}
-     * @memberof VehiclePostDTO
+     * @memberof VehicleFormDTO
      */
     policyId?: string | null;
 
     /**
      * @type {string}
-     * @memberof VehiclePostDTO
+     * @memberof VehicleFormDTO
      */
     incisoId?: string | null;
 
     /**
      * @type {string}
-     * @memberof VehiclePostDTO
+     * @memberof VehicleFormDTO
      */
     packagePolicyId?: string | null;
 
     /**
      * @type {string}
-     * @memberof VehiclePostDTO
+     * @memberof VehicleFormDTO
      */
     measureId?: string | null;
 
     /**
      * @type {string}
-     * @memberof VehiclePostDTO
+     * @memberof VehicleFormDTO
      */
     fuelMeasureId?: string | null;
 
     /**
      * @type {string}
-     * @memberof VehiclePostDTO
+     * @memberof VehicleFormDTO
      */
     fuelTypeId?: string | null;
 
     /**
      * @type {number}
-     * @memberof VehiclePostDTO
+     * @memberof VehicleFormDTO
      */
     tankSize?: number;
 
     /**
      * @type {boolean}
-     * @memberof VehiclePostDTO
+     * @memberof VehicleFormDTO
      */
     active?: boolean;
 
     /**
      * @type {Array<Blob>}
-     * @memberof VehiclePostDTO
+     * @memberof VehicleFormDTO
      */
     photographsFiles?: Array<Blob> | null;
 
     /**
      * @type {Blob}
-     * @memberof VehiclePostDTO
+     * @memberof VehicleFormDTO
      */
     billFile?: Blob | null;
 
     /**
      * @type {Blob}
-     * @memberof VehiclePostDTO
+     * @memberof VehicleFormDTO
      */
     pedimentoFile?: Blob | null;
+
+    /**
+     * @type {string}
+     * @memberof VehicleFormDTO
+     */
+    vin?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof VehicleFormDTO
+     */
+    machineId?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof VehicleFormDTO
+     */
+    economicNumber?: string | null;
 }

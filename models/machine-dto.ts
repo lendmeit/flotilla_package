@@ -43,4 +43,10 @@ export interface MachineDTO {
      * @memberof MachineDTO
      */
     description?: string | null;
+
+    /**
+     * @type {number}
+     * @memberof MachineDTO
+     */
+    drillRigId?: number;
 }

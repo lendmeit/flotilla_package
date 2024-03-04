@@ -117,20 +117,32 @@ export interface ApiVehicleBody {
     fuelTypeId?: string;
 
     /**
+     * @type {number}
+     * @memberof ApiVehicleBody
+     */
+    tankSize?: number;
+
+    /**
+     * @type {boolean}
+     * @memberof ApiVehicleBody
+     */
+    active?: boolean;
+
+    /**
      * @type {Array<Blob>}
      * @memberof ApiVehicleBody
      */
-    photographs?: Array<Blob>;
+    photographsFiles?: Array<Blob>;
 
     /**
      * @type {Blob}
      * @memberof ApiVehicleBody
      */
-    bill?: Blob;
+    billFile?: Blob;
 
     /**
      * @type {Blob}
      * @memberof ApiVehicleBody
      */
-    pedimento?: Blob;
+    pedimentoFile?: Blob;
 }

@@ -16,133 +16,139 @@
  * 
  *
  * @export
- * @interface VehiclePostDTO
+ * @interface VehiclePutDTO
  */
-export interface VehiclePostDTO {
+export interface VehiclePutDTO {
 
     /**
      * @type {string}
-     * @memberof VehiclePostDTO
+     * @memberof VehiclePutDTO
      */
     vin: string;
 
     /**
      * @type {string}
-     * @memberof VehiclePostDTO
+     * @memberof VehiclePutDTO
      */
     machineId: string;
 
     /**
      * @type {string}
-     * @memberof VehiclePostDTO
+     * @memberof VehiclePutDTO
      */
     economicNumber: string;
 
     /**
      * @type {string}
-     * @memberof VehiclePostDTO
+     * @memberof VehiclePutDTO
      */
     assignedId?: string | null;
 
     /**
      * @type {string}
-     * @memberof VehiclePostDTO
+     * @memberof VehiclePutDTO
      */
     brandId?: string | null;
 
     /**
      * @type {string}
-     * @memberof VehiclePostDTO
+     * @memberof VehiclePutDTO
      */
     modelId?: string | null;
 
     /**
      * @type {number}
-     * @memberof VehiclePostDTO
+     * @memberof VehiclePutDTO
      */
     modelYear?: number;
 
     /**
      * @type {string}
-     * @memberof VehiclePostDTO
+     * @memberof VehiclePutDTO
      */
     engineId?: string | null;
 
     /**
      * @type {string}
-     * @memberof VehiclePostDTO
+     * @memberof VehiclePutDTO
      */
     placas?: string | null;
 
     /**
      * @type {number}
-     * @memberof VehiclePostDTO
+     * @memberof VehiclePutDTO
      */
     drillRigId?: number;
 
     /**
      * @type {string}
-     * @memberof VehiclePostDTO
+     * @memberof VehiclePutDTO
      */
     policyId?: string | null;
 
     /**
      * @type {string}
-     * @memberof VehiclePostDTO
+     * @memberof VehiclePutDTO
      */
     incisoId?: string | null;
 
     /**
      * @type {string}
-     * @memberof VehiclePostDTO
+     * @memberof VehiclePutDTO
      */
     packagePolicyId?: string | null;
 
     /**
      * @type {string}
-     * @memberof VehiclePostDTO
+     * @memberof VehiclePutDTO
      */
     measureId?: string | null;
 
     /**
      * @type {string}
-     * @memberof VehiclePostDTO
+     * @memberof VehiclePutDTO
      */
     fuelMeasureId?: string | null;
 
     /**
      * @type {string}
-     * @memberof VehiclePostDTO
+     * @memberof VehiclePutDTO
      */
     fuelTypeId?: string | null;
 
     /**
      * @type {number}
-     * @memberof VehiclePostDTO
+     * @memberof VehiclePutDTO
      */
     tankSize?: number;
 
     /**
      * @type {boolean}
-     * @memberof VehiclePostDTO
+     * @memberof VehiclePutDTO
      */
     active?: boolean;
 
     /**
      * @type {Array<Blob>}
-     * @memberof VehiclePostDTO
+     * @memberof VehiclePutDTO
      */
     photographsFiles?: Array<Blob> | null;
 
     /**
      * @type {Blob}
-     * @memberof VehiclePostDTO
+     * @memberof VehiclePutDTO
      */
     billFile?: Blob | null;
 
     /**
      * @type {Blob}
-     * @memberof VehiclePostDTO
+     * @memberof VehiclePutDTO
      */
     pedimentoFile?: Blob | null;
+
+    /**
+     * @type {Array<string>}
+     * @memberof VehiclePutDTO
+     */
+    photosToRemove?: Array<string> | null;
 }

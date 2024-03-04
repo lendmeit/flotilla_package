@@ -89,10 +89,10 @@ export interface VehicleDTO {
     modelYear?: number;
 
     /**
-     * @type {number}
+     * @type {string}
      * @memberof VehicleDTO
      */
-    engineId?: number;
+    engineId?: string | null;
 
     /**
      * @type {string}

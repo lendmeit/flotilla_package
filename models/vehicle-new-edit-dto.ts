@@ -12,8 +12,10 @@
  * Do not edit the class manually.
  */
 
+import { DocumentDTO } from './document-dto';
+import { ImageDTO } from './image-dto';
 import { SelectDTO } from './select-dto';
-import { VehiclePostDTO } from './vehicle-post-dto';
+import { VehicleFormDTO } from './vehicle-form-dto';
  /**
  * 
  *
@@ -23,10 +25,10 @@ import { VehiclePostDTO } from './vehicle-post-dto';
 export interface VehicleNewEditDTO {
 
     /**
-     * @type {VehiclePostDTO}
+     * @type {VehicleFormDTO}
      * @memberof VehicleNewEditDTO
      */
-    vehicle?: VehiclePostDTO;
+    vehicle?: VehicleFormDTO;
 
     /**
      * @type {Array<SelectDTO>}
@@ -93,4 +95,28 @@ export interface VehicleNewEditDTO {
      * @memberof VehicleNewEditDTO
      */
     fuelTypes?: Array<SelectDTO> | null;
+
+    /**
+     * @type {Array<SelectDTO>}
+     * @memberof VehicleNewEditDTO
+     */
+    machines?: Array<SelectDTO> | null;
+
+    /**
+     * @type {Array<ImageDTO>}
+     * @memberof VehicleNewEditDTO
+     */
+    photos?: Array<ImageDTO> | null;
+
+    /**
+     * @type {DocumentDTO}
+     * @memberof VehicleNewEditDTO
+     */
+    bill?: DocumentDTO;
+
+    /**
+     * @type {DocumentDTO}
+     * @memberof VehicleNewEditDTO
+     */
+    pedimento?: DocumentDTO;
 }
