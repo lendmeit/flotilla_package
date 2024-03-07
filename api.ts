@@ -38,6 +38,7 @@ export * from './apis/part-api';
 export * from './apis/policy-api';
 export * from './apis/policy-status-api';
 export * from './apis/project-api';
+export * from './apis/reminder-api';
 export * from './apis/role-api';
 export * from './apis/service-api';
 export * from './apis/user-api';

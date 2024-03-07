@@ -24,7 +24,19 @@ export interface VehicleInboxDTO {
      * @type {string}
      * @memberof VehicleInboxDTO
      */
+    id?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof VehicleInboxDTO
+     */
     description?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof VehicleInboxDTO
+     */
+    assignedTo?: string | null;
 
     /**
      * @type {string}
@@ -54,23 +66,17 @@ export interface VehicleInboxDTO {
      * @type {string}
      * @memberof VehicleInboxDTO
      */
-    vehicleTypeId?: string | null;
-
-    /**
-     * @type {string}
-     * @memberof VehicleInboxDTO
-     */
     projectName?: string | null;
 
     /**
      * @type {string}
      * @memberof VehicleInboxDTO
      */
-    companyId?: string | null;
+    machineId?: string | null;
 
     /**
      * @type {string}
      * @memberof VehicleInboxDTO
      */
-    id?: string | null;
+    companyId?: string | null;
 }

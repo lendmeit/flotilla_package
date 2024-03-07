@@ -13,11 +13,11 @@
  */
 
 import { DocumentDTO } from './document-dto';
-import { FuelLoadDTO } from './fuel-load-dto';
+import { FuelLoadDTOPagedResult } from './fuel-load-dtopaged-result';
 import { ImageDTO } from './image-dto';
-import { MaintenanceDTO } from './maintenance-dto';
+import { MaintenanceDTOPagedResult } from './maintenance-dtopaged-result';
 import { PerformanceDTO } from './performance-dto';
-import { ReminderDTO } from './reminder-dto';
+import { ReminderDTOPagedResult } from './reminder-dtopaged-result';
 import { VehicleStatisticsDTO } from './vehicle-statistics-dto';
 import { VehicleStatusEnum } from './vehicle-status-enum';
  /**
@@ -27,6 +27,12 @@ import { VehicleStatusEnum } from './vehicle-status-enum';
  * @interface VehicleDetailDTO
  */
 export interface VehicleDetailDTO {
+
+    /**
+     * @type {string}
+     * @memberof VehicleDetailDTO
+     */
+    id?: string | null;
 
     /**
      * @type {string}
@@ -101,22 +107,22 @@ export interface VehicleDetailDTO {
     statistics?: Array<VehicleStatisticsDTO> | null;
 
     /**
-     * @type {Array<FuelLoadDTO>}
+     * @type {FuelLoadDTOPagedResult}
      * @memberof VehicleDetailDTO
      */
-    fuelLoads?: Array<FuelLoadDTO> | null;
+    fuelLoads?: FuelLoadDTOPagedResult;
 
     /**
-     * @type {Array<MaintenanceDTO>}
+     * @type {MaintenanceDTOPagedResult}
      * @memberof VehicleDetailDTO
      */
-    maintenances?: Array<MaintenanceDTO> | null;
+    listMaintenances?: MaintenanceDTOPagedResult;
 
     /**
      * @type {Array<ImageDTO>}
      * @memberof VehicleDetailDTO
      */
-    photos?: Array<ImageDTO> | null;
+    photographs?: Array<ImageDTO> | null;
 
     /**
      * @type {DocumentDTO}
@@ -131,8 +137,8 @@ export interface VehicleDetailDTO {
     pedimento?: DocumentDTO;
 
     /**
-     * @type {Array<ReminderDTO>}
+     * @type {ReminderDTOPagedResult}
      * @memberof VehicleDetailDTO
      */
-    reminders?: Array<ReminderDTO> | null;
+    listReminders?: ReminderDTOPagedResult;
 }

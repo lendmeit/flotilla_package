@@ -24,12 +24,6 @@ export interface VehicleFormDTO {
      * @type {string}
      * @memberof VehicleFormDTO
      */
-    description: string;
-
-    /**
-     * @type {string}
-     * @memberof VehicleFormDTO
-     */
     assignedId?: string | null;
 
     /**
@@ -133,6 +127,12 @@ export interface VehicleFormDTO {
      * @memberof VehicleFormDTO
      */
     pedimentoFile?: Blob | null;
+
+    /**
+     * @type {string}
+     * @memberof VehicleFormDTO
+     */
+    description?: string | null;
 
     /**
      * @type {string}
