@@ -24,6 +24,18 @@ export interface VehicleStatisticsDTO {
      * @type {string}
      * @memberof VehicleStatisticsDTO
      */
+    id?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof VehicleStatisticsDTO
+     */
+    date?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof VehicleStatisticsDTO
+     */
     odometer?: string | null;
 
     /**
@@ -42,7 +54,7 @@ export interface VehicleStatisticsDTO {
      * @type {string}
      * @memberof VehicleStatisticsDTO
      */
-    costoLTAverage?: string | null;
+    costLTAverage?: string | null;
 
     /**
      * @type {string}

@@ -20,6 +20,7 @@
 export enum VehicleStatusEnum {
     Disponible = 'Disponible',
     Deshabilitado = 'Deshabilitado',
-    Mantenimiento = 'Mantenimiento'
+    Mantenimiento = 'Mantenimiento',
+    Asignado = 'Asignado'
 }
 

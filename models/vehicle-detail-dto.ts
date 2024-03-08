@@ -141,4 +141,10 @@ export interface VehicleDetailDTO {
      * @memberof VehicleDetailDTO
      */
     listReminders?: ReminderDTOPagedResult;
+
+    /**
+     * @type {boolean}
+     * @memberof VehicleDetailDTO
+     */
+    active?: boolean;
 }
