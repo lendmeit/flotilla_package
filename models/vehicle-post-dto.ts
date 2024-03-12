@@ -123,6 +123,18 @@ export interface VehiclePostDTO {
     fuelTypeId?: string | null;
 
     /**
+     * @type {string}
+     * @memberof VehiclePostDTO
+     */
+    companyId?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof VehiclePostDTO
+     */
+    categoryId?: string | null;
+
+    /**
      * @type {number}
      * @memberof VehiclePostDTO
      */

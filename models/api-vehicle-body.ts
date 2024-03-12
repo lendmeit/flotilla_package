@@ -123,6 +123,18 @@ export interface ApiVehicleBody {
     fuelTypeId?: string;
 
     /**
+     * @type {string}
+     * @memberof ApiVehicleBody
+     */
+    companyId?: string;
+
+    /**
+     * @type {string}
+     * @memberof ApiVehicleBody
+     */
+    categoryId?: string;
+
+    /**
      * @type {number}
      * @memberof ApiVehicleBody
      */

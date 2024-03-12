@@ -12,6 +12,8 @@
  * Do not edit the class manually.
  */
 
+import { DocumentDTO } from './document-dto';
+import { ImageDTO } from './image-dto';
  /**
  * 
  *
@@ -99,6 +101,18 @@ export interface VehicleFormDTO {
     fuelTypeId?: string | null;
 
     /**
+     * @type {string}
+     * @memberof VehicleFormDTO
+     */
+    companyId?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof VehicleFormDTO
+     */
+    categoryId?: string | null;
+
+    /**
      * @type {number}
      * @memberof VehicleFormDTO
      */
@@ -151,4 +165,22 @@ export interface VehicleFormDTO {
      * @memberof VehicleFormDTO
      */
     economicNumber?: string | null;
+
+    /**
+     * @type {Array<ImageDTO>}
+     * @memberof VehicleFormDTO
+     */
+    photographs?: Array<ImageDTO> | null;
+
+    /**
+     * @type {DocumentDTO}
+     * @memberof VehicleFormDTO
+     */
+    bill?: DocumentDTO;
+
+    /**
+     * @type {DocumentDTO}
+     * @memberof VehicleFormDTO
+     */
+    pedimento?: DocumentDTO;
 }

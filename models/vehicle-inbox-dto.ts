@@ -30,6 +30,12 @@ export interface VehicleInboxDTO {
      * @type {string}
      * @memberof VehicleInboxDTO
      */
+    image?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof VehicleInboxDTO
+     */
     description?: string | null;
 
     /**

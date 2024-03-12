@@ -123,6 +123,18 @@ export interface VehiclePutDTO {
     fuelTypeId?: string | null;
 
     /**
+     * @type {string}
+     * @memberof VehiclePutDTO
+     */
+    companyId?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof VehiclePutDTO
+     */
+    categoryId?: string | null;
+
+    /**
      * @type {number}
      * @memberof VehiclePutDTO
      */
