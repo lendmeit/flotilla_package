@@ -18,7 +18,7 @@ import { Configuration } from '../configuration';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 import { FuelLoadDTO } from '../models';
-import { FuelLoadDTOPagedResult } from '../models';
+import { FuelLoadDetailDTOPagedResult } from '../models';
 import { SortOrderEnum } from '../models';
 /**
  * FuelLoadApi - axios parameter creator
@@ -421,7 +421,7 @@ export const FuelLoadApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiFuelLoadSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<FuelLoadDTOPagedResult>>> {
+        async apiFuelLoadSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<FuelLoadDetailDTOPagedResult>>> {
             const localVarAxiosArgs = await FuelLoadApiAxiosParamCreator(configuration).apiFuelLoadSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -492,7 +492,7 @@ export const FuelLoadApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiFuelLoadSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig): Promise<AxiosResponse<FuelLoadDTOPagedResult>> {
+        async apiFuelLoadSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig): Promise<AxiosResponse<FuelLoadDetailDTOPagedResult>> {
             return FuelLoadApiFp(configuration).apiFuelLoadSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, options).then((request) => request(axios, basePath));
         },
     };
@@ -566,7 +566,7 @@ export class FuelLoadApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FuelLoadApi
      */
-    public async apiFuelLoadSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig) : Promise<AxiosResponse<FuelLoadDTOPagedResult>> {
+    public async apiFuelLoadSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig) : Promise<AxiosResponse<FuelLoadDetailDTOPagedResult>> {
         return FuelLoadApiFp(this.configuration).apiFuelLoadSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, options).then((request) => request(this.axios, this.basePath));
     }
 }

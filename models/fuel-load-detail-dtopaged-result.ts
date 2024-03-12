@@ -12,42 +12,42 @@
  * Do not edit the class manually.
  */
 
-import { MaintenanceDTO } from './maintenance-dto';
+import { FuelLoadDetailDTO } from './fuel-load-detail-dto';
  /**
  * 
  *
  * @export
- * @interface MaintenanceDTOPagedResult
+ * @interface FuelLoadDetailDTOPagedResult
  */
-export interface MaintenanceDTOPagedResult {
+export interface FuelLoadDetailDTOPagedResult {
 
     /**
      * @type {number}
-     * @memberof MaintenanceDTOPagedResult
+     * @memberof FuelLoadDetailDTOPagedResult
      */
     totalCount?: number;
 
     /**
      * @type {number}
-     * @memberof MaintenanceDTOPagedResult
+     * @memberof FuelLoadDetailDTOPagedResult
      */
     pageNumber?: number;
 
     /**
      * @type {number}
-     * @memberof MaintenanceDTOPagedResult
+     * @memberof FuelLoadDetailDTOPagedResult
      */
     recordNumber?: number;
 
     /**
      * @type {number}
-     * @memberof MaintenanceDTOPagedResult
+     * @memberof FuelLoadDetailDTOPagedResult
      */
     totalPages?: number;
 
     /**
-     * @type {Array<MaintenanceDTO>}
-     * @memberof MaintenanceDTOPagedResult
+     * @type {Array<FuelLoadDetailDTO>}
+     * @memberof FuelLoadDetailDTOPagedResult
      */
-    items?: Array<MaintenanceDTO> | null;
+    items?: Array<FuelLoadDetailDTO> | null;
 }

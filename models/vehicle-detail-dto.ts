@@ -13,9 +13,9 @@
  */
 
 import { DocumentDTO } from './document-dto';
-import { FuelLoadDTOPagedResult } from './fuel-load-dtopaged-result';
+import { FuelLoadDetailDTOPagedResult } from './fuel-load-detail-dtopaged-result';
 import { ImageDTO } from './image-dto';
-import { MaintenanceDTOPagedResult } from './maintenance-dtopaged-result';
+import { MaintenanceDetailDTOPagedResult } from './maintenance-detail-dtopaged-result';
 import { PerformanceDTO } from './performance-dto';
 import { ReminderDTOPagedResult } from './reminder-dtopaged-result';
 import { VehicleStatisticsDTO } from './vehicle-statistics-dto';
@@ -107,16 +107,16 @@ export interface VehicleDetailDTO {
     statistics?: Array<VehicleStatisticsDTO> | null;
 
     /**
-     * @type {FuelLoadDTOPagedResult}
+     * @type {FuelLoadDetailDTOPagedResult}
      * @memberof VehicleDetailDTO
      */
-    fuelLoads?: FuelLoadDTOPagedResult;
+    fuelLoads?: FuelLoadDetailDTOPagedResult;
 
     /**
-     * @type {MaintenanceDTOPagedResult}
+     * @type {MaintenanceDetailDTOPagedResult}
      * @memberof VehicleDetailDTO
      */
-    listMaintenances?: MaintenanceDTOPagedResult;
+    listMaintenances?: MaintenanceDetailDTOPagedResult;
 
     /**
      * @type {Array<ImageDTO>}
