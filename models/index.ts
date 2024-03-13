@@ -60,6 +60,7 @@ export * from './policy-dtopaged-result';
 export * from './policy-status-dto';
 export * from './policy-status-dtopaged-result';
 export * from './problem-details';
+export * from './project-company-dto';
 export * from './project-dto';
 export * from './project-dtopaged-result';
 export * from './reminder-dto';

@@ -17,6 +17,7 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { ProjectCompanyDTO } from '../models';
 import { SortOrderEnum } from '../models';
 import { VehicleDTO } from '../models';
 import { VehicleDTOPagedResult } from '../models';
@@ -34,10 +35,12 @@ export const VehicleApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {Array<string>} [vehicles] 
+         * @param {boolean} [all] 
+         * @param {boolean} [active] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiVehicleDownloadGet: async (vehicles?: Array<string>, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiVehicleDownloadGet: async (vehicles?: Array<string>, all?: boolean, active?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/Vehicle/Download`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -59,6 +62,14 @@ export const VehicleApiAxiosParamCreator = function (configuration?: Configurati
 
             if (vehicles) {
                 localVarQueryParameter['vehicles'] = vehicles;
+            }
+
+            if (all !== undefined) {
+                localVarQueryParameter['all'] = all;
+            }
+
+            if (active !== undefined) {
+                localVarQueryParameter['active'] = active;
             }
 
             const query = new URLSearchParams(localVarUrlObj.search);
@@ -229,59 +240,6 @@ export const VehicleApiAxiosParamCreator = function (configuration?: Configurati
             }
             const localVarPath = `/api/Vehicle/{Id}/Active`
                 .replace(`{${"Id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions :AxiosRequestConfig = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("Authorization")
-                    : await configuration.apiKey;
-                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
-            }
-
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.params) {
-                query.set(key, options.params[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {string} cId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiVehicleIdCompanyCIdPut: async (id: string, cId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling apiVehicleIdCompanyCIdPut.');
-            }
-            // verify required parameter 'cId' is not null or undefined
-            if (cId === null || cId === undefined) {
-                throw new RequiredError('cId','Required parameter cId was null or undefined when calling apiVehicleIdCompanyCIdPut.');
-            }
-            const localVarPath = `/api/Vehicle/{Id}/Company/{CId}`
-                .replace(`{${"Id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"CId"}}`, encodeURIComponent(String(cId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -1033,11 +991,13 @@ export const VehicleApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {Array<string>} [vehicles] 
+         * @param {boolean} [all] 
+         * @param {boolean} [active] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiVehicleDownloadGet(vehicles?: Array<string>, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
-            const localVarAxiosArgs = await VehicleApiAxiosParamCreator(configuration).apiVehicleDownloadGet(vehicles, options);
+        async apiVehicleDownloadGet(vehicles?: Array<string>, all?: boolean, active?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
+            const localVarAxiosArgs = await VehicleApiAxiosParamCreator(configuration).apiVehicleDownloadGet(vehicles, all, active, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1098,20 +1058,6 @@ export const VehicleApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {string} id 
-         * @param {string} cId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async apiVehicleIdCompanyCIdPut(id: string, cId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<boolean>>> {
-            const localVarAxiosArgs = await VehicleApiAxiosParamCreator(configuration).apiVehicleIdCompanyCIdPut(id, cId, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
-         * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -1129,7 +1075,7 @@ export const VehicleApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiVehicleIdDrillRigDIdPut(id: string, dId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<boolean>>> {
+        async apiVehicleIdDrillRigDIdPut(id: string, dId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<ProjectCompanyDTO>>> {
             const localVarAxiosArgs = await VehicleApiAxiosParamCreator(configuration).apiVehicleIdDrillRigDIdPut(id, dId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -1283,11 +1229,13 @@ export const VehicleApiFactory = function (configuration?: Configuration, basePa
         /**
          * 
          * @param {Array<string>} [vehicles] 
+         * @param {boolean} [all] 
+         * @param {boolean} [active] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiVehicleDownloadGet(vehicles?: Array<string>, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
-            return VehicleApiFp(configuration).apiVehicleDownloadGet(vehicles, options).then((request) => request(axios, basePath));
+        async apiVehicleDownloadGet(vehicles?: Array<string>, all?: boolean, active?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
+            return VehicleApiFp(configuration).apiVehicleDownloadGet(vehicles, all, active, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1328,16 +1276,6 @@ export const VehicleApiFactory = function (configuration?: Configuration, basePa
         /**
          * 
          * @param {string} id 
-         * @param {string} cId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async apiVehicleIdCompanyCIdPut(id: string, cId: string, options?: AxiosRequestConfig): Promise<AxiosResponse<boolean>> {
-            return VehicleApiFp(configuration).apiVehicleIdCompanyCIdPut(id, cId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -1351,7 +1289,7 @@ export const VehicleApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiVehicleIdDrillRigDIdPut(id: string, dId: string, options?: AxiosRequestConfig): Promise<AxiosResponse<boolean>> {
+        async apiVehicleIdDrillRigDIdPut(id: string, dId: string, options?: AxiosRequestConfig): Promise<AxiosResponse<ProjectCompanyDTO>> {
             return VehicleApiFp(configuration).apiVehicleIdDrillRigDIdPut(id, dId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1478,12 +1416,14 @@ export class VehicleApi extends BaseAPI {
     /**
      * 
      * @param {Array<string>} [vehicles] 
+     * @param {boolean} [all] 
+     * @param {boolean} [active] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof VehicleApi
      */
-    public async apiVehicleDownloadGet(vehicles?: Array<string>, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
-        return VehicleApiFp(this.configuration).apiVehicleDownloadGet(vehicles, options).then((request) => request(this.axios, this.basePath));
+    public async apiVehicleDownloadGet(vehicles?: Array<string>, all?: boolean, active?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
+        return VehicleApiFp(this.configuration).apiVehicleDownloadGet(vehicles, all, active, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
@@ -1528,17 +1468,6 @@ export class VehicleApi extends BaseAPI {
     /**
      * 
      * @param {string} id 
-     * @param {string} cId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof VehicleApi
-     */
-    public async apiVehicleIdCompanyCIdPut(id: string, cId: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<boolean>> {
-        return VehicleApiFp(this.configuration).apiVehicleIdCompanyCIdPut(id, cId, options).then((request) => request(this.axios, this.basePath));
-    }
-    /**
-     * 
-     * @param {string} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof VehicleApi
@@ -1554,7 +1483,7 @@ export class VehicleApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof VehicleApi
      */
-    public async apiVehicleIdDrillRigDIdPut(id: string, dId: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<boolean>> {
+    public async apiVehicleIdDrillRigDIdPut(id: string, dId: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<ProjectCompanyDTO>> {
         return VehicleApiFp(this.configuration).apiVehicleIdDrillRigDIdPut(id, dId, options).then((request) => request(this.axios, this.basePath));
     }
     /**

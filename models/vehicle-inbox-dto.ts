@@ -78,11 +78,17 @@ export interface VehicleInboxDTO {
      * @type {string}
      * @memberof VehicleInboxDTO
      */
+    machineName?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof VehicleInboxDTO
+     */
     machineId?: string | null;
 
     /**
      * @type {string}
      * @memberof VehicleInboxDTO
      */
-    companyId?: string | null;
+    companyName?: string | null;
 }
