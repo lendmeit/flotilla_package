@@ -270,10 +270,11 @@ export const RoleApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {string} [search] 
          * @param {string} [orderByPropertyName] 
          * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiRoleSearchGet: async (page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiRoleSearchGet: async (page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'page' is not null or undefined
             if (page === null || page === undefined) {
                 throw new RequiredError('page','Required parameter page was null or undefined when calling apiRoleSearchGet.');
@@ -319,6 +320,10 @@ export const RoleApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (pageSize !== undefined) {
                 localVarQueryParameter['PageSize'] = pageSize;
+            }
+
+            if (active !== undefined) {
+                localVarQueryParameter['Active'] = active;
             }
 
             const query = new URLSearchParams(localVarUrlObj.search);
@@ -418,11 +423,12 @@ export const RoleApiFp = function(configuration?: Configuration) {
          * @param {string} [search] 
          * @param {string} [orderByPropertyName] 
          * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiRoleSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<RoleDTOPagedResult>>> {
-            const localVarAxiosArgs = await RoleApiAxiosParamCreator(configuration).apiRoleSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, options);
+        async apiRoleSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<RoleDTOPagedResult>>> {
+            const localVarAxiosArgs = await RoleApiAxiosParamCreator(configuration).apiRoleSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, active, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -489,11 +495,12 @@ export const RoleApiFactory = function (configuration?: Configuration, basePath?
          * @param {string} [search] 
          * @param {string} [orderByPropertyName] 
          * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiRoleSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig): Promise<AxiosResponse<RoleDTOPagedResult>> {
-            return RoleApiFp(configuration).apiRoleSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, options).then((request) => request(axios, basePath));
+        async apiRoleSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<RoleDTOPagedResult>> {
+            return RoleApiFp(configuration).apiRoleSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, active, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -562,11 +569,12 @@ export class RoleApi extends BaseAPI {
      * @param {string} [search] 
      * @param {string} [orderByPropertyName] 
      * @param {SortOrderEnum} [sortOrder] 
+     * @param {boolean} [active] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RoleApi
      */
-    public async apiRoleSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig) : Promise<AxiosResponse<RoleDTOPagedResult>> {
-        return RoleApiFp(this.configuration).apiRoleSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, options).then((request) => request(this.axios, this.basePath));
+    public async apiRoleSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<RoleDTOPagedResult>> {
+        return RoleApiFp(this.configuration).apiRoleSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, active, options).then((request) => request(this.axios, this.basePath));
     }
 }

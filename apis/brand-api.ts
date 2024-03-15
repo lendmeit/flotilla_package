@@ -270,10 +270,11 @@ export const BrandApiAxiosParamCreator = function (configuration?: Configuration
          * @param {string} [search] 
          * @param {string} [orderByPropertyName] 
          * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiBrandSearchGet: async (page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiBrandSearchGet: async (page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'page' is not null or undefined
             if (page === null || page === undefined) {
                 throw new RequiredError('page','Required parameter page was null or undefined when calling apiBrandSearchGet.');
@@ -319,6 +320,10 @@ export const BrandApiAxiosParamCreator = function (configuration?: Configuration
 
             if (pageSize !== undefined) {
                 localVarQueryParameter['PageSize'] = pageSize;
+            }
+
+            if (active !== undefined) {
+                localVarQueryParameter['Active'] = active;
             }
 
             const query = new URLSearchParams(localVarUrlObj.search);
@@ -418,11 +423,12 @@ export const BrandApiFp = function(configuration?: Configuration) {
          * @param {string} [search] 
          * @param {string} [orderByPropertyName] 
          * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiBrandSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<BrandDTOPagedResult>>> {
-            const localVarAxiosArgs = await BrandApiAxiosParamCreator(configuration).apiBrandSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, options);
+        async apiBrandSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<BrandDTOPagedResult>>> {
+            const localVarAxiosArgs = await BrandApiAxiosParamCreator(configuration).apiBrandSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, active, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -489,11 +495,12 @@ export const BrandApiFactory = function (configuration?: Configuration, basePath
          * @param {string} [search] 
          * @param {string} [orderByPropertyName] 
          * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiBrandSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig): Promise<AxiosResponse<BrandDTOPagedResult>> {
-            return BrandApiFp(configuration).apiBrandSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, options).then((request) => request(axios, basePath));
+        async apiBrandSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<BrandDTOPagedResult>> {
+            return BrandApiFp(configuration).apiBrandSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, active, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -562,11 +569,12 @@ export class BrandApi extends BaseAPI {
      * @param {string} [search] 
      * @param {string} [orderByPropertyName] 
      * @param {SortOrderEnum} [sortOrder] 
+     * @param {boolean} [active] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BrandApi
      */
-    public async apiBrandSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig) : Promise<AxiosResponse<BrandDTOPagedResult>> {
-        return BrandApiFp(this.configuration).apiBrandSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, options).then((request) => request(this.axios, this.basePath));
+    public async apiBrandSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<BrandDTOPagedResult>> {
+        return BrandApiFp(this.configuration).apiBrandSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, active, options).then((request) => request(this.axios, this.basePath));
     }
 }

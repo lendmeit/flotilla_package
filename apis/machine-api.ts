@@ -16,12 +16,12 @@ import globalAxios, { AxiosResponse, AxiosInstance, AxiosRequestConfig } from 'a
 import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { BASE_PATH, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 import { MachineDTO } from '../models';
 import { MachineDTOPagedResult } from '../models';
 import { ProjectCompanyDTO } from '../models';
 import { SortOrderEnum } from '../models';
-7/**
+/**
  * MachineApi - axios parameter creator
  * @export
  */
@@ -169,10 +169,11 @@ export const MachineApiAxiosParamCreator = function (configuration?: Configurati
          * @param {string} [search] 
          * @param {string} [orderByPropertyName] 
          * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiMachineSearchGet: async (page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiMachineSearchGet: async (page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'page' is not null or undefined
             if (page === null || page === undefined) {
                 throw new RequiredError('page','Required parameter page was null or undefined when calling apiMachineSearchGet.');
@@ -218,6 +219,10 @@ export const MachineApiAxiosParamCreator = function (configuration?: Configurati
 
             if (pageSize !== undefined) {
                 localVarQueryParameter['PageSize'] = pageSize;
+            }
+
+            if (active !== undefined) {
+                localVarQueryParameter['Active'] = active;
             }
 
             const query = new URLSearchParams(localVarUrlObj.search);
@@ -291,11 +296,12 @@ export const MachineApiFp = function(configuration?: Configuration) {
          * @param {string} [search] 
          * @param {string} [orderByPropertyName] 
          * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiMachineSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<MachineDTOPagedResult>>> {
-            const localVarAxiosArgs = await MachineApiAxiosParamCreator(configuration).apiMachineSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, options);
+        async apiMachineSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<MachineDTOPagedResult>>> {
+            const localVarAxiosArgs = await MachineApiAxiosParamCreator(configuration).apiMachineSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, active, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -344,11 +350,12 @@ export const MachineApiFactory = function (configuration?: Configuration, basePa
          * @param {string} [search] 
          * @param {string} [orderByPropertyName] 
          * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiMachineSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig): Promise<AxiosResponse<MachineDTOPagedResult>> {
-            return MachineApiFp(configuration).apiMachineSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, options).then((request) => request(axios, basePath));
+        async apiMachineSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<MachineDTOPagedResult>> {
+            return MachineApiFp(configuration).apiMachineSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, active, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -397,11 +404,12 @@ export class MachineApi extends BaseAPI {
      * @param {string} [search] 
      * @param {string} [orderByPropertyName] 
      * @param {SortOrderEnum} [sortOrder] 
+     * @param {boolean} [active] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MachineApi
      */
-    public async apiMachineSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig) : Promise<AxiosResponse<MachineDTOPagedResult>> {
-        return MachineApiFp(this.configuration).apiMachineSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, options).then((request) => request(this.axios, this.basePath));
+    public async apiMachineSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<MachineDTOPagedResult>> {
+        return MachineApiFp(this.configuration).apiMachineSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, active, options).then((request) => request(this.axios, this.basePath));
     }
 }

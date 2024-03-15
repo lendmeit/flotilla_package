@@ -270,10 +270,11 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
          * @param {string} [search] 
          * @param {string} [orderByPropertyName] 
          * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiProjectSearchGet: async (page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiProjectSearchGet: async (page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'page' is not null or undefined
             if (page === null || page === undefined) {
                 throw new RequiredError('page','Required parameter page was null or undefined when calling apiProjectSearchGet.');
@@ -319,6 +320,10 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
 
             if (pageSize !== undefined) {
                 localVarQueryParameter['PageSize'] = pageSize;
+            }
+
+            if (active !== undefined) {
+                localVarQueryParameter['Active'] = active;
             }
 
             const query = new URLSearchParams(localVarUrlObj.search);
@@ -418,11 +423,12 @@ export const ProjectApiFp = function(configuration?: Configuration) {
          * @param {string} [search] 
          * @param {string} [orderByPropertyName] 
          * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiProjectSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<ProjectDTOPagedResult>>> {
-            const localVarAxiosArgs = await ProjectApiAxiosParamCreator(configuration).apiProjectSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, options);
+        async apiProjectSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<ProjectDTOPagedResult>>> {
+            const localVarAxiosArgs = await ProjectApiAxiosParamCreator(configuration).apiProjectSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, active, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -489,11 +495,12 @@ export const ProjectApiFactory = function (configuration?: Configuration, basePa
          * @param {string} [search] 
          * @param {string} [orderByPropertyName] 
          * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiProjectSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig): Promise<AxiosResponse<ProjectDTOPagedResult>> {
-            return ProjectApiFp(configuration).apiProjectSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, options).then((request) => request(axios, basePath));
+        async apiProjectSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<ProjectDTOPagedResult>> {
+            return ProjectApiFp(configuration).apiProjectSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, active, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -562,11 +569,12 @@ export class ProjectApi extends BaseAPI {
      * @param {string} [search] 
      * @param {string} [orderByPropertyName] 
      * @param {SortOrderEnum} [sortOrder] 
+     * @param {boolean} [active] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectApi
      */
-    public async apiProjectSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig) : Promise<AxiosResponse<ProjectDTOPagedResult>> {
-        return ProjectApiFp(this.configuration).apiProjectSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, options).then((request) => request(this.axios, this.basePath));
+    public async apiProjectSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<ProjectDTOPagedResult>> {
+        return ProjectApiFp(this.configuration).apiProjectSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, active, options).then((request) => request(this.axios, this.basePath));
     }
 }

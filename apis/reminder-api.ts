@@ -271,10 +271,11 @@ export const ReminderApiAxiosParamCreator = function (configuration?: Configurat
          * @param {string} [search] 
          * @param {string} [orderByPropertyName] 
          * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiReminderSearchGet: async (page: number, pageSize: number, id?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiReminderSearchGet: async (page: number, pageSize: number, id?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'page' is not null or undefined
             if (page === null || page === undefined) {
                 throw new RequiredError('page','Required parameter page was null or undefined when calling apiReminderSearchGet.');
@@ -324,6 +325,10 @@ export const ReminderApiAxiosParamCreator = function (configuration?: Configurat
 
             if (pageSize !== undefined) {
                 localVarQueryParameter['PageSize'] = pageSize;
+            }
+
+            if (active !== undefined) {
+                localVarQueryParameter['Active'] = active;
             }
 
             const query = new URLSearchParams(localVarUrlObj.search);
@@ -424,11 +429,12 @@ export const ReminderApiFp = function(configuration?: Configuration) {
          * @param {string} [search] 
          * @param {string} [orderByPropertyName] 
          * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiReminderSearchGet(page: number, pageSize: number, id?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<ReminderDTOPagedResult>>> {
-            const localVarAxiosArgs = await ReminderApiAxiosParamCreator(configuration).apiReminderSearchGet(page, pageSize, id, search, orderByPropertyName, sortOrder, options);
+        async apiReminderSearchGet(page: number, pageSize: number, id?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<ReminderDTOPagedResult>>> {
+            const localVarAxiosArgs = await ReminderApiAxiosParamCreator(configuration).apiReminderSearchGet(page, pageSize, id, search, orderByPropertyName, sortOrder, active, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -496,11 +502,12 @@ export const ReminderApiFactory = function (configuration?: Configuration, baseP
          * @param {string} [search] 
          * @param {string} [orderByPropertyName] 
          * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiReminderSearchGet(page: number, pageSize: number, id?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig): Promise<AxiosResponse<ReminderDTOPagedResult>> {
-            return ReminderApiFp(configuration).apiReminderSearchGet(page, pageSize, id, search, orderByPropertyName, sortOrder, options).then((request) => request(axios, basePath));
+        async apiReminderSearchGet(page: number, pageSize: number, id?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<ReminderDTOPagedResult>> {
+            return ReminderApiFp(configuration).apiReminderSearchGet(page, pageSize, id, search, orderByPropertyName, sortOrder, active, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -570,11 +577,12 @@ export class ReminderApi extends BaseAPI {
      * @param {string} [search] 
      * @param {string} [orderByPropertyName] 
      * @param {SortOrderEnum} [sortOrder] 
+     * @param {boolean} [active] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReminderApi
      */
-    public async apiReminderSearchGet(page: number, pageSize: number, id?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig) : Promise<AxiosResponse<ReminderDTOPagedResult>> {
-        return ReminderApiFp(this.configuration).apiReminderSearchGet(page, pageSize, id, search, orderByPropertyName, sortOrder, options).then((request) => request(this.axios, this.basePath));
+    public async apiReminderSearchGet(page: number, pageSize: number, id?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<ReminderDTOPagedResult>> {
+        return ReminderApiFp(this.configuration).apiReminderSearchGet(page, pageSize, id, search, orderByPropertyName, sortOrder, active, options).then((request) => request(this.axios, this.basePath));
     }
 }

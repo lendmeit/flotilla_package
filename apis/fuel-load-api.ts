@@ -28,6 +28,90 @@ export const FuelLoadApiAxiosParamCreator = function (configuration?: Configurat
     return {
         /**
          * 
+         * @param {number} page 
+         * @param {number} pageSize 
+         * @param {string} [id] 
+         * @param {string} [search] 
+         * @param {string} [orderByPropertyName] 
+         * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiFuelLoadFindForVehicleGet: async (page: number, pageSize: number, id?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'page' is not null or undefined
+            if (page === null || page === undefined) {
+                throw new RequiredError('page','Required parameter page was null or undefined when calling apiFuelLoadFindForVehicleGet.');
+            }
+            // verify required parameter 'pageSize' is not null or undefined
+            if (pageSize === null || pageSize === undefined) {
+                throw new RequiredError('pageSize','Required parameter pageSize was null or undefined when calling apiFuelLoadFindForVehicleGet.');
+            }
+            const localVarPath = `/api/FuelLoad/FindForVehicle`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("Authorization")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            if (id !== undefined) {
+                localVarQueryParameter['Id'] = id;
+            }
+
+            if (page !== undefined) {
+                localVarQueryParameter['Page'] = page;
+            }
+
+            if (search !== undefined) {
+                localVarQueryParameter['Search'] = search;
+            }
+
+            if (orderByPropertyName !== undefined) {
+                localVarQueryParameter['OrderByPropertyName'] = orderByPropertyName;
+            }
+
+            if (sortOrder !== undefined) {
+                localVarQueryParameter['SortOrder'] = sortOrder;
+            }
+
+            if (pageSize !== undefined) {
+                localVarQueryParameter['PageSize'] = pageSize;
+            }
+
+            if (active !== undefined) {
+                localVarQueryParameter['Active'] = active;
+            }
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -270,10 +354,11 @@ export const FuelLoadApiAxiosParamCreator = function (configuration?: Configurat
          * @param {string} [search] 
          * @param {string} [orderByPropertyName] 
          * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiFuelLoadSearchGet: async (page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiFuelLoadSearchGet: async (page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'page' is not null or undefined
             if (page === null || page === undefined) {
                 throw new RequiredError('page','Required parameter page was null or undefined when calling apiFuelLoadSearchGet.');
@@ -321,6 +406,10 @@ export const FuelLoadApiAxiosParamCreator = function (configuration?: Configurat
                 localVarQueryParameter['PageSize'] = pageSize;
             }
 
+            if (active !== undefined) {
+                localVarQueryParameter['Active'] = active;
+            }
+
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
                 query.set(key, localVarQueryParameter[key]);
@@ -346,6 +435,25 @@ export const FuelLoadApiAxiosParamCreator = function (configuration?: Configurat
  */
 export const FuelLoadApiFp = function(configuration?: Configuration) {
     return {
+        /**
+         * 
+         * @param {number} page 
+         * @param {number} pageSize 
+         * @param {string} [id] 
+         * @param {string} [search] 
+         * @param {string} [orderByPropertyName] 
+         * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiFuelLoadFindForVehicleGet(page: number, pageSize: number, id?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<FuelLoadDetailDTOPagedResult>>> {
+            const localVarAxiosArgs = await FuelLoadApiAxiosParamCreator(configuration).apiFuelLoadFindForVehicleGet(page, pageSize, id, search, orderByPropertyName, sortOrder, active, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
         /**
          * 
          * @param {*} [options] Override http request option.
@@ -418,11 +526,12 @@ export const FuelLoadApiFp = function(configuration?: Configuration) {
          * @param {string} [search] 
          * @param {string} [orderByPropertyName] 
          * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiFuelLoadSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<FuelLoadDetailDTOPagedResult>>> {
-            const localVarAxiosArgs = await FuelLoadApiAxiosParamCreator(configuration).apiFuelLoadSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, options);
+        async apiFuelLoadSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<FuelLoadDetailDTOPagedResult>>> {
+            const localVarAxiosArgs = await FuelLoadApiAxiosParamCreator(configuration).apiFuelLoadSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, active, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -437,6 +546,21 @@ export const FuelLoadApiFp = function(configuration?: Configuration) {
  */
 export const FuelLoadApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     return {
+        /**
+         * 
+         * @param {number} page 
+         * @param {number} pageSize 
+         * @param {string} [id] 
+         * @param {string} [search] 
+         * @param {string} [orderByPropertyName] 
+         * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiFuelLoadFindForVehicleGet(page: number, pageSize: number, id?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<FuelLoadDetailDTOPagedResult>> {
+            return FuelLoadApiFp(configuration).apiFuelLoadFindForVehicleGet(page, pageSize, id, search, orderByPropertyName, sortOrder, active, options).then((request) => request(axios, basePath));
+        },
         /**
          * 
          * @param {*} [options] Override http request option.
@@ -489,11 +613,12 @@ export const FuelLoadApiFactory = function (configuration?: Configuration, baseP
          * @param {string} [search] 
          * @param {string} [orderByPropertyName] 
          * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiFuelLoadSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig): Promise<AxiosResponse<FuelLoadDetailDTOPagedResult>> {
-            return FuelLoadApiFp(configuration).apiFuelLoadSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, options).then((request) => request(axios, basePath));
+        async apiFuelLoadSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<FuelLoadDetailDTOPagedResult>> {
+            return FuelLoadApiFp(configuration).apiFuelLoadSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, active, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -505,6 +630,22 @@ export const FuelLoadApiFactory = function (configuration?: Configuration, baseP
  * @extends {BaseAPI}
  */
 export class FuelLoadApi extends BaseAPI {
+    /**
+     * 
+     * @param {number} page 
+     * @param {number} pageSize 
+     * @param {string} [id] 
+     * @param {string} [search] 
+     * @param {string} [orderByPropertyName] 
+     * @param {SortOrderEnum} [sortOrder] 
+     * @param {boolean} [active] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FuelLoadApi
+     */
+    public async apiFuelLoadFindForVehicleGet(page: number, pageSize: number, id?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<FuelLoadDetailDTOPagedResult>> {
+        return FuelLoadApiFp(this.configuration).apiFuelLoadFindForVehicleGet(page, pageSize, id, search, orderByPropertyName, sortOrder, active, options).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * 
      * @param {*} [options] Override http request option.
@@ -562,11 +703,12 @@ export class FuelLoadApi extends BaseAPI {
      * @param {string} [search] 
      * @param {string} [orderByPropertyName] 
      * @param {SortOrderEnum} [sortOrder] 
+     * @param {boolean} [active] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FuelLoadApi
      */
-    public async apiFuelLoadSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig) : Promise<AxiosResponse<FuelLoadDetailDTOPagedResult>> {
-        return FuelLoadApiFp(this.configuration).apiFuelLoadSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, options).then((request) => request(this.axios, this.basePath));
+    public async apiFuelLoadSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<FuelLoadDetailDTOPagedResult>> {
+        return FuelLoadApiFp(this.configuration).apiFuelLoadSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, active, options).then((request) => request(this.axios, this.basePath));
     }
 }

@@ -28,6 +28,90 @@ export const MaintenanceApiAxiosParamCreator = function (configuration?: Configu
     return {
         /**
          * 
+         * @param {number} page 
+         * @param {number} pageSize 
+         * @param {string} [id] 
+         * @param {string} [search] 
+         * @param {string} [orderByPropertyName] 
+         * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiMaintenanceFindForVehicleGet: async (page: number, pageSize: number, id?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'page' is not null or undefined
+            if (page === null || page === undefined) {
+                throw new RequiredError('page','Required parameter page was null or undefined when calling apiMaintenanceFindForVehicleGet.');
+            }
+            // verify required parameter 'pageSize' is not null or undefined
+            if (pageSize === null || pageSize === undefined) {
+                throw new RequiredError('pageSize','Required parameter pageSize was null or undefined when calling apiMaintenanceFindForVehicleGet.');
+            }
+            const localVarPath = `/api/Maintenance/FindForVehicle`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("Authorization")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            if (id !== undefined) {
+                localVarQueryParameter['Id'] = id;
+            }
+
+            if (page !== undefined) {
+                localVarQueryParameter['Page'] = page;
+            }
+
+            if (search !== undefined) {
+                localVarQueryParameter['Search'] = search;
+            }
+
+            if (orderByPropertyName !== undefined) {
+                localVarQueryParameter['OrderByPropertyName'] = orderByPropertyName;
+            }
+
+            if (sortOrder !== undefined) {
+                localVarQueryParameter['SortOrder'] = sortOrder;
+            }
+
+            if (pageSize !== undefined) {
+                localVarQueryParameter['PageSize'] = pageSize;
+            }
+
+            if (active !== undefined) {
+                localVarQueryParameter['Active'] = active;
+            }
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -270,10 +354,11 @@ export const MaintenanceApiAxiosParamCreator = function (configuration?: Configu
          * @param {string} [search] 
          * @param {string} [orderByPropertyName] 
          * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiMaintenanceSearchGet: async (page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiMaintenanceSearchGet: async (page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'page' is not null or undefined
             if (page === null || page === undefined) {
                 throw new RequiredError('page','Required parameter page was null or undefined when calling apiMaintenanceSearchGet.');
@@ -321,6 +406,10 @@ export const MaintenanceApiAxiosParamCreator = function (configuration?: Configu
                 localVarQueryParameter['PageSize'] = pageSize;
             }
 
+            if (active !== undefined) {
+                localVarQueryParameter['Active'] = active;
+            }
+
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
                 query.set(key, localVarQueryParameter[key]);
@@ -346,6 +435,25 @@ export const MaintenanceApiAxiosParamCreator = function (configuration?: Configu
  */
 export const MaintenanceApiFp = function(configuration?: Configuration) {
     return {
+        /**
+         * 
+         * @param {number} page 
+         * @param {number} pageSize 
+         * @param {string} [id] 
+         * @param {string} [search] 
+         * @param {string} [orderByPropertyName] 
+         * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiMaintenanceFindForVehicleGet(page: number, pageSize: number, id?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<MaintenanceDetailDTOPagedResult>>> {
+            const localVarAxiosArgs = await MaintenanceApiAxiosParamCreator(configuration).apiMaintenanceFindForVehicleGet(page, pageSize, id, search, orderByPropertyName, sortOrder, active, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
         /**
          * 
          * @param {*} [options] Override http request option.
@@ -418,11 +526,12 @@ export const MaintenanceApiFp = function(configuration?: Configuration) {
          * @param {string} [search] 
          * @param {string} [orderByPropertyName] 
          * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiMaintenanceSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<MaintenanceDetailDTOPagedResult>>> {
-            const localVarAxiosArgs = await MaintenanceApiAxiosParamCreator(configuration).apiMaintenanceSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, options);
+        async apiMaintenanceSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<MaintenanceDetailDTOPagedResult>>> {
+            const localVarAxiosArgs = await MaintenanceApiAxiosParamCreator(configuration).apiMaintenanceSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, active, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -437,6 +546,21 @@ export const MaintenanceApiFp = function(configuration?: Configuration) {
  */
 export const MaintenanceApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     return {
+        /**
+         * 
+         * @param {number} page 
+         * @param {number} pageSize 
+         * @param {string} [id] 
+         * @param {string} [search] 
+         * @param {string} [orderByPropertyName] 
+         * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiMaintenanceFindForVehicleGet(page: number, pageSize: number, id?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<MaintenanceDetailDTOPagedResult>> {
+            return MaintenanceApiFp(configuration).apiMaintenanceFindForVehicleGet(page, pageSize, id, search, orderByPropertyName, sortOrder, active, options).then((request) => request(axios, basePath));
+        },
         /**
          * 
          * @param {*} [options] Override http request option.
@@ -489,11 +613,12 @@ export const MaintenanceApiFactory = function (configuration?: Configuration, ba
          * @param {string} [search] 
          * @param {string} [orderByPropertyName] 
          * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiMaintenanceSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig): Promise<AxiosResponse<MaintenanceDetailDTOPagedResult>> {
-            return MaintenanceApiFp(configuration).apiMaintenanceSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, options).then((request) => request(axios, basePath));
+        async apiMaintenanceSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<MaintenanceDetailDTOPagedResult>> {
+            return MaintenanceApiFp(configuration).apiMaintenanceSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, active, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -505,6 +630,22 @@ export const MaintenanceApiFactory = function (configuration?: Configuration, ba
  * @extends {BaseAPI}
  */
 export class MaintenanceApi extends BaseAPI {
+    /**
+     * 
+     * @param {number} page 
+     * @param {number} pageSize 
+     * @param {string} [id] 
+     * @param {string} [search] 
+     * @param {string} [orderByPropertyName] 
+     * @param {SortOrderEnum} [sortOrder] 
+     * @param {boolean} [active] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MaintenanceApi
+     */
+    public async apiMaintenanceFindForVehicleGet(page: number, pageSize: number, id?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<MaintenanceDetailDTOPagedResult>> {
+        return MaintenanceApiFp(this.configuration).apiMaintenanceFindForVehicleGet(page, pageSize, id, search, orderByPropertyName, sortOrder, active, options).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * 
      * @param {*} [options] Override http request option.
@@ -562,11 +703,12 @@ export class MaintenanceApi extends BaseAPI {
      * @param {string} [search] 
      * @param {string} [orderByPropertyName] 
      * @param {SortOrderEnum} [sortOrder] 
+     * @param {boolean} [active] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MaintenanceApi
      */
-    public async apiMaintenanceSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, options?: AxiosRequestConfig) : Promise<AxiosResponse<MaintenanceDetailDTOPagedResult>> {
-        return MaintenanceApiFp(this.configuration).apiMaintenanceSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, options).then((request) => request(this.axios, this.basePath));
+    public async apiMaintenanceSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<MaintenanceDetailDTOPagedResult>> {
+        return MaintenanceApiFp(this.configuration).apiMaintenanceSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, active, options).then((request) => request(this.axios, this.basePath));
     }
 }
