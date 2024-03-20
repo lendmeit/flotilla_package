@@ -101,10 +101,10 @@ export interface VehicleDetailDTO {
     performance?: Array<PerformanceDTO> | null;
 
     /**
-     * @type {Array<VehicleStatisticsDTO>}
+     * @type {VehicleStatisticsDTO}
      * @memberof VehicleDetailDTO
      */
-    statistics?: Array<VehicleStatisticsDTO> | null;
+    statistics?: VehicleStatisticsDTO;
 
     /**
      * @type {FuelLoadDetailDTOPagedResult}

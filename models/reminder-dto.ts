@@ -48,5 +48,11 @@ export interface ReminderDTO {
      * @type {string}
      * @memberof ReminderDTO
      */
+    title?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof ReminderDTO
+     */
     vehicle?: string | null;
 }
