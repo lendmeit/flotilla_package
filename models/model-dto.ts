@@ -27,6 +27,12 @@ export interface ModelDTO {
     id?: string | null;
 
     /**
+     * @type {boolean}
+     * @memberof ModelDTO
+     */
+    active?: boolean;
+
+    /**
      * @type {string}
      * @memberof ModelDTO
      */

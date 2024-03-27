@@ -27,6 +27,12 @@ export interface FuelMeasureDTO {
     id?: string | null;
 
     /**
+     * @type {boolean}
+     * @memberof FuelMeasureDTO
+     */
+    active?: boolean;
+
+    /**
      * @type {string}
      * @memberof FuelMeasureDTO
      */

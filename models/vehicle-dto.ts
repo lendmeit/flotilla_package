@@ -29,6 +29,12 @@ export interface VehicleDTO {
     id?: string | null;
 
     /**
+     * @type {boolean}
+     * @memberof VehicleDTO
+     */
+    active?: boolean;
+
+    /**
      * @type {string}
      * @memberof VehicleDTO
      */
@@ -165,12 +171,6 @@ export interface VehicleDTO {
      * @memberof VehicleDTO
      */
     documentId?: string | null;
-
-    /**
-     * @type {string}
-     * @memberof VehicleDTO
-     */
-    vehicleTypeId?: string | null;
 
     /**
      * @type {string}

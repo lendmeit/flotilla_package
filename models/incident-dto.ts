@@ -27,6 +27,12 @@ export interface IncidentDTO {
     id?: string | null;
 
     /**
+     * @type {boolean}
+     * @memberof IncidentDTO
+     */
+    active?: boolean;
+
+    /**
      * @type {string}
      * @memberof IncidentDTO
      */

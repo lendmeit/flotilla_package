@@ -27,6 +27,12 @@ export interface EngineDTO {
     id?: string | null;
 
     /**
+     * @type {boolean}
+     * @memberof EngineDTO
+     */
+    active?: boolean;
+
+    /**
      * @type {string}
      * @memberof EngineDTO
      */

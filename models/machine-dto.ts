@@ -27,6 +27,12 @@ export interface MachineDTO {
     id?: string | null;
 
     /**
+     * @type {boolean}
+     * @memberof MachineDTO
+     */
+    active?: boolean;
+
+    /**
      * @type {string}
      * @memberof MachineDTO
      */

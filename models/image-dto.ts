@@ -27,6 +27,12 @@ export interface ImageDTO {
     id?: string | null;
 
     /**
+     * @type {boolean}
+     * @memberof ImageDTO
+     */
+    active?: boolean;
+
+    /**
      * @type {string}
      * @memberof ImageDTO
      */

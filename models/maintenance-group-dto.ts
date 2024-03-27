@@ -27,6 +27,12 @@ export interface MaintenanceGroupDTO {
     id?: string | null;
 
     /**
+     * @type {boolean}
+     * @memberof MaintenanceGroupDTO
+     */
+    active?: boolean;
+
+    /**
      * @type {string}
      * @memberof MaintenanceGroupDTO
      */

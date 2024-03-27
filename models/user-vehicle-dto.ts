@@ -27,6 +27,12 @@ export interface UserVehicleDTO {
     id?: string | null;
 
     /**
+     * @type {boolean}
+     * @memberof UserVehicleDTO
+     */
+    active?: boolean;
+
+    /**
      * @type {string}
      * @memberof UserVehicleDTO
      */

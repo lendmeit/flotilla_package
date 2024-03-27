@@ -27,6 +27,12 @@ export interface MeasureDTO {
     id?: string | null;
 
     /**
+     * @type {boolean}
+     * @memberof MeasureDTO
+     */
+    active?: boolean;
+
+    /**
      * @type {string}
      * @memberof MeasureDTO
      */

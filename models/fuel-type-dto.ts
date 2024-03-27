@@ -27,6 +27,12 @@ export interface FuelTypeDTO {
     id?: string | null;
 
     /**
+     * @type {boolean}
+     * @memberof FuelTypeDTO
+     */
+    active?: boolean;
+
+    /**
      * @type {string}
      * @memberof FuelTypeDTO
      */

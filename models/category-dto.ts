@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+import { CategoryTypeEnum } from './category-type-enum';
  /**
  * 
  *
@@ -25,6 +26,12 @@ export interface CategoryDTO {
      * @memberof CategoryDTO
      */
     id?: string | null;
+
+    /**
+     * @type {boolean}
+     * @memberof CategoryDTO
+     */
+    active?: boolean;
 
     /**
      * @type {string}
@@ -43,4 +50,10 @@ export interface CategoryDTO {
      * @memberof CategoryDTO
      */
     description?: string | null;
+
+    /**
+     * @type {CategoryTypeEnum}
+     * @memberof CategoryDTO
+     */
+    categoryType?: CategoryTypeEnum;
 }

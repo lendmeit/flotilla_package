@@ -27,6 +27,12 @@ export interface CompanyDTO {
     id?: string | null;
 
     /**
+     * @type {boolean}
+     * @memberof CompanyDTO
+     */
+    active?: boolean;
+
+    /**
      * @type {string}
      * @memberof CompanyDTO
      */

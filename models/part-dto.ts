@@ -27,6 +27,12 @@ export interface PartDTO {
     id?: string | null;
 
     /**
+     * @type {boolean}
+     * @memberof PartDTO
+     */
+    active?: boolean;
+
+    /**
      * @type {string}
      * @memberof PartDTO
      */

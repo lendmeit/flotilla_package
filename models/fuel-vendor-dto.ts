@@ -27,6 +27,12 @@ export interface FuelVendorDTO {
     id?: string | null;
 
     /**
+     * @type {boolean}
+     * @memberof FuelVendorDTO
+     */
+    active?: boolean;
+
+    /**
      * @type {string}
      * @memberof FuelVendorDTO
      */

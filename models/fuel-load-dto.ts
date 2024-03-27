@@ -28,6 +28,12 @@ export interface FuelLoadDTO {
     id?: string | null;
 
     /**
+     * @type {boolean}
+     * @memberof FuelLoadDTO
+     */
+    active?: boolean;
+
+    /**
      * @type {string}
      * @memberof FuelLoadDTO
      */

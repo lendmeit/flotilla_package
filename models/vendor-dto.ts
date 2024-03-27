@@ -27,6 +27,12 @@ export interface VendorDTO {
     id?: string | null;
 
     /**
+     * @type {boolean}
+     * @memberof VendorDTO
+     */
+    active?: boolean;
+
+    /**
      * @type {string}
      * @memberof VendorDTO
      */

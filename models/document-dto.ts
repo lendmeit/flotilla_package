@@ -27,6 +27,12 @@ export interface DocumentDTO {
     id?: string | null;
 
     /**
+     * @type {boolean}
+     * @memberof DocumentDTO
+     */
+    active?: boolean;
+
+    /**
      * @type {string}
      * @memberof DocumentDTO
      */

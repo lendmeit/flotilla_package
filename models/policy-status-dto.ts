@@ -27,6 +27,12 @@ export interface PolicyStatusDTO {
     id?: string | null;
 
     /**
+     * @type {boolean}
+     * @memberof PolicyStatusDTO
+     */
+    active?: boolean;
+
+    /**
      * @type {string}
      * @memberof PolicyStatusDTO
      */

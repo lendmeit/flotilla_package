@@ -27,6 +27,12 @@ export interface ProjectDTO {
     id?: string | null;
 
     /**
+     * @type {boolean}
+     * @memberof ProjectDTO
+     */
+    active?: boolean;
+
+    /**
      * @type {string}
      * @memberof ProjectDTO
      */

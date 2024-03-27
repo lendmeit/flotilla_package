@@ -27,6 +27,12 @@ export interface InsuranceCompanyDTO {
     id?: string | null;
 
     /**
+     * @type {boolean}
+     * @memberof InsuranceCompanyDTO
+     */
+    active?: boolean;
+
+    /**
      * @type {string}
      * @memberof InsuranceCompanyDTO
      */

@@ -16,37 +16,25 @@
  * 
  *
  * @export
- * @interface VehicleTypeDTO
+ * @interface StatisticsFilterDTO
  */
-export interface VehicleTypeDTO {
+export interface StatisticsFilterDTO {
 
     /**
      * @type {string}
-     * @memberof VehicleTypeDTO
+     * @memberof StatisticsFilterDTO
      */
-    id?: string | null;
+    vehicleId: string;
 
     /**
      * @type {string}
-     * @memberof VehicleTypeDTO
+     * @memberof StatisticsFilterDTO
      */
-    name?: string | null;
+    dateStart: string;
 
     /**
      * @type {string}
-     * @memberof VehicleTypeDTO
+     * @memberof StatisticsFilterDTO
      */
-    code?: string | null;
-
-    /**
-     * @type {string}
-     * @memberof VehicleTypeDTO
-     */
-    description?: string | null;
-
-    /**
-     * @type {boolean}
-     * @memberof VehicleTypeDTO
-     */
-    inUse?: boolean;
+    dateEnd?: string | null;
 }

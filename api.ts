@@ -15,7 +15,6 @@ export * from './apis/account-api';
 export * from './apis/brand-api';
 export * from './apis/category-api';
 export * from './apis/company-api';
-export * from './apis/cost-center-api';
 export * from './apis/document-api';
 export * from './apis/engine-api';
 export * from './apis/fuel-load-api';
@@ -44,6 +43,5 @@ export * from './apis/service-api';
 export * from './apis/user-api';
 export * from './apis/user-vehicle-api';
 export * from './apis/vehicle-api';
-export * from './apis/vehicle-type-api';
 export * from './apis/vendor-api';
 

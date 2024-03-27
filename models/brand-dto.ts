@@ -27,6 +27,12 @@ export interface BrandDTO {
     id?: string | null;
 
     /**
+     * @type {boolean}
+     * @memberof BrandDTO
+     */
+    active?: boolean;
+
+    /**
      * @type {string}
      * @memberof BrandDTO
      */

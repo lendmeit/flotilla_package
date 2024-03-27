@@ -27,6 +27,12 @@ export interface ServiceDTO {
     id?: string | null;
 
     /**
+     * @type {boolean}
+     * @memberof ServiceDTO
+     */
+    active?: boolean;
+
+    /**
      * @type {string}
      * @memberof ServiceDTO
      */

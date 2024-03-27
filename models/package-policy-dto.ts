@@ -27,6 +27,12 @@ export interface PackagePolicyDTO {
     id?: string | null;
 
     /**
+     * @type {boolean}
+     * @memberof PackagePolicyDTO
+     */
+    active?: boolean;
+
+    /**
      * @type {string}
      * @memberof PackagePolicyDTO
      */

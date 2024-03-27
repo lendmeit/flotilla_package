@@ -27,6 +27,12 @@ export interface IncisoDTO {
     id?: string | null;
 
     /**
+     * @type {boolean}
+     * @memberof IncisoDTO
+     */
+    active?: boolean;
+
+    /**
      * @type {string}
      * @memberof IncisoDTO
      */
