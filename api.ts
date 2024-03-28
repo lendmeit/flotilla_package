@@ -40,6 +40,7 @@ export * from './apis/project-api';
 export * from './apis/reminder-api';
 export * from './apis/role-api';
 export * from './apis/service-api';
+export * from './apis/system-api';
 export * from './apis/user-api';
 export * from './apis/user-vehicle-api';
 export * from './apis/vehicle-api';

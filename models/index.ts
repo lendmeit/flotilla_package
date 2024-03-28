@@ -4,6 +4,8 @@ export * from './app-user-dtopaged-result';
 export * from './auth-response-dto';
 export * from './brand-dto';
 export * from './brand-dtopaged-result';
+export * from './catalogs-enum';
+export * from './catalogs-registers-dto';
 export * from './category-dto';
 export * from './category-dtopaged-result';
 export * from './category-type-enum';

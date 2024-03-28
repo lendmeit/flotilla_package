@@ -19,6 +19,7 @@ import { Configuration } from '../configuration';
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 import { CategoryDTO } from '../models';
 import { CategoryDTOPagedResult } from '../models';
+import { CategoryTypeEnum } from '../models';
 import { SortOrderEnum } from '../models';
 /**
  * CategoryApi - axios parameter creator
@@ -267,6 +268,7 @@ export const CategoryApiAxiosParamCreator = function (configuration?: Configurat
          * 
          * @param {number} page 
          * @param {number} pageSize 
+         * @param {CategoryTypeEnum} [categoryType] 
          * @param {string} [search] 
          * @param {string} [orderByPropertyName] 
          * @param {SortOrderEnum} [sortOrder] 
@@ -274,7 +276,7 @@ export const CategoryApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiCategorySearchGet: async (page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiCategorySearchGet: async (page: number, pageSize: number, categoryType?: CategoryTypeEnum, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'page' is not null or undefined
             if (page === null || page === undefined) {
                 throw new RequiredError('page','Required parameter page was null or undefined when calling apiCategorySearchGet.');
@@ -300,6 +302,10 @@ export const CategoryApiAxiosParamCreator = function (configuration?: Configurat
                     ? await configuration.apiKey("Authorization")
                     : await configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            if (categoryType !== undefined) {
+                localVarQueryParameter['CategoryType'] = categoryType;
             }
 
             if (page !== undefined) {
@@ -420,6 +426,7 @@ export const CategoryApiFp = function(configuration?: Configuration) {
          * 
          * @param {number} page 
          * @param {number} pageSize 
+         * @param {CategoryTypeEnum} [categoryType] 
          * @param {string} [search] 
          * @param {string} [orderByPropertyName] 
          * @param {SortOrderEnum} [sortOrder] 
@@ -427,8 +434,8 @@ export const CategoryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiCategorySearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<CategoryDTOPagedResult>>> {
-            const localVarAxiosArgs = await CategoryApiAxiosParamCreator(configuration).apiCategorySearchGet(page, pageSize, search, orderByPropertyName, sortOrder, active, options);
+        async apiCategorySearchGet(page: number, pageSize: number, categoryType?: CategoryTypeEnum, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<CategoryDTOPagedResult>>> {
+            const localVarAxiosArgs = await CategoryApiAxiosParamCreator(configuration).apiCategorySearchGet(page, pageSize, categoryType, search, orderByPropertyName, sortOrder, active, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -492,6 +499,7 @@ export const CategoryApiFactory = function (configuration?: Configuration, baseP
          * 
          * @param {number} page 
          * @param {number} pageSize 
+         * @param {CategoryTypeEnum} [categoryType] 
          * @param {string} [search] 
          * @param {string} [orderByPropertyName] 
          * @param {SortOrderEnum} [sortOrder] 
@@ -499,8 +507,8 @@ export const CategoryApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiCategorySearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<CategoryDTOPagedResult>> {
-            return CategoryApiFp(configuration).apiCategorySearchGet(page, pageSize, search, orderByPropertyName, sortOrder, active, options).then((request) => request(axios, basePath));
+        async apiCategorySearchGet(page: number, pageSize: number, categoryType?: CategoryTypeEnum, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<CategoryDTOPagedResult>> {
+            return CategoryApiFp(configuration).apiCategorySearchGet(page, pageSize, categoryType, search, orderByPropertyName, sortOrder, active, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -566,6 +574,7 @@ export class CategoryApi extends BaseAPI {
      * 
      * @param {number} page 
      * @param {number} pageSize 
+     * @param {CategoryTypeEnum} [categoryType] 
      * @param {string} [search] 
      * @param {string} [orderByPropertyName] 
      * @param {SortOrderEnum} [sortOrder] 
@@ -574,7 +583,7 @@ export class CategoryApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CategoryApi
      */
-    public async apiCategorySearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<CategoryDTOPagedResult>> {
-        return CategoryApiFp(this.configuration).apiCategorySearchGet(page, pageSize, search, orderByPropertyName, sortOrder, active, options).then((request) => request(this.axios, this.basePath));
+    public async apiCategorySearchGet(page: number, pageSize: number, categoryType?: CategoryTypeEnum, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<CategoryDTOPagedResult>> {
+        return CategoryApiFp(this.configuration).apiCategorySearchGet(page, pageSize, categoryType, search, orderByPropertyName, sortOrder, active, options).then((request) => request(this.axios, this.basePath));
     }
 }
