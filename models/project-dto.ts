@@ -55,4 +55,10 @@ export interface ProjectDTO {
      * @memberof ProjectDTO
      */
     externalId?: number;
+
+    /**
+     * @type {string}
+     * @memberof ProjectDTO
+     */
+    companyId?: string | null;
 }

@@ -55,4 +55,10 @@ export interface MachineDTO {
      * @memberof MachineDTO
      */
     drillRigId?: number;
+
+    /**
+     * @type {string}
+     * @memberof MachineDTO
+     */
+    projectId?: string | null;
 }

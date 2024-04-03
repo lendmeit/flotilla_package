@@ -24,7 +24,7 @@ export interface StatisticsFilterDTO {
      * @type {string}
      * @memberof StatisticsFilterDTO
      */
-    vehicleId: string;
+    vehicleId?: string | null;
 
     /**
      * @type {string}
