@@ -16,103 +16,103 @@
  * 
  *
  * @export
- * @interface FuelLoadPostDTO
+ * @interface ApiFuelLoadBody
  */
-export interface FuelLoadPostDTO {
+export interface ApiFuelLoadBody {
 
     /**
      * @type {string}
-     * @memberof FuelLoadPostDTO
+     * @memberof ApiFuelLoadBody
      */
     vehicleId: string;
 
     /**
      * @type {string}
-     * @memberof FuelLoadPostDTO
+     * @memberof ApiFuelLoadBody
      */
     chargeDate: string;
 
     /**
      * @type {string}
-     * @memberof FuelLoadPostDTO
+     * @memberof ApiFuelLoadBody
      */
     chargeHour: string;
 
     /**
      * @type {string}
-     * @memberof FuelLoadPostDTO
+     * @memberof ApiFuelLoadBody
      */
-    reference?: string | null;
+    reference?: string;
 
     /**
      * @type {boolean}
-     * @memberof FuelLoadPostDTO
+     * @memberof ApiFuelLoadBody
      */
     full?: boolean;
 
     /**
      * @type {boolean}
-     * @memberof FuelLoadPostDTO
+     * @memberof ApiFuelLoadBody
      */
     resetTank?: boolean;
 
     /**
      * @type {Array<Blob>}
-     * @memberof FuelLoadPostDTO
+     * @memberof ApiFuelLoadBody
      */
-    imageFiles?: Array<Blob> | null;
+    imageFiles?: Array<Blob>;
 
     /**
      * @type {number}
-     * @memberof FuelLoadPostDTO
+     * @memberof ApiFuelLoadBody
      */
     providerId?: number;
 
     /**
      * @type {number}
-     * @memberof FuelLoadPostDTO
+     * @memberof ApiFuelLoadBody
      */
     liters: number;
 
     /**
      * @type {string}
-     * @memberof FuelLoadPostDTO
+     * @memberof ApiFuelLoadBody
      */
-    fuelMeasureId?: string | null;
+    fuelMeasureId?: string;
 
     /**
      * @type {string}
-     * @memberof FuelLoadPostDTO
+     * @memberof ApiFuelLoadBody
      */
-    userDriverId?: string | null;
+    userDriverId?: string;
 
     /**
      * @type {number}
-     * @memberof FuelLoadPostDTO
+     * @memberof ApiFuelLoadBody
      */
     amount: number;
 
     /**
      * @type {number}
-     * @memberof FuelLoadPostDTO
+     * @memberof ApiFuelLoadBody
      */
     unitCost?: number;
 
     /**
      * @type {number}
-     * @memberof FuelLoadPostDTO
+     * @memberof ApiFuelLoadBody
      */
     odometer: number;
 
     /**
      * @type {string}
-     * @memberof FuelLoadPostDTO
+     * @memberof ApiFuelLoadBody
      */
     odometerMeasurementId: string;
 
     /**
      * @type {boolean}
-     * @memberof FuelLoadPostDTO
+     * @memberof ApiFuelLoadBody
      */
     summary?: boolean;
 }

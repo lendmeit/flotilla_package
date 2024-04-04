@@ -14,6 +14,7 @@
 
 import { FuelLoadFormDTO } from './fuel-load-form-dto';
 import { SelectDTO } from './select-dto';
+import { SelectVehicleDTO } from './select-vehicle-dto';
  /**
  * 
  *
@@ -23,10 +24,10 @@ import { SelectDTO } from './select-dto';
 export interface FuelLoadNewEditDTO {
 
     /**
-     * @type {Array<SelectDTO>}
+     * @type {Array<SelectVehicleDTO>}
      * @memberof FuelLoadNewEditDTO
      */
-    vehicles?: Array<SelectDTO> | null;
+    vehicles?: Array<SelectVehicleDTO> | null;
 
     /**
      * @type {string}
@@ -53,12 +54,6 @@ export interface FuelLoadNewEditDTO {
     fuelTypeId?: string | null;
 
     /**
-     * @type {Array<SelectDTO>}
-     * @memberof FuelLoadNewEditDTO
-     */
-    fuelTypes?: Array<SelectDTO> | null;
-
-    /**
      * @type {FuelLoadFormDTO}
      * @memberof FuelLoadNewEditDTO
      */
@@ -69,6 +64,12 @@ export interface FuelLoadNewEditDTO {
      * @memberof FuelLoadNewEditDTO
      */
     providers?: Array<SelectDTO> | null;
+
+    /**
+     * @type {Array<SelectDTO>}
+     * @memberof FuelLoadNewEditDTO
+     */
+    measures?: Array<SelectDTO> | null;
 
     /**
      * @type {Array<SelectDTO>}
