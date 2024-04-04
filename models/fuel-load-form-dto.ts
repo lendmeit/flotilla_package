@@ -25,18 +25,6 @@ export interface FuelLoadFormDTO {
      * @type {string}
      * @memberof FuelLoadFormDTO
      */
-    chargeDate: string | null;
-
-    /**
-     * @type {string}
-     * @memberof FuelLoadFormDTO
-     */
-    chargeHour: string | null;
-
-    /**
-     * @type {string}
-     * @memberof FuelLoadFormDTO
-     */
     reference?: string | null;
 
     /**
@@ -82,12 +70,6 @@ export interface FuelLoadFormDTO {
     unitCost?: number;
 
     /**
-     * @type {string}
-     * @memberof FuelLoadFormDTO
-     */
-    odometerMeasurementId?: string | null;
-
-    /**
      * @type {boolean}
      * @memberof FuelLoadFormDTO
      */
@@ -98,6 +80,18 @@ export interface FuelLoadFormDTO {
      * @memberof FuelLoadFormDTO
      */
     vehicleId?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof FuelLoadFormDTO
+     */
+    chargeDate?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof FuelLoadFormDTO
+     */
+    chargeHour?: string | null;
 
     /**
      * @type {number}
@@ -116,6 +110,12 @@ export interface FuelLoadFormDTO {
      * @memberof FuelLoadFormDTO
      */
     odometer?: number;
+
+    /**
+     * @type {string}
+     * @memberof FuelLoadFormDTO
+     */
+    odometerMeasurementId?: string | null;
 
     /**
      * @type {Array<ImageDTO>}

@@ -23,6 +23,7 @@ export * from './fuel-load-form-dto';
 export * from './fuel-load-id-body';
 export * from './fuel-load-new-edit-dto';
 export * from './fuel-load-post-dto';
+export * from './fuel-load-save-body';
 export * from './fuel-measure-dto';
 export * from './fuel-measure-dtopaged-result';
 export * from './fuel-type-dto';
