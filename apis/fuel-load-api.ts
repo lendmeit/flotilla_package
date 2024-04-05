@@ -17,9 +17,11 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { FuelLoadBillsInfoDTO } from '../models';
 import { FuelLoadDTO } from '../models';
 import { FuelLoadDetailDTOPagedResult } from '../models';
 import { FuelLoadNewEditDTO } from '../models';
+import { FuelLoadPostDTO } from '../models';
 import { PerformanceFilterDTO } from '../models';
 import { SortOrderEnum } from '../models';
 import { StatisticsFilterDTO } from '../models';
@@ -107,6 +109,52 @@ export const FuelLoadApiAxiosParamCreator = function (configuration?: Configurat
             localVarUrlObj.search = (new URLSearchParams(query)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {StatisticsFilterDTO} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiFuelLoadFuelLoadBillsPost: async (body?: StatisticsFilterDTO, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/FuelLoad/FuelLoadBills`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("Authorization")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json;odata.metadata=minimal;odata.streaming=true';
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -587,6 +635,52 @@ export const FuelLoadApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
+         * @param {FuelLoadPostDTO} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiFuelLoadSavePost: async (body?: FuelLoadPostDTO, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/FuelLoad/Save`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("Authorization")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json;odata.metadata=minimal;odata.streaming=true';
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {number} page 
          * @param {number} pageSize 
          * @param {string} [search] 
@@ -740,6 +834,19 @@ export const FuelLoadApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {StatisticsFilterDTO} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiFuelLoadFuelLoadBillsPost(body?: StatisticsFilterDTO, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<FuelLoadBillsInfoDTO>>> {
+            const localVarAxiosArgs = await FuelLoadApiAxiosParamCreator(configuration).apiFuelLoadFuelLoadBillsPost(body, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -849,6 +956,19 @@ export const FuelLoadApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {FuelLoadPostDTO} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiFuelLoadSavePost(body?: FuelLoadPostDTO, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<string>>> {
+            const localVarAxiosArgs = await FuelLoadApiAxiosParamCreator(configuration).apiFuelLoadSavePost(body, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
          * @param {number} page 
          * @param {number} pageSize 
          * @param {string} [search] 
@@ -901,6 +1021,15 @@ export const FuelLoadApiFactory = function (configuration?: Configuration, baseP
          */
         async apiFuelLoadFindForVehicleGet(page: number, pageSize: number, id?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<FuelLoadDetailDTOPagedResult>> {
             return FuelLoadApiFp(configuration).apiFuelLoadFindForVehicleGet(page, pageSize, id, search, orderByPropertyName, sortOrder, active, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {StatisticsFilterDTO} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiFuelLoadFuelLoadBillsPost(body?: StatisticsFilterDTO, options?: AxiosRequestConfig): Promise<AxiosResponse<FuelLoadBillsInfoDTO>> {
+            return FuelLoadApiFp(configuration).apiFuelLoadFuelLoadBillsPost(body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -989,6 +1118,15 @@ export const FuelLoadApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
+         * @param {FuelLoadPostDTO} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiFuelLoadSavePost(body?: FuelLoadPostDTO, options?: AxiosRequestConfig): Promise<AxiosResponse<string>> {
+            return FuelLoadApiFp(configuration).apiFuelLoadSavePost(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {number} page 
          * @param {number} pageSize 
          * @param {string} [search] 
@@ -1035,6 +1173,16 @@ export class FuelLoadApi extends BaseAPI {
      */
     public async apiFuelLoadFindForVehicleGet(page: number, pageSize: number, id?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<FuelLoadDetailDTOPagedResult>> {
         return FuelLoadApiFp(this.configuration).apiFuelLoadFindForVehicleGet(page, pageSize, id, search, orderByPropertyName, sortOrder, active, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
+     * @param {StatisticsFilterDTO} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FuelLoadApi
+     */
+    public async apiFuelLoadFuelLoadBillsPost(body?: StatisticsFilterDTO, options?: AxiosRequestConfig) : Promise<AxiosResponse<FuelLoadBillsInfoDTO>> {
+        return FuelLoadApiFp(this.configuration).apiFuelLoadFuelLoadBillsPost(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
@@ -1126,6 +1274,16 @@ export class FuelLoadApi extends BaseAPI {
      */
     public async apiFuelLoadPostForm(vehicleId?: string, chargeDate?: string, chargeHour?: string, reference?: string, full?: boolean, resetTank?: boolean, imageFiles?: Array<Blob>, providerId?: number, liters?: number, fuelMeasureId?: string, userDriverId?: string, amount?: number, unitCost?: number, odometer?: number, odometerMeasurementId?: string, summary?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<string>> {
         return FuelLoadApiFp(this.configuration).apiFuelLoadPostForm(vehicleId, chargeDate, chargeHour, reference, full, resetTank, imageFiles, providerId, liters, fuelMeasureId, userDriverId, amount, unitCost, odometer, odometerMeasurementId, summary, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
+     * @param {FuelLoadPostDTO} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FuelLoadApi
+     */
+    public async apiFuelLoadSavePost(body?: FuelLoadPostDTO, options?: AxiosRequestConfig) : Promise<AxiosResponse<string>> {
+        return FuelLoadApiFp(this.configuration).apiFuelLoadSavePost(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
