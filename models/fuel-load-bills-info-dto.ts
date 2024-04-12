@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { FuelLoadDetailDTO } from './fuel-load-detail-dto';
+import { FuelLoadDetailDTOPagedResult } from './fuel-load-detail-dtopaged-result';
 import { PerformanceDTO } from './performance-dto';
  /**
  * 
@@ -29,8 +29,8 @@ export interface FuelLoadBillsInfoDTO {
     bills?: Array<PerformanceDTO> | null;
 
     /**
-     * @type {Array<FuelLoadDetailDTO>}
+     * @type {FuelLoadDetailDTOPagedResult}
      * @memberof FuelLoadBillsInfoDTO
      */
-    fuelLoads?: Array<FuelLoadDetailDTO> | null;
+    fuelLoads?: FuelLoadDetailDTOPagedResult;
 }

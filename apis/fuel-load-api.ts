@@ -33,6 +33,242 @@ export const FuelLoadApiAxiosParamCreator = function (configuration?: Configurat
     return {
         /**
          * 
+         * @param {string} id 
+         * @param {Array<string>} [imagesToRemove] 
+         * @param {string} [vehicleId] 
+         * @param {string} [chargeDate] 
+         * @param {string} [chargeHour] 
+         * @param {string} [reference] 
+         * @param {boolean} [full] 
+         * @param {boolean} [resetTank] 
+         * @param {Array<Blob>} [imageFiles] 
+         * @param {number} [providerId] 
+         * @param {number} [liters] 
+         * @param {string} [fuelMeasureId] 
+         * @param {string} [userDriverId] 
+         * @param {number} [amount] 
+         * @param {number} [unitCost] 
+         * @param {number} [odometer] 
+         * @param {string} [odometerMeasurementId] 
+         * @param {boolean} [summary] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiFuelLoadEditIdPutForm: async (id: string, imagesToRemove?: Array<string>, vehicleId?: string, chargeDate?: string, chargeHour?: string, reference?: string, full?: boolean, resetTank?: boolean, imageFiles?: Array<Blob>, providerId?: number, liters?: number, fuelMeasureId?: string, userDriverId?: string, amount?: number, unitCost?: number, odometer?: number, odometerMeasurementId?: string, summary?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling apiFuelLoadEditIdPutForm.');
+            }
+            const localVarPath = `/api/FuelLoad/Edit/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new FormData();
+
+            // authentication Bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("Authorization")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            if (imagesToRemove) {
+                imagesToRemove.forEach((element) => {
+                    localVarFormParams.append('ImagesToRemove', element as any);
+                })
+            }
+
+            if (vehicleId !== undefined) { 
+                localVarFormParams.append('VehicleId', vehicleId as any);
+            }
+
+            if (chargeDate !== undefined) { 
+                localVarFormParams.append('ChargeDate', chargeDate as any);
+            }
+
+            if (chargeHour !== undefined) { 
+                localVarFormParams.append('ChargeHour', chargeHour as any);
+            }
+
+            if (reference !== undefined) { 
+                localVarFormParams.append('Reference', reference as any);
+            }
+
+            if (full !== undefined) { 
+                localVarFormParams.append('Full', full as any);
+            }
+
+            if (resetTank !== undefined) { 
+                localVarFormParams.append('ResetTank', resetTank as any);
+            }
+            if (imageFiles) {
+                imageFiles.forEach((element) => {
+                    localVarFormParams.append('ImageFiles', element as any);
+                })
+            }
+
+            if (providerId !== undefined) { 
+                localVarFormParams.append('ProviderId', providerId as any);
+            }
+
+            if (liters !== undefined) { 
+                localVarFormParams.append('Liters', liters as any);
+            }
+
+            if (fuelMeasureId !== undefined) { 
+                localVarFormParams.append('FuelMeasureId', fuelMeasureId as any);
+            }
+
+            if (userDriverId !== undefined) { 
+                localVarFormParams.append('UserDriverId', userDriverId as any);
+            }
+
+            if (amount !== undefined) { 
+                localVarFormParams.append('Amount', amount as any);
+            }
+
+            if (unitCost !== undefined) { 
+                localVarFormParams.append('UnitCost', unitCost as any);
+            }
+
+            if (odometer !== undefined) { 
+                localVarFormParams.append('Odometer', odometer as any);
+            }
+
+            if (odometerMeasurementId !== undefined) { 
+                localVarFormParams.append('OdometerMeasurementId', odometerMeasurementId as any);
+            }
+
+            if (summary !== undefined) { 
+                localVarFormParams.append('Summary', summary as any);
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} dateStart 
+         * @param {number} page 
+         * @param {number} pageSize 
+         * @param {string} [vehicleId] 
+         * @param {string} [dateEnd] 
+         * @param {string} [search] 
+         * @param {string} [orderByPropertyName] 
+         * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiFuelLoadFindForVehicleAndDateGet: async (dateStart: string, page: number, pageSize: number, vehicleId?: string, dateEnd?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'dateStart' is not null or undefined
+            if (dateStart === null || dateStart === undefined) {
+                throw new RequiredError('dateStart','Required parameter dateStart was null or undefined when calling apiFuelLoadFindForVehicleAndDateGet.');
+            }
+            // verify required parameter 'page' is not null or undefined
+            if (page === null || page === undefined) {
+                throw new RequiredError('page','Required parameter page was null or undefined when calling apiFuelLoadFindForVehicleAndDateGet.');
+            }
+            // verify required parameter 'pageSize' is not null or undefined
+            if (pageSize === null || pageSize === undefined) {
+                throw new RequiredError('pageSize','Required parameter pageSize was null or undefined when calling apiFuelLoadFindForVehicleAndDateGet.');
+            }
+            const localVarPath = `/api/FuelLoad/FindForVehicleAndDate`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("Authorization")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            if (vehicleId !== undefined) {
+                localVarQueryParameter['VehicleId'] = vehicleId;
+            }
+
+            if (dateStart !== undefined) {
+                localVarQueryParameter['DateStart'] = dateStart;
+            }
+
+            if (dateEnd !== undefined) {
+                localVarQueryParameter['DateEnd'] = dateEnd;
+            }
+
+            if (page !== undefined) {
+                localVarQueryParameter['Page'] = page;
+            }
+
+            if (search !== undefined) {
+                localVarQueryParameter['Search'] = search;
+            }
+
+            if (orderByPropertyName !== undefined) {
+                localVarQueryParameter['OrderByPropertyName'] = orderByPropertyName;
+            }
+
+            if (sortOrder !== undefined) {
+                localVarQueryParameter['SortOrder'] = sortOrder;
+            }
+
+            if (pageSize !== undefined) {
+                localVarQueryParameter['PageSize'] = pageSize;
+            }
+
+            if (active !== undefined) {
+                localVarQueryParameter['Active'] = active;
+            }
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {number} page 
          * @param {number} pageSize 
          * @param {string} [id] 
@@ -815,6 +1051,57 @@ export const FuelLoadApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {string} id 
+         * @param {Array<string>} [imagesToRemove] 
+         * @param {string} [vehicleId] 
+         * @param {string} [chargeDate] 
+         * @param {string} [chargeHour] 
+         * @param {string} [reference] 
+         * @param {boolean} [full] 
+         * @param {boolean} [resetTank] 
+         * @param {Array<Blob>} [imageFiles] 
+         * @param {number} [providerId] 
+         * @param {number} [liters] 
+         * @param {string} [fuelMeasureId] 
+         * @param {string} [userDriverId] 
+         * @param {number} [amount] 
+         * @param {number} [unitCost] 
+         * @param {number} [odometer] 
+         * @param {string} [odometerMeasurementId] 
+         * @param {boolean} [summary] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiFuelLoadEditIdPutForm(id: string, imagesToRemove?: Array<string>, vehicleId?: string, chargeDate?: string, chargeHour?: string, reference?: string, full?: boolean, resetTank?: boolean, imageFiles?: Array<Blob>, providerId?: number, liters?: number, fuelMeasureId?: string, userDriverId?: string, amount?: number, unitCost?: number, odometer?: number, odometerMeasurementId?: string, summary?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<boolean>>> {
+            const localVarAxiosArgs = await FuelLoadApiAxiosParamCreator(configuration).apiFuelLoadEditIdPutForm(id, imagesToRemove, vehicleId, chargeDate, chargeHour, reference, full, resetTank, imageFiles, providerId, liters, fuelMeasureId, userDriverId, amount, unitCost, odometer, odometerMeasurementId, summary, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {string} dateStart 
+         * @param {number} page 
+         * @param {number} pageSize 
+         * @param {string} [vehicleId] 
+         * @param {string} [dateEnd] 
+         * @param {string} [search] 
+         * @param {string} [orderByPropertyName] 
+         * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiFuelLoadFindForVehicleAndDateGet(dateStart: string, page: number, pageSize: number, vehicleId?: string, dateEnd?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<FuelLoadDetailDTOPagedResult>>> {
+            const localVarAxiosArgs = await FuelLoadApiAxiosParamCreator(configuration).apiFuelLoadFindForVehicleAndDateGet(dateStart, page, pageSize, vehicleId, dateEnd, search, orderByPropertyName, sortOrder, active, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
          * @param {number} page 
          * @param {number} pageSize 
          * @param {string} [id] 
@@ -1009,6 +1296,49 @@ export const FuelLoadApiFactory = function (configuration?: Configuration, baseP
     return {
         /**
          * 
+         * @param {string} id 
+         * @param {Array<string>} [imagesToRemove] 
+         * @param {string} [vehicleId] 
+         * @param {string} [chargeDate] 
+         * @param {string} [chargeHour] 
+         * @param {string} [reference] 
+         * @param {boolean} [full] 
+         * @param {boolean} [resetTank] 
+         * @param {Array<Blob>} [imageFiles] 
+         * @param {number} [providerId] 
+         * @param {number} [liters] 
+         * @param {string} [fuelMeasureId] 
+         * @param {string} [userDriverId] 
+         * @param {number} [amount] 
+         * @param {number} [unitCost] 
+         * @param {number} [odometer] 
+         * @param {string} [odometerMeasurementId] 
+         * @param {boolean} [summary] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiFuelLoadEditIdPutForm(id: string, imagesToRemove?: Array<string>, vehicleId?: string, chargeDate?: string, chargeHour?: string, reference?: string, full?: boolean, resetTank?: boolean, imageFiles?: Array<Blob>, providerId?: number, liters?: number, fuelMeasureId?: string, userDriverId?: string, amount?: number, unitCost?: number, odometer?: number, odometerMeasurementId?: string, summary?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<boolean>> {
+            return FuelLoadApiFp(configuration).apiFuelLoadEditIdPutForm(id, imagesToRemove, vehicleId, chargeDate, chargeHour, reference, full, resetTank, imageFiles, providerId, liters, fuelMeasureId, userDriverId, amount, unitCost, odometer, odometerMeasurementId, summary, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} dateStart 
+         * @param {number} page 
+         * @param {number} pageSize 
+         * @param {string} [vehicleId] 
+         * @param {string} [dateEnd] 
+         * @param {string} [search] 
+         * @param {string} [orderByPropertyName] 
+         * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiFuelLoadFindForVehicleAndDateGet(dateStart: string, page: number, pageSize: number, vehicleId?: string, dateEnd?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<FuelLoadDetailDTOPagedResult>> {
+            return FuelLoadApiFp(configuration).apiFuelLoadFindForVehicleAndDateGet(dateStart, page, pageSize, vehicleId, dateEnd, search, orderByPropertyName, sortOrder, active, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {number} page 
          * @param {number} pageSize 
          * @param {string} [id] 
@@ -1158,6 +1488,51 @@ export const FuelLoadApiFactory = function (configuration?: Configuration, baseP
  * @extends {BaseAPI}
  */
 export class FuelLoadApi extends BaseAPI {
+    /**
+     * 
+     * @param {string} id 
+     * @param {Array<string>} [imagesToRemove] 
+     * @param {string} [vehicleId] 
+     * @param {string} [chargeDate] 
+     * @param {string} [chargeHour] 
+     * @param {string} [reference] 
+     * @param {boolean} [full] 
+     * @param {boolean} [resetTank] 
+     * @param {Array<Blob>} [imageFiles] 
+     * @param {number} [providerId] 
+     * @param {number} [liters] 
+     * @param {string} [fuelMeasureId] 
+     * @param {string} [userDriverId] 
+     * @param {number} [amount] 
+     * @param {number} [unitCost] 
+     * @param {number} [odometer] 
+     * @param {string} [odometerMeasurementId] 
+     * @param {boolean} [summary] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FuelLoadApi
+     */
+    public async apiFuelLoadEditIdPutForm(id: string, imagesToRemove?: Array<string>, vehicleId?: string, chargeDate?: string, chargeHour?: string, reference?: string, full?: boolean, resetTank?: boolean, imageFiles?: Array<Blob>, providerId?: number, liters?: number, fuelMeasureId?: string, userDriverId?: string, amount?: number, unitCost?: number, odometer?: number, odometerMeasurementId?: string, summary?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<boolean>> {
+        return FuelLoadApiFp(this.configuration).apiFuelLoadEditIdPutForm(id, imagesToRemove, vehicleId, chargeDate, chargeHour, reference, full, resetTank, imageFiles, providerId, liters, fuelMeasureId, userDriverId, amount, unitCost, odometer, odometerMeasurementId, summary, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
+     * @param {string} dateStart 
+     * @param {number} page 
+     * @param {number} pageSize 
+     * @param {string} [vehicleId] 
+     * @param {string} [dateEnd] 
+     * @param {string} [search] 
+     * @param {string} [orderByPropertyName] 
+     * @param {SortOrderEnum} [sortOrder] 
+     * @param {boolean} [active] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FuelLoadApi
+     */
+    public async apiFuelLoadFindForVehicleAndDateGet(dateStart: string, page: number, pageSize: number, vehicleId?: string, dateEnd?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<FuelLoadDetailDTOPagedResult>> {
+        return FuelLoadApiFp(this.configuration).apiFuelLoadFindForVehicleAndDateGet(dateStart, page, pageSize, vehicleId, dateEnd, search, orderByPropertyName, sortOrder, active, options).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * 
      * @param {number} page 
