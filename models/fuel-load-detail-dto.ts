@@ -42,5 +42,11 @@ export interface FuelLoadDetailDTO {
      * @type {string}
      * @memberof FuelLoadDetailDTO
      */
+    odometer?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof FuelLoadDetailDTO
+     */
     totalAmount?: string | null;
 }
