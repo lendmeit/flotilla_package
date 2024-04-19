@@ -17,16 +17,116 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { MaintenanceBillsInfoDTO } from '../models';
 import { MaintenanceDTO } from '../models';
 import { MaintenanceDetailDTOPagedResult } from '../models';
 import { MaintenanceNewEditDTO } from '../models';
 import { SortOrderEnum } from '../models';
+import { StatisticsFilterDTO } from '../models';
 /**
  * MaintenanceApi - axios parameter creator
  * @export
  */
 export const MaintenanceApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * 
+         * @param {string} dateStart 
+         * @param {number} page 
+         * @param {number} pageSize 
+         * @param {string} [vehicleId] 
+         * @param {string} [dateEnd] 
+         * @param {string} [search] 
+         * @param {string} [orderByPropertyName] 
+         * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiMaintenanceFindForVehicleAndDateGet: async (dateStart: string, page: number, pageSize: number, vehicleId?: string, dateEnd?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'dateStart' is not null or undefined
+            if (dateStart === null || dateStart === undefined) {
+                throw new RequiredError('dateStart','Required parameter dateStart was null or undefined when calling apiMaintenanceFindForVehicleAndDateGet.');
+            }
+            // verify required parameter 'page' is not null or undefined
+            if (page === null || page === undefined) {
+                throw new RequiredError('page','Required parameter page was null or undefined when calling apiMaintenanceFindForVehicleAndDateGet.');
+            }
+            // verify required parameter 'pageSize' is not null or undefined
+            if (pageSize === null || pageSize === undefined) {
+                throw new RequiredError('pageSize','Required parameter pageSize was null or undefined when calling apiMaintenanceFindForVehicleAndDateGet.');
+            }
+            const localVarPath = `/api/Maintenance/FindForVehicleAndDate`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("Authorization")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            if (vehicleId !== undefined) {
+                localVarQueryParameter['VehicleId'] = vehicleId;
+            }
+
+            if (dateStart !== undefined) {
+                localVarQueryParameter['DateStart'] = dateStart;
+            }
+
+            if (dateEnd !== undefined) {
+                localVarQueryParameter['DateEnd'] = dateEnd;
+            }
+
+            if (page !== undefined) {
+                localVarQueryParameter['Page'] = page;
+            }
+
+            if (search !== undefined) {
+                localVarQueryParameter['Search'] = search;
+            }
+
+            if (orderByPropertyName !== undefined) {
+                localVarQueryParameter['OrderByPropertyName'] = orderByPropertyName;
+            }
+
+            if (sortOrder !== undefined) {
+                localVarQueryParameter['SortOrder'] = sortOrder;
+            }
+
+            if (pageSize !== undefined) {
+                localVarQueryParameter['PageSize'] = pageSize;
+            }
+
+            if (active !== undefined) {
+                localVarQueryParameter['Active'] = active;
+            }
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * 
          * @param {number} page 
@@ -350,6 +450,52 @@ export const MaintenanceApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
+         * @param {StatisticsFilterDTO} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiMaintenanceMaintenanceBillsPost: async (body?: StatisticsFilterDTO, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Maintenance/MaintenanceBills`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("Authorization")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {MaintenanceDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -484,6 +630,27 @@ export const MaintenanceApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {string} dateStart 
+         * @param {number} page 
+         * @param {number} pageSize 
+         * @param {string} [vehicleId] 
+         * @param {string} [dateEnd] 
+         * @param {string} [search] 
+         * @param {string} [orderByPropertyName] 
+         * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiMaintenanceFindForVehicleAndDateGet(dateStart: string, page: number, pageSize: number, vehicleId?: string, dateEnd?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<MaintenanceDetailDTOPagedResult>>> {
+            const localVarAxiosArgs = await MaintenanceApiAxiosParamCreator(configuration).apiMaintenanceFindForVehicleAndDateGet(dateStart, page, pageSize, vehicleId, dateEnd, search, orderByPropertyName, sortOrder, active, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
          * @param {number} page 
          * @param {number} pageSize 
          * @param {string} [id] 
@@ -568,6 +735,19 @@ export const MaintenanceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {StatisticsFilterDTO} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiMaintenanceMaintenanceBillsPost(body?: StatisticsFilterDTO, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<MaintenanceBillsInfoDTO>>> {
+            const localVarAxiosArgs = await MaintenanceApiAxiosParamCreator(configuration).apiMaintenanceMaintenanceBillsPost(body, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
          * @param {MaintenanceDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -606,6 +786,23 @@ export const MaintenanceApiFp = function(configuration?: Configuration) {
  */
 export const MaintenanceApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     return {
+        /**
+         * 
+         * @param {string} dateStart 
+         * @param {number} page 
+         * @param {number} pageSize 
+         * @param {string} [vehicleId] 
+         * @param {string} [dateEnd] 
+         * @param {string} [search] 
+         * @param {string} [orderByPropertyName] 
+         * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiMaintenanceFindForVehicleAndDateGet(dateStart: string, page: number, pageSize: number, vehicleId?: string, dateEnd?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<MaintenanceDetailDTOPagedResult>> {
+            return MaintenanceApiFp(configuration).apiMaintenanceFindForVehicleAndDateGet(dateStart, page, pageSize, vehicleId, dateEnd, search, orderByPropertyName, sortOrder, active, options).then((request) => request(axios, basePath));
+        },
         /**
          * 
          * @param {number} page 
@@ -668,6 +865,15 @@ export const MaintenanceApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
+         * @param {StatisticsFilterDTO} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiMaintenanceMaintenanceBillsPost(body?: StatisticsFilterDTO, options?: AxiosRequestConfig): Promise<AxiosResponse<MaintenanceBillsInfoDTO>> {
+            return MaintenanceApiFp(configuration).apiMaintenanceMaintenanceBillsPost(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {MaintenanceDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -699,6 +905,24 @@ export const MaintenanceApiFactory = function (configuration?: Configuration, ba
  * @extends {BaseAPI}
  */
 export class MaintenanceApi extends BaseAPI {
+    /**
+     * 
+     * @param {string} dateStart 
+     * @param {number} page 
+     * @param {number} pageSize 
+     * @param {string} [vehicleId] 
+     * @param {string} [dateEnd] 
+     * @param {string} [search] 
+     * @param {string} [orderByPropertyName] 
+     * @param {SortOrderEnum} [sortOrder] 
+     * @param {boolean} [active] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MaintenanceApi
+     */
+    public async apiMaintenanceFindForVehicleAndDateGet(dateStart: string, page: number, pageSize: number, vehicleId?: string, dateEnd?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<MaintenanceDetailDTOPagedResult>> {
+        return MaintenanceApiFp(this.configuration).apiMaintenanceFindForVehicleAndDateGet(dateStart, page, pageSize, vehicleId, dateEnd, search, orderByPropertyName, sortOrder, active, options).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * 
      * @param {number} page 
@@ -764,6 +988,16 @@ export class MaintenanceApi extends BaseAPI {
      */
     public async apiMaintenanceIdPut(body: MaintenanceDTO, id: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<boolean>> {
         return MaintenanceApiFp(this.configuration).apiMaintenanceIdPut(body, id, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
+     * @param {StatisticsFilterDTO} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MaintenanceApi
+     */
+    public async apiMaintenanceMaintenanceBillsPost(body?: StatisticsFilterDTO, options?: AxiosRequestConfig) : Promise<AxiosResponse<MaintenanceBillsInfoDTO>> {
+        return MaintenanceApiFp(this.configuration).apiMaintenanceMaintenanceBillsPost(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 

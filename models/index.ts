@@ -45,6 +45,7 @@ export * from './insurance-company-dtopaged-result';
 export * from './login-dto';
 export * from './machine-dto';
 export * from './machine-dtopaged-result';
+export * from './maintenance-bills-info-dto';
 export * from './maintenance-dto';
 export * from './maintenance-detail-dto';
 export * from './maintenance-detail-dtopaged-result';
