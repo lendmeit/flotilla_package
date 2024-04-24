@@ -20,9 +20,12 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 import { MaintenanceBillsInfoDTO } from '../models';
 import { MaintenanceDTO } from '../models';
 import { MaintenanceDetailDTOPagedResult } from '../models';
+import { MaintenanceIdBody } from '../models';
+import { MaintenanceListPartDTO } from '../models';
 import { MaintenanceNewEditDTO } from '../models';
+import { MaintenancePostDTO } from '../models';
+import { MaintenanceStatisticsFilterDTO } from '../models';
 import { SortOrderEnum } from '../models';
-import { StatisticsFilterDTO } from '../models';
 /**
  * MaintenanceApi - axios parameter creator
  * @export
@@ -35,6 +38,7 @@ export const MaintenanceApiAxiosParamCreator = function (configuration?: Configu
          * @param {number} page 
          * @param {number} pageSize 
          * @param {string} [vehicleId] 
+         * @param {string} [servicesId] 
          * @param {string} [dateEnd] 
          * @param {string} [search] 
          * @param {string} [orderByPropertyName] 
@@ -43,7 +47,7 @@ export const MaintenanceApiAxiosParamCreator = function (configuration?: Configu
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiMaintenanceFindForVehicleAndDateGet: async (dateStart: string, page: number, pageSize: number, vehicleId?: string, dateEnd?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiMaintenanceFindForVehicleAndDateGet: async (dateStart: string, page: number, pageSize: number, vehicleId?: string, servicesId?: string, dateEnd?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'dateStart' is not null or undefined
             if (dateStart === null || dateStart === undefined) {
                 throw new RequiredError('dateStart','Required parameter dateStart was null or undefined when calling apiMaintenanceFindForVehicleAndDateGet.');
@@ -77,6 +81,10 @@ export const MaintenanceApiAxiosParamCreator = function (configuration?: Configu
 
             if (vehicleId !== undefined) {
                 localVarQueryParameter['VehicleId'] = vehicleId;
+            }
+
+            if (servicesId !== undefined) {
+                localVarQueryParameter['ServicesId'] = servicesId;
             }
 
             if (dateStart !== undefined) {
@@ -394,15 +402,38 @@ export const MaintenanceApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
-         * @param {MaintenanceDTO} body 
+         * @param {string} startDate 
+         * @param {string} startHour 
+         * @param {string} vehicleId 
          * @param {string} id 
+         * @param {MaintenanceIdBody} [body] 
+         * @param {Array<string>} [imagesToRemove] 
+         * @param {string} [finishDate] 
+         * @param {string} [finishHour] 
+         * @param {string} [comments] 
+         * @param {string} [reference] 
+         * @param {string} [odometer] 
+         * @param {string} [maintenanceTypeId] 
+         * @param {string} [maintenanceGroupId] 
+         * @param {number} [costLobour] 
+         * @param {string} [providerId] 
+         * @param {Array<string>} [services] 
+         * @param {Array<MaintenanceListPartDTO>} [maintenanceParts] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiMaintenanceIdPut: async (body: MaintenanceDTO, id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'body' is not null or undefined
-            if (body === null || body === undefined) {
-                throw new RequiredError('body','Required parameter body was null or undefined when calling apiMaintenanceIdPut.');
+        apiMaintenanceIdPut: async (startDate: string, startHour: string, vehicleId: string, id: string, body?: MaintenanceIdBody, imagesToRemove?: Array<string>, finishDate?: string, finishHour?: string, comments?: string, reference?: string, odometer?: string, maintenanceTypeId?: string, maintenanceGroupId?: string, costLobour?: number, providerId?: string, services?: Array<string>, maintenanceParts?: Array<MaintenanceListPartDTO>, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'startDate' is not null or undefined
+            if (startDate === null || startDate === undefined) {
+                throw new RequiredError('startDate','Required parameter startDate was null or undefined when calling apiMaintenanceIdPut.');
+            }
+            // verify required parameter 'startHour' is not null or undefined
+            if (startHour === null || startHour === undefined) {
+                throw new RequiredError('startHour','Required parameter startHour was null or undefined when calling apiMaintenanceIdPut.');
+            }
+            // verify required parameter 'vehicleId' is not null or undefined
+            if (vehicleId === null || vehicleId === undefined) {
+                throw new RequiredError('vehicleId','Required parameter vehicleId was null or undefined when calling apiMaintenanceIdPut.');
             }
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
@@ -428,6 +459,66 @@ export const MaintenanceApiAxiosParamCreator = function (configuration?: Configu
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
+            if (imagesToRemove) {
+                localVarQueryParameter['ImagesToRemove'] = imagesToRemove;
+            }
+
+            if (startDate !== undefined) {
+                localVarQueryParameter['StartDate'] = startDate;
+            }
+
+            if (finishDate !== undefined) {
+                localVarQueryParameter['FinishDate'] = finishDate;
+            }
+
+            if (startHour !== undefined) {
+                localVarQueryParameter['StartHour'] = startHour;
+            }
+
+            if (finishHour !== undefined) {
+                localVarQueryParameter['FinishHour'] = finishHour;
+            }
+
+            if (comments !== undefined) {
+                localVarQueryParameter['Comments'] = comments;
+            }
+
+            if (reference !== undefined) {
+                localVarQueryParameter['Reference'] = reference;
+            }
+
+            if (odometer !== undefined) {
+                localVarQueryParameter['Odometer'] = odometer;
+            }
+
+            if (maintenanceTypeId !== undefined) {
+                localVarQueryParameter['MaintenanceTypeId'] = maintenanceTypeId;
+            }
+
+            if (maintenanceGroupId !== undefined) {
+                localVarQueryParameter['MaintenanceGroupId'] = maintenanceGroupId;
+            }
+
+            if (costLobour !== undefined) {
+                localVarQueryParameter['CostLobour'] = costLobour;
+            }
+
+            if (providerId !== undefined) {
+                localVarQueryParameter['ProviderId'] = providerId;
+            }
+
+            if (vehicleId !== undefined) {
+                localVarQueryParameter['VehicleId'] = vehicleId;
+            }
+
+            if (services) {
+                localVarQueryParameter['Services'] = services;
+            }
+
+            if (maintenanceParts) {
+                localVarQueryParameter['MaintenanceParts'] = maintenanceParts;
+            }
+
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             const query = new URLSearchParams(localVarUrlObj.search);
@@ -450,11 +541,11 @@ export const MaintenanceApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
-         * @param {StatisticsFilterDTO} [body] 
+         * @param {MaintenanceStatisticsFilterDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiMaintenanceMaintenanceBillsPost: async (body?: StatisticsFilterDTO, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiMaintenanceMaintenanceBillsPost: async (body?: MaintenanceStatisticsFilterDTO, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/Maintenance/MaintenanceBills`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -496,11 +587,11 @@ export const MaintenanceApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
-         * @param {MaintenanceDTO} [body] 
+         * @param {MaintenancePostDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiMaintenancePost: async (body?: MaintenanceDTO, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiMaintenancePost: async (body?: MaintenancePostDTO, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/Maintenance`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -634,6 +725,7 @@ export const MaintenanceApiFp = function(configuration?: Configuration) {
          * @param {number} page 
          * @param {number} pageSize 
          * @param {string} [vehicleId] 
+         * @param {string} [servicesId] 
          * @param {string} [dateEnd] 
          * @param {string} [search] 
          * @param {string} [orderByPropertyName] 
@@ -642,8 +734,8 @@ export const MaintenanceApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiMaintenanceFindForVehicleAndDateGet(dateStart: string, page: number, pageSize: number, vehicleId?: string, dateEnd?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<MaintenanceDetailDTOPagedResult>>> {
-            const localVarAxiosArgs = await MaintenanceApiAxiosParamCreator(configuration).apiMaintenanceFindForVehicleAndDateGet(dateStart, page, pageSize, vehicleId, dateEnd, search, orderByPropertyName, sortOrder, active, options);
+        async apiMaintenanceFindForVehicleAndDateGet(dateStart: string, page: number, pageSize: number, vehicleId?: string, servicesId?: string, dateEnd?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<MaintenanceDetailDTOPagedResult>>> {
+            const localVarAxiosArgs = await MaintenanceApiAxiosParamCreator(configuration).apiMaintenanceFindForVehicleAndDateGet(dateStart, page, pageSize, vehicleId, servicesId, dateEnd, search, orderByPropertyName, sortOrder, active, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -721,13 +813,28 @@ export const MaintenanceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {MaintenanceDTO} body 
+         * @param {string} startDate 
+         * @param {string} startHour 
+         * @param {string} vehicleId 
          * @param {string} id 
+         * @param {MaintenanceIdBody} [body] 
+         * @param {Array<string>} [imagesToRemove] 
+         * @param {string} [finishDate] 
+         * @param {string} [finishHour] 
+         * @param {string} [comments] 
+         * @param {string} [reference] 
+         * @param {string} [odometer] 
+         * @param {string} [maintenanceTypeId] 
+         * @param {string} [maintenanceGroupId] 
+         * @param {number} [costLobour] 
+         * @param {string} [providerId] 
+         * @param {Array<string>} [services] 
+         * @param {Array<MaintenanceListPartDTO>} [maintenanceParts] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiMaintenanceIdPut(body: MaintenanceDTO, id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<boolean>>> {
-            const localVarAxiosArgs = await MaintenanceApiAxiosParamCreator(configuration).apiMaintenanceIdPut(body, id, options);
+        async apiMaintenanceIdPut(startDate: string, startHour: string, vehicleId: string, id: string, body?: MaintenanceIdBody, imagesToRemove?: Array<string>, finishDate?: string, finishHour?: string, comments?: string, reference?: string, odometer?: string, maintenanceTypeId?: string, maintenanceGroupId?: string, costLobour?: number, providerId?: string, services?: Array<string>, maintenanceParts?: Array<MaintenanceListPartDTO>, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<boolean>>> {
+            const localVarAxiosArgs = await MaintenanceApiAxiosParamCreator(configuration).apiMaintenanceIdPut(startDate, startHour, vehicleId, id, body, imagesToRemove, finishDate, finishHour, comments, reference, odometer, maintenanceTypeId, maintenanceGroupId, costLobour, providerId, services, maintenanceParts, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -735,11 +842,11 @@ export const MaintenanceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {StatisticsFilterDTO} [body] 
+         * @param {MaintenanceStatisticsFilterDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiMaintenanceMaintenanceBillsPost(body?: StatisticsFilterDTO, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<MaintenanceBillsInfoDTO>>> {
+        async apiMaintenanceMaintenanceBillsPost(body?: MaintenanceStatisticsFilterDTO, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<MaintenanceBillsInfoDTO>>> {
             const localVarAxiosArgs = await MaintenanceApiAxiosParamCreator(configuration).apiMaintenanceMaintenanceBillsPost(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -748,11 +855,11 @@ export const MaintenanceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {MaintenanceDTO} [body] 
+         * @param {MaintenancePostDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiMaintenancePost(body?: MaintenanceDTO, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<string>>> {
+        async apiMaintenancePost(body?: MaintenancePostDTO, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<string>>> {
             const localVarAxiosArgs = await MaintenanceApiAxiosParamCreator(configuration).apiMaintenancePost(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -792,6 +899,7 @@ export const MaintenanceApiFactory = function (configuration?: Configuration, ba
          * @param {number} page 
          * @param {number} pageSize 
          * @param {string} [vehicleId] 
+         * @param {string} [servicesId] 
          * @param {string} [dateEnd] 
          * @param {string} [search] 
          * @param {string} [orderByPropertyName] 
@@ -800,8 +908,8 @@ export const MaintenanceApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiMaintenanceFindForVehicleAndDateGet(dateStart: string, page: number, pageSize: number, vehicleId?: string, dateEnd?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<MaintenanceDetailDTOPagedResult>> {
-            return MaintenanceApiFp(configuration).apiMaintenanceFindForVehicleAndDateGet(dateStart, page, pageSize, vehicleId, dateEnd, search, orderByPropertyName, sortOrder, active, options).then((request) => request(axios, basePath));
+        async apiMaintenanceFindForVehicleAndDateGet(dateStart: string, page: number, pageSize: number, vehicleId?: string, servicesId?: string, dateEnd?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<MaintenanceDetailDTOPagedResult>> {
+            return MaintenanceApiFp(configuration).apiMaintenanceFindForVehicleAndDateGet(dateStart, page, pageSize, vehicleId, servicesId, dateEnd, search, orderByPropertyName, sortOrder, active, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -855,30 +963,45 @@ export const MaintenanceApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
-         * @param {MaintenanceDTO} body 
+         * @param {string} startDate 
+         * @param {string} startHour 
+         * @param {string} vehicleId 
          * @param {string} id 
+         * @param {MaintenanceIdBody} [body] 
+         * @param {Array<string>} [imagesToRemove] 
+         * @param {string} [finishDate] 
+         * @param {string} [finishHour] 
+         * @param {string} [comments] 
+         * @param {string} [reference] 
+         * @param {string} [odometer] 
+         * @param {string} [maintenanceTypeId] 
+         * @param {string} [maintenanceGroupId] 
+         * @param {number} [costLobour] 
+         * @param {string} [providerId] 
+         * @param {Array<string>} [services] 
+         * @param {Array<MaintenanceListPartDTO>} [maintenanceParts] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiMaintenanceIdPut(body: MaintenanceDTO, id: string, options?: AxiosRequestConfig): Promise<AxiosResponse<boolean>> {
-            return MaintenanceApiFp(configuration).apiMaintenanceIdPut(body, id, options).then((request) => request(axios, basePath));
+        async apiMaintenanceIdPut(startDate: string, startHour: string, vehicleId: string, id: string, body?: MaintenanceIdBody, imagesToRemove?: Array<string>, finishDate?: string, finishHour?: string, comments?: string, reference?: string, odometer?: string, maintenanceTypeId?: string, maintenanceGroupId?: string, costLobour?: number, providerId?: string, services?: Array<string>, maintenanceParts?: Array<MaintenanceListPartDTO>, options?: AxiosRequestConfig): Promise<AxiosResponse<boolean>> {
+            return MaintenanceApiFp(configuration).apiMaintenanceIdPut(startDate, startHour, vehicleId, id, body, imagesToRemove, finishDate, finishHour, comments, reference, odometer, maintenanceTypeId, maintenanceGroupId, costLobour, providerId, services, maintenanceParts, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {StatisticsFilterDTO} [body] 
+         * @param {MaintenanceStatisticsFilterDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiMaintenanceMaintenanceBillsPost(body?: StatisticsFilterDTO, options?: AxiosRequestConfig): Promise<AxiosResponse<MaintenanceBillsInfoDTO>> {
+        async apiMaintenanceMaintenanceBillsPost(body?: MaintenanceStatisticsFilterDTO, options?: AxiosRequestConfig): Promise<AxiosResponse<MaintenanceBillsInfoDTO>> {
             return MaintenanceApiFp(configuration).apiMaintenanceMaintenanceBillsPost(body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {MaintenanceDTO} [body] 
+         * @param {MaintenancePostDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiMaintenancePost(body?: MaintenanceDTO, options?: AxiosRequestConfig): Promise<AxiosResponse<string>> {
+        async apiMaintenancePost(body?: MaintenancePostDTO, options?: AxiosRequestConfig): Promise<AxiosResponse<string>> {
             return MaintenanceApiFp(configuration).apiMaintenancePost(body, options).then((request) => request(axios, basePath));
         },
         /**
@@ -911,6 +1034,7 @@ export class MaintenanceApi extends BaseAPI {
      * @param {number} page 
      * @param {number} pageSize 
      * @param {string} [vehicleId] 
+     * @param {string} [servicesId] 
      * @param {string} [dateEnd] 
      * @param {string} [search] 
      * @param {string} [orderByPropertyName] 
@@ -920,8 +1044,8 @@ export class MaintenanceApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof MaintenanceApi
      */
-    public async apiMaintenanceFindForVehicleAndDateGet(dateStart: string, page: number, pageSize: number, vehicleId?: string, dateEnd?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<MaintenanceDetailDTOPagedResult>> {
-        return MaintenanceApiFp(this.configuration).apiMaintenanceFindForVehicleAndDateGet(dateStart, page, pageSize, vehicleId, dateEnd, search, orderByPropertyName, sortOrder, active, options).then((request) => request(this.axios, this.basePath));
+    public async apiMaintenanceFindForVehicleAndDateGet(dateStart: string, page: number, pageSize: number, vehicleId?: string, servicesId?: string, dateEnd?: string, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<MaintenanceDetailDTOPagedResult>> {
+        return MaintenanceApiFp(this.configuration).apiMaintenanceFindForVehicleAndDateGet(dateStart, page, pageSize, vehicleId, servicesId, dateEnd, search, orderByPropertyName, sortOrder, active, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
@@ -980,33 +1104,48 @@ export class MaintenanceApi extends BaseAPI {
     }
     /**
      * 
-     * @param {MaintenanceDTO} body 
+     * @param {string} startDate 
+     * @param {string} startHour 
+     * @param {string} vehicleId 
      * @param {string} id 
+     * @param {MaintenanceIdBody} [body] 
+     * @param {Array<string>} [imagesToRemove] 
+     * @param {string} [finishDate] 
+     * @param {string} [finishHour] 
+     * @param {string} [comments] 
+     * @param {string} [reference] 
+     * @param {string} [odometer] 
+     * @param {string} [maintenanceTypeId] 
+     * @param {string} [maintenanceGroupId] 
+     * @param {number} [costLobour] 
+     * @param {string} [providerId] 
+     * @param {Array<string>} [services] 
+     * @param {Array<MaintenanceListPartDTO>} [maintenanceParts] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MaintenanceApi
      */
-    public async apiMaintenanceIdPut(body: MaintenanceDTO, id: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<boolean>> {
-        return MaintenanceApiFp(this.configuration).apiMaintenanceIdPut(body, id, options).then((request) => request(this.axios, this.basePath));
+    public async apiMaintenanceIdPut(startDate: string, startHour: string, vehicleId: string, id: string, body?: MaintenanceIdBody, imagesToRemove?: Array<string>, finishDate?: string, finishHour?: string, comments?: string, reference?: string, odometer?: string, maintenanceTypeId?: string, maintenanceGroupId?: string, costLobour?: number, providerId?: string, services?: Array<string>, maintenanceParts?: Array<MaintenanceListPartDTO>, options?: AxiosRequestConfig) : Promise<AxiosResponse<boolean>> {
+        return MaintenanceApiFp(this.configuration).apiMaintenanceIdPut(startDate, startHour, vehicleId, id, body, imagesToRemove, finishDate, finishHour, comments, reference, odometer, maintenanceTypeId, maintenanceGroupId, costLobour, providerId, services, maintenanceParts, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
-     * @param {StatisticsFilterDTO} [body] 
+     * @param {MaintenanceStatisticsFilterDTO} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MaintenanceApi
      */
-    public async apiMaintenanceMaintenanceBillsPost(body?: StatisticsFilterDTO, options?: AxiosRequestConfig) : Promise<AxiosResponse<MaintenanceBillsInfoDTO>> {
+    public async apiMaintenanceMaintenanceBillsPost(body?: MaintenanceStatisticsFilterDTO, options?: AxiosRequestConfig) : Promise<AxiosResponse<MaintenanceBillsInfoDTO>> {
         return MaintenanceApiFp(this.configuration).apiMaintenanceMaintenanceBillsPost(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
-     * @param {MaintenanceDTO} [body] 
+     * @param {MaintenancePostDTO} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MaintenanceApi
      */
-    public async apiMaintenancePost(body?: MaintenanceDTO, options?: AxiosRequestConfig) : Promise<AxiosResponse<string>> {
+    public async apiMaintenancePost(body?: MaintenancePostDTO, options?: AxiosRequestConfig) : Promise<AxiosResponse<string>> {
         return MaintenanceApiFp(this.configuration).apiMaintenancePost(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**

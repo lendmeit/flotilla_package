@@ -16,49 +16,43 @@
  * 
  *
  * @export
- * @interface MaintenancePartDTO
+ * @interface MaintenanceListPartDTO
  */
-export interface MaintenancePartDTO {
+export interface MaintenanceListPartDTO {
 
     /**
      * @type {string}
-     * @memberof MaintenancePartDTO
+     * @memberof MaintenanceListPartDTO
      */
     id?: string | null;
 
     /**
      * @type {boolean}
-     * @memberof MaintenancePartDTO
+     * @memberof MaintenanceListPartDTO
      */
     active?: boolean;
 
     /**
      * @type {string}
-     * @memberof MaintenancePartDTO
+     * @memberof MaintenanceListPartDTO
      */
     maintenanceId?: string | null;
 
     /**
      * @type {string}
-     * @memberof MaintenancePartDTO
-     */
-    partId?: string | null;
-
-    /**
-     * @type {string}
-     * @memberof MaintenancePartDTO
+     * @memberof MaintenanceListPartDTO
      */
     item?: string | null;
 
     /**
      * @type {number}
-     * @memberof MaintenancePartDTO
+     * @memberof MaintenanceListPartDTO
      */
     quantity?: number;
 
     /**
      * @type {number}
-     * @memberof MaintenancePartDTO
+     * @memberof MaintenanceListPartDTO
      */
     cost?: number;
 }

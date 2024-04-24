@@ -30,6 +30,7 @@ export enum CatalogsEnum {
     Companies = 'Companies',
     FuelMeasures = 'FuelMeasures',
     Measures = 'Measures',
-    ActiveCategories = 'ActiveCategories'
+    ActiveCategories = 'ActiveCategories',
+    MaintenanceTypes = 'MaintenanceTypes'
 }
 

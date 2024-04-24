@@ -12,6 +12,8 @@
  * Do not edit the class manually.
  */
 
+import { MaintenancePartDTO } from './maintenance-part-dto';
+import { ServiceDTO } from './service-dto';
 import { TimeSpan } from './time-span';
  /**
  * 
@@ -79,6 +81,12 @@ export interface MaintenanceDTO {
      * @type {string}
      * @memberof MaintenanceDTO
      */
+    reference?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof MaintenanceDTO
+     */
     maintenanceTypeId?: string | null;
 
     /**
@@ -104,4 +112,16 @@ export interface MaintenanceDTO {
      * @memberof MaintenanceDTO
      */
     documentId?: string | null;
+
+    /**
+     * @type {Array<ServiceDTO>}
+     * @memberof MaintenanceDTO
+     */
+    services?: Array<ServiceDTO> | null;
+
+    /**
+     * @type {Array<MaintenancePartDTO>}
+     * @memberof MaintenanceDTO
+     */
+    maintenanceParts?: Array<MaintenancePartDTO> | null;
 }

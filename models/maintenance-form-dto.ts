@@ -14,6 +14,8 @@
 
 import { DocumentDTO } from './document-dto';
 import { ImageDTO } from './image-dto';
+import { MaintenancePartDTO } from './maintenance-part-dto';
+import { ServiceDTO } from './service-dto';
  /**
  * 
  *
@@ -80,6 +82,12 @@ export interface MaintenanceFormDTO {
      * @type {string}
      * @memberof MaintenanceFormDTO
      */
+    reference?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof MaintenanceFormDTO
+     */
     maintenanceTypeId?: string | null;
 
     /**
@@ -99,6 +107,18 @@ export interface MaintenanceFormDTO {
      * @memberof MaintenanceFormDTO
      */
     documentId?: string | null;
+
+    /**
+     * @type {Array<ServiceDTO>}
+     * @memberof MaintenanceFormDTO
+     */
+    services?: Array<ServiceDTO> | null;
+
+    /**
+     * @type {Array<MaintenancePartDTO>}
+     * @memberof MaintenanceFormDTO
+     */
+    maintenanceParts?: Array<MaintenancePartDTO> | null;
 
     /**
      * @type {string}
