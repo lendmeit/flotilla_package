@@ -58,6 +58,7 @@ export * from './maintenance-new-edit-dto';
 export * from './maintenance-part-dto';
 export * from './maintenance-part-dtopaged-result';
 export * from './maintenance-post-dto';
+export * from './maintenance-service-dto';
 export * from './maintenance-statistics-filter-dto';
 export * from './maintenance-type-dto';
 export * from './maintenance-type-dtopaged-result';

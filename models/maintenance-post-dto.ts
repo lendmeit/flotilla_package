@@ -13,6 +13,7 @@
  */
 
 import { MaintenanceListPartDTO } from './maintenance-list-part-dto';
+import { MaintenanceServiceDTO } from './maintenance-service-dto';
  /**
  * 
  *
@@ -106,14 +107,14 @@ export interface MaintenancePostDTO {
     imageFiles?: Array<Blob> | null;
 
     /**
-     * @type {Array<string>}
-     * @memberof MaintenancePostDTO
-     */
-    services?: Array<string> | null;
-
-    /**
      * @type {Array<MaintenanceListPartDTO>}
      * @memberof MaintenancePostDTO
      */
     maintenanceParts?: Array<MaintenanceListPartDTO> | null;
+
+    /**
+     * @type {Array<MaintenanceServiceDTO>}
+     * @memberof MaintenancePostDTO
+     */
+    maintenanceServices?: Array<MaintenanceServiceDTO> | null;
 }
