@@ -98,7 +98,7 @@ export interface MaintenancePostDTO {
      * @type {Blob}
      * @memberof MaintenancePostDTO
      */
-    document?: Blob | null;
+    documentFile?: Blob | null;
 
     /**
      * @type {Array<Blob>}

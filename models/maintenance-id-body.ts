@@ -24,7 +24,7 @@ export interface MaintenanceIdBody {
      * @type {Blob}
      * @memberof MaintenanceIdBody
      */
-    document?: Blob;
+    documentFile?: Blob;
 
     /**
      * @type {Array<Blob>}
