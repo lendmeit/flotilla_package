@@ -18,109 +18,109 @@ import { MaintenanceServiceDTO } from './maintenance-service-dto';
  * 
  *
  * @export
- * @interface EditIdBody1
+ * @interface MaintenancePutDTO
  */
-export interface EditIdBody1 {
-
-    /**
-     * @type {Array<string>}
-     * @memberof EditIdBody1
-     */
-    imagesToRemove?: Array<string>;
+export interface MaintenancePutDTO {
 
     /**
      * @type {string}
-     * @memberof EditIdBody1
+     * @memberof MaintenancePutDTO
      */
     startDate: string;
 
     /**
      * @type {string}
-     * @memberof EditIdBody1
+     * @memberof MaintenancePutDTO
      */
-    finishDate?: string;
+    finishDate?: string | null;
 
     /**
      * @type {string}
-     * @memberof EditIdBody1
+     * @memberof MaintenancePutDTO
      */
     startHour: string;
 
     /**
      * @type {string}
-     * @memberof EditIdBody1
+     * @memberof MaintenancePutDTO
      */
-    finishHour?: string;
+    finishHour?: string | null;
 
     /**
      * @type {string}
-     * @memberof EditIdBody1
+     * @memberof MaintenancePutDTO
      */
-    comments?: string;
+    comments?: string | null;
 
     /**
      * @type {string}
-     * @memberof EditIdBody1
+     * @memberof MaintenancePutDTO
      */
-    reference?: string;
+    reference?: string | null;
 
     /**
      * @type {string}
-     * @memberof EditIdBody1
+     * @memberof MaintenancePutDTO
      */
-    odometer?: string;
+    odometer?: string | null;
 
     /**
      * @type {string}
-     * @memberof EditIdBody1
+     * @memberof MaintenancePutDTO
      */
-    maintenanceTypeId?: string;
+    maintenanceTypeId?: string | null;
 
     /**
      * @type {string}
-     * @memberof EditIdBody1
+     * @memberof MaintenancePutDTO
      */
-    maintenanceGroupId?: string;
+    maintenanceGroupId?: string | null;
 
     /**
      * @type {number}
-     * @memberof EditIdBody1
+     * @memberof MaintenancePutDTO
      */
     costLobour?: number;
 
     /**
      * @type {string}
-     * @memberof EditIdBody1
+     * @memberof MaintenancePutDTO
      */
-    providerId?: string;
+    providerId?: string | null;
 
     /**
      * @type {string}
-     * @memberof EditIdBody1
+     * @memberof MaintenancePutDTO
      */
     vehicleId: string;
 
     /**
      * @type {Blob}
-     * @memberof EditIdBody1
+     * @memberof MaintenancePutDTO
      */
-    documentFile?: Blob;
+    documentFile?: Blob | null;
 
     /**
      * @type {Array<Blob>}
-     * @memberof EditIdBody1
+     * @memberof MaintenancePutDTO
      */
-    imageFiles?: Array<Blob>;
+    imageFiles?: Array<Blob> | null;
 
     /**
      * @type {Array<MaintenanceListPartDTO>}
-     * @memberof EditIdBody1
+     * @memberof MaintenancePutDTO
      */
-    maintenanceParts?: Array<MaintenanceListPartDTO>;
+    maintenanceParts?: Array<MaintenanceListPartDTO> | null;
 
     /**
      * @type {Array<MaintenanceServiceDTO>}
-     * @memberof EditIdBody1
+     * @memberof MaintenancePutDTO
      */
-    maintenanceServices?: Array<MaintenanceServiceDTO>;
+    maintenanceServices?: Array<MaintenanceServiceDTO> | null;
+
+    /**
+     * @type {Array<string>}
+     * @memberof MaintenancePutDTO
+     */
+    imagesToRemove?: Array<string> | null;
 }

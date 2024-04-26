@@ -30,6 +30,12 @@ export interface MaintenanceDetailDTO {
      * @type {string}
      * @memberof MaintenanceDetailDTO
      */
+    vehicleId?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof MaintenanceDetailDTO
+     */
     vehicle?: string | null;
 
     /**

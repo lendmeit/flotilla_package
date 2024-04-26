@@ -20,10 +20,10 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 import { MaintenanceBillsInfoDTO } from '../models';
 import { MaintenanceDTO } from '../models';
 import { MaintenanceDetailDTOPagedResult } from '../models';
-import { MaintenanceIdBody } from '../models';
 import { MaintenanceListPartDTO } from '../models';
 import { MaintenanceNewEditDTO } from '../models';
 import { MaintenancePostDTO } from '../models';
+import { MaintenancePutDTO } from '../models';
 import { MaintenanceServiceDTO } from '../models';
 import { MaintenanceStatisticsFilterDTO } from '../models';
 import { SortOrderEnum } from '../models';
@@ -33,6 +33,146 @@ import { SortOrderEnum } from '../models';
  */
 export const MaintenanceApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * 
+         * @param {string} id 
+         * @param {Array<string>} [imagesToRemove] 
+         * @param {string} [startDate] 
+         * @param {string} [finishDate] 
+         * @param {string} [startHour] 
+         * @param {string} [finishHour] 
+         * @param {string} [comments] 
+         * @param {string} [reference] 
+         * @param {string} [odometer] 
+         * @param {string} [maintenanceTypeId] 
+         * @param {string} [maintenanceGroupId] 
+         * @param {number} [costLobour] 
+         * @param {string} [providerId] 
+         * @param {string} [vehicleId] 
+         * @param {Blob} [documentFile] 
+         * @param {Array<Blob>} [imageFiles] 
+         * @param {Array<MaintenanceListPartDTO>} [maintenanceParts] 
+         * @param {Array<MaintenanceServiceDTO>} [maintenanceServices] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiMaintenanceEditIdPutForm: async (id: string, imagesToRemove?: Array<string>, startDate?: string, finishDate?: string, startHour?: string, finishHour?: string, comments?: string, reference?: string, odometer?: string, maintenanceTypeId?: string, maintenanceGroupId?: string, costLobour?: number, providerId?: string, vehicleId?: string, documentFile?: Blob, imageFiles?: Array<Blob>, maintenanceParts?: Array<MaintenanceListPartDTO>, maintenanceServices?: Array<MaintenanceServiceDTO>, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling apiMaintenanceEditIdPutForm.');
+            }
+            const localVarPath = `/api/Maintenance/Edit/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new FormData();
+
+            // authentication Bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("Authorization")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            if (imagesToRemove) {
+                imagesToRemove.forEach((element) => {
+                    localVarFormParams.append('ImagesToRemove', element as any);
+                })
+            }
+
+            if (startDate !== undefined) { 
+                localVarFormParams.append('StartDate', startDate as any);
+            }
+
+            if (finishDate !== undefined) { 
+                localVarFormParams.append('FinishDate', finishDate as any);
+            }
+
+            if (startHour !== undefined) { 
+                localVarFormParams.append('StartHour', startHour as any);
+            }
+
+            if (finishHour !== undefined) { 
+                localVarFormParams.append('FinishHour', finishHour as any);
+            }
+
+            if (comments !== undefined) { 
+                localVarFormParams.append('Comments', comments as any);
+            }
+
+            if (reference !== undefined) { 
+                localVarFormParams.append('Reference', reference as any);
+            }
+
+            if (odometer !== undefined) { 
+                localVarFormParams.append('Odometer', odometer as any);
+            }
+
+            if (maintenanceTypeId !== undefined) { 
+                localVarFormParams.append('MaintenanceTypeId', maintenanceTypeId as any);
+            }
+
+            if (maintenanceGroupId !== undefined) { 
+                localVarFormParams.append('MaintenanceGroupId', maintenanceGroupId as any);
+            }
+
+            if (costLobour !== undefined) { 
+                localVarFormParams.append('CostLobour', costLobour as any);
+            }
+
+            if (providerId !== undefined) { 
+                localVarFormParams.append('ProviderId', providerId as any);
+            }
+
+            if (vehicleId !== undefined) { 
+                localVarFormParams.append('VehicleId', vehicleId as any);
+            }
+
+            if (documentFile !== undefined) { 
+                localVarFormParams.append('DocumentFile', documentFile as any);
+            }
+            if (imageFiles) {
+                imageFiles.forEach((element) => {
+                    localVarFormParams.append('ImageFiles', element as any);
+                })
+            }
+            if (maintenanceParts) {
+                maintenanceParts.forEach((element) => {
+                    localVarFormParams.append('MaintenanceParts', element as any);
+                })
+            }
+            if (maintenanceServices) {
+                maintenanceServices.forEach((element) => {
+                    localVarFormParams.append('MaintenanceServices', element as any);
+                })
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * 
          * @param {string} dateStart 
@@ -403,39 +543,12 @@ export const MaintenanceApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
-         * @param {string} startDate 
-         * @param {string} startHour 
-         * @param {string} vehicleId 
          * @param {string} id 
-         * @param {MaintenanceIdBody} [body] 
-         * @param {Array<string>} [imagesToRemove] 
-         * @param {string} [finishDate] 
-         * @param {string} [finishHour] 
-         * @param {string} [comments] 
-         * @param {string} [reference] 
-         * @param {string} [odometer] 
-         * @param {string} [maintenanceTypeId] 
-         * @param {string} [maintenanceGroupId] 
-         * @param {number} [costLobour] 
-         * @param {string} [providerId] 
-         * @param {Array<MaintenanceListPartDTO>} [maintenanceParts] 
-         * @param {Array<MaintenanceServiceDTO>} [maintenanceServices] 
+         * @param {MaintenancePutDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiMaintenanceIdPut: async (startDate: string, startHour: string, vehicleId: string, id: string, body?: MaintenanceIdBody, imagesToRemove?: Array<string>, finishDate?: string, finishHour?: string, comments?: string, reference?: string, odometer?: string, maintenanceTypeId?: string, maintenanceGroupId?: string, costLobour?: number, providerId?: string, maintenanceParts?: Array<MaintenanceListPartDTO>, maintenanceServices?: Array<MaintenanceServiceDTO>, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'startDate' is not null or undefined
-            if (startDate === null || startDate === undefined) {
-                throw new RequiredError('startDate','Required parameter startDate was null or undefined when calling apiMaintenanceIdPut.');
-            }
-            // verify required parameter 'startHour' is not null or undefined
-            if (startHour === null || startHour === undefined) {
-                throw new RequiredError('startHour','Required parameter startHour was null or undefined when calling apiMaintenanceIdPut.');
-            }
-            // verify required parameter 'vehicleId' is not null or undefined
-            if (vehicleId === null || vehicleId === undefined) {
-                throw new RequiredError('vehicleId','Required parameter vehicleId was null or undefined when calling apiMaintenanceIdPut.');
-            }
+        apiMaintenanceIdPut: async (id: string, body?: MaintenancePutDTO, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling apiMaintenanceIdPut.');
@@ -460,67 +573,7 @@ export const MaintenanceApiAxiosParamCreator = function (configuration?: Configu
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
-            if (imagesToRemove) {
-                localVarQueryParameter['ImagesToRemove'] = imagesToRemove;
-            }
-
-            if (startDate !== undefined) {
-                localVarQueryParameter['StartDate'] = startDate;
-            }
-
-            if (finishDate !== undefined) {
-                localVarQueryParameter['FinishDate'] = finishDate;
-            }
-
-            if (startHour !== undefined) {
-                localVarQueryParameter['StartHour'] = startHour;
-            }
-
-            if (finishHour !== undefined) {
-                localVarQueryParameter['FinishHour'] = finishHour;
-            }
-
-            if (comments !== undefined) {
-                localVarQueryParameter['Comments'] = comments;
-            }
-
-            if (reference !== undefined) {
-                localVarQueryParameter['Reference'] = reference;
-            }
-
-            if (odometer !== undefined) {
-                localVarQueryParameter['Odometer'] = odometer;
-            }
-
-            if (maintenanceTypeId !== undefined) {
-                localVarQueryParameter['MaintenanceTypeId'] = maintenanceTypeId;
-            }
-
-            if (maintenanceGroupId !== undefined) {
-                localVarQueryParameter['MaintenanceGroupId'] = maintenanceGroupId;
-            }
-
-            if (costLobour !== undefined) {
-                localVarQueryParameter['CostLobour'] = costLobour;
-            }
-
-            if (providerId !== undefined) {
-                localVarQueryParameter['ProviderId'] = providerId;
-            }
-
-            if (vehicleId !== undefined) {
-                localVarQueryParameter['VehicleId'] = vehicleId;
-            }
-
-            if (maintenanceParts) {
-                localVarQueryParameter['MaintenanceParts'] = maintenanceParts;
-            }
-
-            if (maintenanceServices) {
-                localVarQueryParameter['MaintenanceServices'] = maintenanceServices;
-            }
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Content-Type'] = 'application/json;odata.metadata=minimal;odata.streaming=true';
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -566,7 +619,7 @@ export const MaintenanceApiAxiosParamCreator = function (configuration?: Configu
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
-            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Content-Type'] = 'application/json;odata.metadata=minimal;odata.streaming=true';
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -588,12 +641,140 @@ export const MaintenanceApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
+         * @param {string} [startDate] 
+         * @param {string} [finishDate] 
+         * @param {string} [startHour] 
+         * @param {string} [finishHour] 
+         * @param {string} [comments] 
+         * @param {string} [reference] 
+         * @param {string} [odometer] 
+         * @param {string} [maintenanceTypeId] 
+         * @param {string} [maintenanceGroupId] 
+         * @param {number} [costLobour] 
+         * @param {string} [providerId] 
+         * @param {string} [vehicleId] 
+         * @param {Blob} [documentFile] 
+         * @param {Array<Blob>} [imageFiles] 
+         * @param {Array<MaintenanceListPartDTO>} [maintenanceParts] 
+         * @param {Array<MaintenanceServiceDTO>} [maintenanceServices] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiMaintenancePostForm: async (startDate?: string, finishDate?: string, startHour?: string, finishHour?: string, comments?: string, reference?: string, odometer?: string, maintenanceTypeId?: string, maintenanceGroupId?: string, costLobour?: number, providerId?: string, vehicleId?: string, documentFile?: Blob, imageFiles?: Array<Blob>, maintenanceParts?: Array<MaintenanceListPartDTO>, maintenanceServices?: Array<MaintenanceServiceDTO>, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Maintenance`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new FormData();
+
+            // authentication Bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("Authorization")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+
+            if (startDate !== undefined) { 
+                localVarFormParams.append('StartDate', startDate as any);
+            }
+
+            if (finishDate !== undefined) { 
+                localVarFormParams.append('FinishDate', finishDate as any);
+            }
+
+            if (startHour !== undefined) { 
+                localVarFormParams.append('StartHour', startHour as any);
+            }
+
+            if (finishHour !== undefined) { 
+                localVarFormParams.append('FinishHour', finishHour as any);
+            }
+
+            if (comments !== undefined) { 
+                localVarFormParams.append('Comments', comments as any);
+            }
+
+            if (reference !== undefined) { 
+                localVarFormParams.append('Reference', reference as any);
+            }
+
+            if (odometer !== undefined) { 
+                localVarFormParams.append('Odometer', odometer as any);
+            }
+
+            if (maintenanceTypeId !== undefined) { 
+                localVarFormParams.append('MaintenanceTypeId', maintenanceTypeId as any);
+            }
+
+            if (maintenanceGroupId !== undefined) { 
+                localVarFormParams.append('MaintenanceGroupId', maintenanceGroupId as any);
+            }
+
+            if (costLobour !== undefined) { 
+                localVarFormParams.append('CostLobour', costLobour as any);
+            }
+
+            if (providerId !== undefined) { 
+                localVarFormParams.append('ProviderId', providerId as any);
+            }
+
+            if (vehicleId !== undefined) { 
+                localVarFormParams.append('VehicleId', vehicleId as any);
+            }
+
+            if (documentFile !== undefined) { 
+                localVarFormParams.append('DocumentFile', documentFile as any);
+            }
+            if (imageFiles) {
+                imageFiles.forEach((element) => {
+                    localVarFormParams.append('ImageFiles', element as any);
+                })
+            }
+            if (maintenanceParts) {
+                maintenanceParts.forEach((element) => {
+                    localVarFormParams.append('MaintenanceParts', element as any);
+                })
+            }
+            if (maintenanceServices) {
+                maintenanceServices.forEach((element) => {
+                    localVarFormParams.append('MaintenanceServices', element as any);
+                })
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {MaintenancePostDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiMaintenancePost: async (body?: MaintenancePostDTO, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/Maintenance`;
+        apiMaintenanceSavePost: async (body?: MaintenancePostDTO, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Maintenance/Save`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -612,7 +793,7 @@ export const MaintenanceApiAxiosParamCreator = function (configuration?: Configu
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
-            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Content-Type'] = 'application/json;odata.metadata=minimal;odata.streaming=true';
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -722,6 +903,36 @@ export const MaintenanceApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {string} id 
+         * @param {Array<string>} [imagesToRemove] 
+         * @param {string} [startDate] 
+         * @param {string} [finishDate] 
+         * @param {string} [startHour] 
+         * @param {string} [finishHour] 
+         * @param {string} [comments] 
+         * @param {string} [reference] 
+         * @param {string} [odometer] 
+         * @param {string} [maintenanceTypeId] 
+         * @param {string} [maintenanceGroupId] 
+         * @param {number} [costLobour] 
+         * @param {string} [providerId] 
+         * @param {string} [vehicleId] 
+         * @param {Blob} [documentFile] 
+         * @param {Array<Blob>} [imageFiles] 
+         * @param {Array<MaintenanceListPartDTO>} [maintenanceParts] 
+         * @param {Array<MaintenanceServiceDTO>} [maintenanceServices] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiMaintenanceEditIdPutForm(id: string, imagesToRemove?: Array<string>, startDate?: string, finishDate?: string, startHour?: string, finishHour?: string, comments?: string, reference?: string, odometer?: string, maintenanceTypeId?: string, maintenanceGroupId?: string, costLobour?: number, providerId?: string, vehicleId?: string, documentFile?: Blob, imageFiles?: Array<Blob>, maintenanceParts?: Array<MaintenanceListPartDTO>, maintenanceServices?: Array<MaintenanceServiceDTO>, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<boolean>>> {
+            const localVarAxiosArgs = await MaintenanceApiAxiosParamCreator(configuration).apiMaintenanceEditIdPutForm(id, imagesToRemove, startDate, finishDate, startHour, finishHour, comments, reference, odometer, maintenanceTypeId, maintenanceGroupId, costLobour, providerId, vehicleId, documentFile, imageFiles, maintenanceParts, maintenanceServices, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
          * @param {string} dateStart 
          * @param {number} page 
          * @param {number} pageSize 
@@ -814,28 +1025,13 @@ export const MaintenanceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {string} startDate 
-         * @param {string} startHour 
-         * @param {string} vehicleId 
          * @param {string} id 
-         * @param {MaintenanceIdBody} [body] 
-         * @param {Array<string>} [imagesToRemove] 
-         * @param {string} [finishDate] 
-         * @param {string} [finishHour] 
-         * @param {string} [comments] 
-         * @param {string} [reference] 
-         * @param {string} [odometer] 
-         * @param {string} [maintenanceTypeId] 
-         * @param {string} [maintenanceGroupId] 
-         * @param {number} [costLobour] 
-         * @param {string} [providerId] 
-         * @param {Array<MaintenanceListPartDTO>} [maintenanceParts] 
-         * @param {Array<MaintenanceServiceDTO>} [maintenanceServices] 
+         * @param {MaintenancePutDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiMaintenanceIdPut(startDate: string, startHour: string, vehicleId: string, id: string, body?: MaintenanceIdBody, imagesToRemove?: Array<string>, finishDate?: string, finishHour?: string, comments?: string, reference?: string, odometer?: string, maintenanceTypeId?: string, maintenanceGroupId?: string, costLobour?: number, providerId?: string, maintenanceParts?: Array<MaintenanceListPartDTO>, maintenanceServices?: Array<MaintenanceServiceDTO>, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<boolean>>> {
-            const localVarAxiosArgs = await MaintenanceApiAxiosParamCreator(configuration).apiMaintenanceIdPut(startDate, startHour, vehicleId, id, body, imagesToRemove, finishDate, finishHour, comments, reference, odometer, maintenanceTypeId, maintenanceGroupId, costLobour, providerId, maintenanceParts, maintenanceServices, options);
+        async apiMaintenanceIdPut(id: string, body?: MaintenancePutDTO, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<boolean>>> {
+            const localVarAxiosArgs = await MaintenanceApiAxiosParamCreator(configuration).apiMaintenanceIdPut(id, body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -856,12 +1052,40 @@ export const MaintenanceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} [startDate] 
+         * @param {string} [finishDate] 
+         * @param {string} [startHour] 
+         * @param {string} [finishHour] 
+         * @param {string} [comments] 
+         * @param {string} [reference] 
+         * @param {string} [odometer] 
+         * @param {string} [maintenanceTypeId] 
+         * @param {string} [maintenanceGroupId] 
+         * @param {number} [costLobour] 
+         * @param {string} [providerId] 
+         * @param {string} [vehicleId] 
+         * @param {Blob} [documentFile] 
+         * @param {Array<Blob>} [imageFiles] 
+         * @param {Array<MaintenanceListPartDTO>} [maintenanceParts] 
+         * @param {Array<MaintenanceServiceDTO>} [maintenanceServices] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiMaintenancePostForm(startDate?: string, finishDate?: string, startHour?: string, finishHour?: string, comments?: string, reference?: string, odometer?: string, maintenanceTypeId?: string, maintenanceGroupId?: string, costLobour?: number, providerId?: string, vehicleId?: string, documentFile?: Blob, imageFiles?: Array<Blob>, maintenanceParts?: Array<MaintenanceListPartDTO>, maintenanceServices?: Array<MaintenanceServiceDTO>, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<string>>> {
+            const localVarAxiosArgs = await MaintenanceApiAxiosParamCreator(configuration).apiMaintenancePostForm(startDate, finishDate, startHour, finishHour, comments, reference, odometer, maintenanceTypeId, maintenanceGroupId, costLobour, providerId, vehicleId, documentFile, imageFiles, maintenanceParts, maintenanceServices, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
          * @param {MaintenancePostDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiMaintenancePost(body?: MaintenancePostDTO, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<string>>> {
-            const localVarAxiosArgs = await MaintenanceApiAxiosParamCreator(configuration).apiMaintenancePost(body, options);
+        async apiMaintenanceSavePost(body?: MaintenancePostDTO, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<string>>> {
+            const localVarAxiosArgs = await MaintenanceApiAxiosParamCreator(configuration).apiMaintenanceSavePost(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -894,6 +1118,32 @@ export const MaintenanceApiFp = function(configuration?: Configuration) {
  */
 export const MaintenanceApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     return {
+        /**
+         * 
+         * @param {string} id 
+         * @param {Array<string>} [imagesToRemove] 
+         * @param {string} [startDate] 
+         * @param {string} [finishDate] 
+         * @param {string} [startHour] 
+         * @param {string} [finishHour] 
+         * @param {string} [comments] 
+         * @param {string} [reference] 
+         * @param {string} [odometer] 
+         * @param {string} [maintenanceTypeId] 
+         * @param {string} [maintenanceGroupId] 
+         * @param {number} [costLobour] 
+         * @param {string} [providerId] 
+         * @param {string} [vehicleId] 
+         * @param {Blob} [documentFile] 
+         * @param {Array<Blob>} [imageFiles] 
+         * @param {Array<MaintenanceListPartDTO>} [maintenanceParts] 
+         * @param {Array<MaintenanceServiceDTO>} [maintenanceServices] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiMaintenanceEditIdPutForm(id: string, imagesToRemove?: Array<string>, startDate?: string, finishDate?: string, startHour?: string, finishHour?: string, comments?: string, reference?: string, odometer?: string, maintenanceTypeId?: string, maintenanceGroupId?: string, costLobour?: number, providerId?: string, vehicleId?: string, documentFile?: Blob, imageFiles?: Array<Blob>, maintenanceParts?: Array<MaintenanceListPartDTO>, maintenanceServices?: Array<MaintenanceServiceDTO>, options?: AxiosRequestConfig): Promise<AxiosResponse<boolean>> {
+            return MaintenanceApiFp(configuration).apiMaintenanceEditIdPutForm(id, imagesToRemove, startDate, finishDate, startHour, finishHour, comments, reference, odometer, maintenanceTypeId, maintenanceGroupId, costLobour, providerId, vehicleId, documentFile, imageFiles, maintenanceParts, maintenanceServices, options).then((request) => request(axios, basePath));
+        },
         /**
          * 
          * @param {string} dateStart 
@@ -964,28 +1214,13 @@ export const MaintenanceApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
-         * @param {string} startDate 
-         * @param {string} startHour 
-         * @param {string} vehicleId 
          * @param {string} id 
-         * @param {MaintenanceIdBody} [body] 
-         * @param {Array<string>} [imagesToRemove] 
-         * @param {string} [finishDate] 
-         * @param {string} [finishHour] 
-         * @param {string} [comments] 
-         * @param {string} [reference] 
-         * @param {string} [odometer] 
-         * @param {string} [maintenanceTypeId] 
-         * @param {string} [maintenanceGroupId] 
-         * @param {number} [costLobour] 
-         * @param {string} [providerId] 
-         * @param {Array<MaintenanceListPartDTO>} [maintenanceParts] 
-         * @param {Array<MaintenanceServiceDTO>} [maintenanceServices] 
+         * @param {MaintenancePutDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiMaintenanceIdPut(startDate: string, startHour: string, vehicleId: string, id: string, body?: MaintenanceIdBody, imagesToRemove?: Array<string>, finishDate?: string, finishHour?: string, comments?: string, reference?: string, odometer?: string, maintenanceTypeId?: string, maintenanceGroupId?: string, costLobour?: number, providerId?: string, maintenanceParts?: Array<MaintenanceListPartDTO>, maintenanceServices?: Array<MaintenanceServiceDTO>, options?: AxiosRequestConfig): Promise<AxiosResponse<boolean>> {
-            return MaintenanceApiFp(configuration).apiMaintenanceIdPut(startDate, startHour, vehicleId, id, body, imagesToRemove, finishDate, finishHour, comments, reference, odometer, maintenanceTypeId, maintenanceGroupId, costLobour, providerId, maintenanceParts, maintenanceServices, options).then((request) => request(axios, basePath));
+        async apiMaintenanceIdPut(id: string, body?: MaintenancePutDTO, options?: AxiosRequestConfig): Promise<AxiosResponse<boolean>> {
+            return MaintenanceApiFp(configuration).apiMaintenanceIdPut(id, body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -998,12 +1233,36 @@ export const MaintenanceApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
+         * @param {string} [startDate] 
+         * @param {string} [finishDate] 
+         * @param {string} [startHour] 
+         * @param {string} [finishHour] 
+         * @param {string} [comments] 
+         * @param {string} [reference] 
+         * @param {string} [odometer] 
+         * @param {string} [maintenanceTypeId] 
+         * @param {string} [maintenanceGroupId] 
+         * @param {number} [costLobour] 
+         * @param {string} [providerId] 
+         * @param {string} [vehicleId] 
+         * @param {Blob} [documentFile] 
+         * @param {Array<Blob>} [imageFiles] 
+         * @param {Array<MaintenanceListPartDTO>} [maintenanceParts] 
+         * @param {Array<MaintenanceServiceDTO>} [maintenanceServices] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiMaintenancePostForm(startDate?: string, finishDate?: string, startHour?: string, finishHour?: string, comments?: string, reference?: string, odometer?: string, maintenanceTypeId?: string, maintenanceGroupId?: string, costLobour?: number, providerId?: string, vehicleId?: string, documentFile?: Blob, imageFiles?: Array<Blob>, maintenanceParts?: Array<MaintenanceListPartDTO>, maintenanceServices?: Array<MaintenanceServiceDTO>, options?: AxiosRequestConfig): Promise<AxiosResponse<string>> {
+            return MaintenanceApiFp(configuration).apiMaintenancePostForm(startDate, finishDate, startHour, finishHour, comments, reference, odometer, maintenanceTypeId, maintenanceGroupId, costLobour, providerId, vehicleId, documentFile, imageFiles, maintenanceParts, maintenanceServices, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {MaintenancePostDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiMaintenancePost(body?: MaintenancePostDTO, options?: AxiosRequestConfig): Promise<AxiosResponse<string>> {
-            return MaintenanceApiFp(configuration).apiMaintenancePost(body, options).then((request) => request(axios, basePath));
+        async apiMaintenanceSavePost(body?: MaintenancePostDTO, options?: AxiosRequestConfig): Promise<AxiosResponse<string>> {
+            return MaintenanceApiFp(configuration).apiMaintenanceSavePost(body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1029,6 +1288,33 @@ export const MaintenanceApiFactory = function (configuration?: Configuration, ba
  * @extends {BaseAPI}
  */
 export class MaintenanceApi extends BaseAPI {
+    /**
+     * 
+     * @param {string} id 
+     * @param {Array<string>} [imagesToRemove] 
+     * @param {string} [startDate] 
+     * @param {string} [finishDate] 
+     * @param {string} [startHour] 
+     * @param {string} [finishHour] 
+     * @param {string} [comments] 
+     * @param {string} [reference] 
+     * @param {string} [odometer] 
+     * @param {string} [maintenanceTypeId] 
+     * @param {string} [maintenanceGroupId] 
+     * @param {number} [costLobour] 
+     * @param {string} [providerId] 
+     * @param {string} [vehicleId] 
+     * @param {Blob} [documentFile] 
+     * @param {Array<Blob>} [imageFiles] 
+     * @param {Array<MaintenanceListPartDTO>} [maintenanceParts] 
+     * @param {Array<MaintenanceServiceDTO>} [maintenanceServices] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MaintenanceApi
+     */
+    public async apiMaintenanceEditIdPutForm(id: string, imagesToRemove?: Array<string>, startDate?: string, finishDate?: string, startHour?: string, finishHour?: string, comments?: string, reference?: string, odometer?: string, maintenanceTypeId?: string, maintenanceGroupId?: string, costLobour?: number, providerId?: string, vehicleId?: string, documentFile?: Blob, imageFiles?: Array<Blob>, maintenanceParts?: Array<MaintenanceListPartDTO>, maintenanceServices?: Array<MaintenanceServiceDTO>, options?: AxiosRequestConfig) : Promise<AxiosResponse<boolean>> {
+        return MaintenanceApiFp(this.configuration).apiMaintenanceEditIdPutForm(id, imagesToRemove, startDate, finishDate, startHour, finishHour, comments, reference, odometer, maintenanceTypeId, maintenanceGroupId, costLobour, providerId, vehicleId, documentFile, imageFiles, maintenanceParts, maintenanceServices, options).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * 
      * @param {string} dateStart 
@@ -1105,29 +1391,14 @@ export class MaintenanceApi extends BaseAPI {
     }
     /**
      * 
-     * @param {string} startDate 
-     * @param {string} startHour 
-     * @param {string} vehicleId 
      * @param {string} id 
-     * @param {MaintenanceIdBody} [body] 
-     * @param {Array<string>} [imagesToRemove] 
-     * @param {string} [finishDate] 
-     * @param {string} [finishHour] 
-     * @param {string} [comments] 
-     * @param {string} [reference] 
-     * @param {string} [odometer] 
-     * @param {string} [maintenanceTypeId] 
-     * @param {string} [maintenanceGroupId] 
-     * @param {number} [costLobour] 
-     * @param {string} [providerId] 
-     * @param {Array<MaintenanceListPartDTO>} [maintenanceParts] 
-     * @param {Array<MaintenanceServiceDTO>} [maintenanceServices] 
+     * @param {MaintenancePutDTO} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MaintenanceApi
      */
-    public async apiMaintenanceIdPut(startDate: string, startHour: string, vehicleId: string, id: string, body?: MaintenanceIdBody, imagesToRemove?: Array<string>, finishDate?: string, finishHour?: string, comments?: string, reference?: string, odometer?: string, maintenanceTypeId?: string, maintenanceGroupId?: string, costLobour?: number, providerId?: string, maintenanceParts?: Array<MaintenanceListPartDTO>, maintenanceServices?: Array<MaintenanceServiceDTO>, options?: AxiosRequestConfig) : Promise<AxiosResponse<boolean>> {
-        return MaintenanceApiFp(this.configuration).apiMaintenanceIdPut(startDate, startHour, vehicleId, id, body, imagesToRemove, finishDate, finishHour, comments, reference, odometer, maintenanceTypeId, maintenanceGroupId, costLobour, providerId, maintenanceParts, maintenanceServices, options).then((request) => request(this.axios, this.basePath));
+    public async apiMaintenanceIdPut(id: string, body?: MaintenancePutDTO, options?: AxiosRequestConfig) : Promise<AxiosResponse<boolean>> {
+        return MaintenanceApiFp(this.configuration).apiMaintenanceIdPut(id, body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
@@ -1141,13 +1412,38 @@ export class MaintenanceApi extends BaseAPI {
     }
     /**
      * 
+     * @param {string} [startDate] 
+     * @param {string} [finishDate] 
+     * @param {string} [startHour] 
+     * @param {string} [finishHour] 
+     * @param {string} [comments] 
+     * @param {string} [reference] 
+     * @param {string} [odometer] 
+     * @param {string} [maintenanceTypeId] 
+     * @param {string} [maintenanceGroupId] 
+     * @param {number} [costLobour] 
+     * @param {string} [providerId] 
+     * @param {string} [vehicleId] 
+     * @param {Blob} [documentFile] 
+     * @param {Array<Blob>} [imageFiles] 
+     * @param {Array<MaintenanceListPartDTO>} [maintenanceParts] 
+     * @param {Array<MaintenanceServiceDTO>} [maintenanceServices] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MaintenanceApi
+     */
+    public async apiMaintenancePostForm(startDate?: string, finishDate?: string, startHour?: string, finishHour?: string, comments?: string, reference?: string, odometer?: string, maintenanceTypeId?: string, maintenanceGroupId?: string, costLobour?: number, providerId?: string, vehicleId?: string, documentFile?: Blob, imageFiles?: Array<Blob>, maintenanceParts?: Array<MaintenanceListPartDTO>, maintenanceServices?: Array<MaintenanceServiceDTO>, options?: AxiosRequestConfig) : Promise<AxiosResponse<string>> {
+        return MaintenanceApiFp(this.configuration).apiMaintenancePostForm(startDate, finishDate, startHour, finishHour, comments, reference, odometer, maintenanceTypeId, maintenanceGroupId, costLobour, providerId, vehicleId, documentFile, imageFiles, maintenanceParts, maintenanceServices, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
      * @param {MaintenancePostDTO} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MaintenanceApi
      */
-    public async apiMaintenancePost(body?: MaintenancePostDTO, options?: AxiosRequestConfig) : Promise<AxiosResponse<string>> {
-        return MaintenanceApiFp(this.configuration).apiMaintenancePost(body, options).then((request) => request(this.axios, this.basePath));
+    public async apiMaintenanceSavePost(body?: MaintenancePostDTO, options?: AxiosRequestConfig) : Promise<AxiosResponse<string>> {
+        return MaintenanceApiFp(this.configuration).apiMaintenanceSavePost(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 

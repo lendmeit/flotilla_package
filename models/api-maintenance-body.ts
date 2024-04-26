@@ -18,109 +18,103 @@ import { MaintenanceServiceDTO } from './maintenance-service-dto';
  * 
  *
  * @export
- * @interface EditIdBody1
+ * @interface ApiMaintenanceBody
  */
-export interface EditIdBody1 {
-
-    /**
-     * @type {Array<string>}
-     * @memberof EditIdBody1
-     */
-    imagesToRemove?: Array<string>;
+export interface ApiMaintenanceBody {
 
     /**
      * @type {string}
-     * @memberof EditIdBody1
+     * @memberof ApiMaintenanceBody
      */
     startDate: string;
 
     /**
      * @type {string}
-     * @memberof EditIdBody1
+     * @memberof ApiMaintenanceBody
      */
     finishDate?: string;
 
     /**
      * @type {string}
-     * @memberof EditIdBody1
+     * @memberof ApiMaintenanceBody
      */
     startHour: string;
 
     /**
      * @type {string}
-     * @memberof EditIdBody1
+     * @memberof ApiMaintenanceBody
      */
     finishHour?: string;
 
     /**
      * @type {string}
-     * @memberof EditIdBody1
+     * @memberof ApiMaintenanceBody
      */
     comments?: string;
 
     /**
      * @type {string}
-     * @memberof EditIdBody1
+     * @memberof ApiMaintenanceBody
      */
     reference?: string;
 
     /**
      * @type {string}
-     * @memberof EditIdBody1
+     * @memberof ApiMaintenanceBody
      */
     odometer?: string;
 
     /**
      * @type {string}
-     * @memberof EditIdBody1
+     * @memberof ApiMaintenanceBody
      */
     maintenanceTypeId?: string;
 
     /**
      * @type {string}
-     * @memberof EditIdBody1
+     * @memberof ApiMaintenanceBody
      */
     maintenanceGroupId?: string;
 
     /**
      * @type {number}
-     * @memberof EditIdBody1
+     * @memberof ApiMaintenanceBody
      */
     costLobour?: number;
 
     /**
      * @type {string}
-     * @memberof EditIdBody1
+     * @memberof ApiMaintenanceBody
      */
     providerId?: string;
 
     /**
      * @type {string}
-     * @memberof EditIdBody1
+     * @memberof ApiMaintenanceBody
      */
     vehicleId: string;
 
     /**
      * @type {Blob}
-     * @memberof EditIdBody1
+     * @memberof ApiMaintenanceBody
      */
     documentFile?: Blob;
 
     /**
      * @type {Array<Blob>}
-     * @memberof EditIdBody1
+     * @memberof ApiMaintenanceBody
      */
     imageFiles?: Array<Blob>;
 
     /**
      * @type {Array<MaintenanceListPartDTO>}
-     * @memberof EditIdBody1
+     * @memberof ApiMaintenanceBody
      */
     maintenanceParts?: Array<MaintenanceListPartDTO>;
 
     /**
      * @type {Array<MaintenanceServiceDTO>}
-     * @memberof EditIdBody1
+     * @memberof ApiMaintenanceBody
      */
     maintenanceServices?: Array<MaintenanceServiceDTO>;
 }
