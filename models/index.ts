@@ -61,6 +61,7 @@ export * from './maintenance-part-dtopaged-result';
 export * from './maintenance-post-dto';
 export * from './maintenance-put-dto';
 export * from './maintenance-service-dto';
+export * from './maintenance-service-form-dto';
 export * from './maintenance-statistics-filter-dto';
 export * from './maintenance-type-dto';
 export * from './maintenance-type-dtopaged-result';

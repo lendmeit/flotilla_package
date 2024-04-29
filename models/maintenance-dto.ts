@@ -13,7 +13,7 @@
  */
 
 import { MaintenancePartDTO } from './maintenance-part-dto';
-import { ServiceDTO } from './service-dto';
+import { MaintenanceServiceFormDTO } from './maintenance-service-form-dto';
 import { TimeSpan } from './time-span';
  /**
  * 
@@ -114,10 +114,10 @@ export interface MaintenanceDTO {
     documentId?: string | null;
 
     /**
-     * @type {Array<ServiceDTO>}
+     * @type {Array<MaintenanceServiceFormDTO>}
      * @memberof MaintenanceDTO
      */
-    services?: Array<ServiceDTO> | null;
+    services?: Array<MaintenanceServiceFormDTO> | null;
 
     /**
      * @type {Array<MaintenancePartDTO>}

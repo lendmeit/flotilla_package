@@ -15,7 +15,7 @@
 import { DocumentDTO } from './document-dto';
 import { ImageDTO } from './image-dto';
 import { MaintenancePartDTO } from './maintenance-part-dto';
-import { ServiceDTO } from './service-dto';
+import { MaintenanceServiceFormDTO } from './maintenance-service-form-dto';
  /**
  * 
  *
@@ -109,10 +109,10 @@ export interface MaintenanceFormDTO {
     documentId?: string | null;
 
     /**
-     * @type {Array<ServiceDTO>}
+     * @type {Array<MaintenanceServiceFormDTO>}
      * @memberof MaintenanceFormDTO
      */
-    services?: Array<ServiceDTO> | null;
+    services?: Array<MaintenanceServiceFormDTO> | null;
 
     /**
      * @type {Array<MaintenancePartDTO>}
