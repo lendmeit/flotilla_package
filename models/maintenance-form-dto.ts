@@ -137,4 +137,10 @@ export interface MaintenanceFormDTO {
      * @memberof MaintenanceFormDTO
      */
     document?: DocumentDTO;
+
+    /**
+     * @type {number}
+     * @memberof MaintenanceFormDTO
+     */
+    costLobour?: number;
 }
