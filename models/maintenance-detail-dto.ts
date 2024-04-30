@@ -49,4 +49,10 @@ export interface MaintenanceDetailDTO {
      * @memberof MaintenanceDetailDTO
      */
     period?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof MaintenanceDetailDTO
+     */
+    maintenanceType?: string | null;
 }
