@@ -36,6 +36,7 @@ export * from './fuel-type-dtopaged-result';
 export * from './fuel-vendor-dto';
 export * from './fuel-vendor-dtopaged-result';
 export * from './gender-enum';
+export * from './get-forms-dto';
 export * from './image-dto';
 export * from './image-dtopaged-result';
 export * from './incident-dto';

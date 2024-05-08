@@ -18,6 +18,7 @@ import { Configuration } from '../configuration';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 import { CategoryTypeEnum } from '../models';
+import { GetFormsDTO } from '../models';
 import { ProjectCompanyDTO } from '../models';
 import { SortOrderEnum } from '../models';
 import { VehicleDTO } from '../models';
@@ -34,14 +35,14 @@ export const VehicleApiAxiosParamCreator = function (configuration?: Configurati
     return {
         /**
          * 
-         * @param {Array<string>} [vehicles] 
+         * @param {Array<string>} [lstIds] 
          * @param {boolean} [all] 
          * @param {boolean} [active] 
          * @param {CategoryTypeEnum} [categoryType] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiVehicleDownloadGet: async (vehicles?: Array<string>, all?: boolean, active?: boolean, categoryType?: CategoryTypeEnum, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiVehicleDownloadGet: async (lstIds?: Array<string>, all?: boolean, active?: boolean, categoryType?: CategoryTypeEnum, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/Vehicle/Download`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -61,16 +62,16 @@ export const VehicleApiAxiosParamCreator = function (configuration?: Configurati
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
-            if (vehicles) {
-                localVarQueryParameter['vehicles'] = vehicles;
+            if (lstIds) {
+                localVarQueryParameter['LstIds'] = lstIds;
             }
 
             if (all !== undefined) {
-                localVarQueryParameter['all'] = all;
+                localVarQueryParameter['All'] = all;
             }
 
             if (active !== undefined) {
-                localVarQueryParameter['active'] = active;
+                localVarQueryParameter['Active'] = active;
             }
 
             if (categoryType !== undefined) {
@@ -314,12 +315,11 @@ export const VehicleApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {string} [id] 
-         * @param {CategoryTypeEnum} [categoryType] 
+         * @param {GetFormsDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiVehicleGetFormGet: async (id?: string, categoryType?: CategoryTypeEnum, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiVehicleGetFormGet: async (body?: GetFormsDTO, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/Vehicle/GetForm`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -339,13 +339,7 @@ export const VehicleApiAxiosParamCreator = function (configuration?: Configurati
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
-            if (id !== undefined) {
-                localVarQueryParameter['id'] = id;
-            }
-
-            if (categoryType !== undefined) {
-                localVarQueryParameter['categoryType'] = categoryType;
-            }
+            localVarHeaderParameter['Content-Type'] = 'application/json;odata.metadata=minimal;odata.streaming=true';
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -357,6 +351,8 @@ export const VehicleApiAxiosParamCreator = function (configuration?: Configurati
             localVarUrlObj.search = (new URLSearchParams(query)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -1140,15 +1136,15 @@ export const VehicleApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {Array<string>} [vehicles] 
+         * @param {Array<string>} [lstIds] 
          * @param {boolean} [all] 
          * @param {boolean} [active] 
          * @param {CategoryTypeEnum} [categoryType] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiVehicleDownloadGet(vehicles?: Array<string>, all?: boolean, active?: boolean, categoryType?: CategoryTypeEnum, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
-            const localVarAxiosArgs = await VehicleApiAxiosParamCreator(configuration).apiVehicleDownloadGet(vehicles, all, active, categoryType, options);
+        async apiVehicleDownloadGet(lstIds?: Array<string>, all?: boolean, active?: boolean, categoryType?: CategoryTypeEnum, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
+            const localVarAxiosArgs = await VehicleApiAxiosParamCreator(configuration).apiVehicleDownloadGet(lstIds, all, active, categoryType, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1206,13 +1202,12 @@ export const VehicleApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {string} [id] 
-         * @param {CategoryTypeEnum} [categoryType] 
+         * @param {GetFormsDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiVehicleGetFormGet(id?: string, categoryType?: CategoryTypeEnum, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<VehicleNewEditDTO>>> {
-            const localVarAxiosArgs = await VehicleApiAxiosParamCreator(configuration).apiVehicleGetFormGet(id, categoryType, options);
+        async apiVehicleGetFormGet(body?: GetFormsDTO, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<VehicleNewEditDTO>>> {
+            const localVarAxiosArgs = await VehicleApiAxiosParamCreator(configuration).apiVehicleGetFormGet(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1406,15 +1401,15 @@ export const VehicleApiFactory = function (configuration?: Configuration, basePa
     return {
         /**
          * 
-         * @param {Array<string>} [vehicles] 
+         * @param {Array<string>} [lstIds] 
          * @param {boolean} [all] 
          * @param {boolean} [active] 
          * @param {CategoryTypeEnum} [categoryType] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiVehicleDownloadGet(vehicles?: Array<string>, all?: boolean, active?: boolean, categoryType?: CategoryTypeEnum, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
-            return VehicleApiFp(configuration).apiVehicleDownloadGet(vehicles, all, active, categoryType, options).then((request) => request(axios, basePath));
+        async apiVehicleDownloadGet(lstIds?: Array<string>, all?: boolean, active?: boolean, categoryType?: CategoryTypeEnum, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
+            return VehicleApiFp(configuration).apiVehicleDownloadGet(lstIds, all, active, categoryType, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1460,13 +1455,12 @@ export const VehicleApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @param {string} [id] 
-         * @param {CategoryTypeEnum} [categoryType] 
+         * @param {GetFormsDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiVehicleGetFormGet(id?: string, categoryType?: CategoryTypeEnum, options?: AxiosRequestConfig): Promise<AxiosResponse<VehicleNewEditDTO>> {
-            return VehicleApiFp(configuration).apiVehicleGetFormGet(id, categoryType, options).then((request) => request(axios, basePath));
+        async apiVehicleGetFormGet(body?: GetFormsDTO, options?: AxiosRequestConfig): Promise<AxiosResponse<VehicleNewEditDTO>> {
+            return VehicleApiFp(configuration).apiVehicleGetFormGet(body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1621,7 +1615,7 @@ export const VehicleApiFactory = function (configuration?: Configuration, basePa
 export class VehicleApi extends BaseAPI {
     /**
      * 
-     * @param {Array<string>} [vehicles] 
+     * @param {Array<string>} [lstIds] 
      * @param {boolean} [all] 
      * @param {boolean} [active] 
      * @param {CategoryTypeEnum} [categoryType] 
@@ -1629,8 +1623,8 @@ export class VehicleApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof VehicleApi
      */
-    public async apiVehicleDownloadGet(vehicles?: Array<string>, all?: boolean, active?: boolean, categoryType?: CategoryTypeEnum, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
-        return VehicleApiFp(this.configuration).apiVehicleDownloadGet(vehicles, all, active, categoryType, options).then((request) => request(this.axios, this.basePath));
+    public async apiVehicleDownloadGet(lstIds?: Array<string>, all?: boolean, active?: boolean, categoryType?: CategoryTypeEnum, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
+        return VehicleApiFp(this.configuration).apiVehicleDownloadGet(lstIds, all, active, categoryType, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
@@ -1678,14 +1672,13 @@ export class VehicleApi extends BaseAPI {
     }
     /**
      * 
-     * @param {string} [id] 
-     * @param {CategoryTypeEnum} [categoryType] 
+     * @param {GetFormsDTO} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof VehicleApi
      */
-    public async apiVehicleGetFormGet(id?: string, categoryType?: CategoryTypeEnum, options?: AxiosRequestConfig) : Promise<AxiosResponse<VehicleNewEditDTO>> {
-        return VehicleApiFp(this.configuration).apiVehicleGetFormGet(id, categoryType, options).then((request) => request(this.axios, this.basePath));
+    public async apiVehicleGetFormGet(body?: GetFormsDTO, options?: AxiosRequestConfig) : Promise<AxiosResponse<VehicleNewEditDTO>> {
+        return VehicleApiFp(this.configuration).apiVehicleGetFormGet(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
