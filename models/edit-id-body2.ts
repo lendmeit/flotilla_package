@@ -138,7 +138,7 @@ export interface EditIdBody2 {
      * @type {string}
      * @memberof EditIdBody2
      */
-    categoryId?: string;
+    categoryId: string;
 
     /**
      * @type {number}

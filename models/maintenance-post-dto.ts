@@ -68,6 +68,12 @@ export interface MaintenancePostDTO {
      * @type {string}
      * @memberof MaintenancePostDTO
      */
+    horometro?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof MaintenancePostDTO
+     */
     maintenanceTypeId?: string | null;
 
     /**

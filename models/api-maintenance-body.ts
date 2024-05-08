@@ -68,6 +68,12 @@ export interface ApiMaintenanceBody {
      * @type {string}
      * @memberof ApiMaintenanceBody
      */
+    horometro?: string;
+
+    /**
+     * @type {string}
+     * @memberof ApiMaintenanceBody
+     */
     maintenanceTypeId?: string;
 
     /**

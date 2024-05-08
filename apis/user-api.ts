@@ -20,9 +20,8 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 import { AppUserDTO } from '../models';
 import { AppUserDTOPagedResult } from '../models';
 import { EditUserResponse } from '../models';
+import { GenderEnum } from '../models';
 import { SortOrderEnum } from '../models';
-import { UploadImageIdBody } from '../models';
-import { UserIdBody } from '../models';
 import { UserPostDTO } from '../models';
 import { UserPutDTO } from '../models';
 /**
@@ -63,7 +62,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
-            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Content-Type'] = 'application/json;odata.metadata=minimal;odata.streaming=true';
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -174,14 +173,27 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * 
          * @param {string} id 
-         * @param {UserIdBody} [body] 
+         * @param {Blob} [imageFile] 
+         * @param {string} [name] 
+         * @param {string} [firstName] 
+         * @param {string} [lastName] 
+         * @param {string} [url] 
+         * @param {string} [countryCode] 
+         * @param {string} [titleAbbreviation] 
+         * @param {GenderEnum} [gender] 
+         * @param {string} [phone] 
+         * @param {string} [country] 
+         * @param {string} [city] 
+         * @param {string} [address] 
+         * @param {Date} [birthDate] 
+         * @param {number} [costPerAppointment] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiUserIdPut: async (id: string, body?: UserIdBody, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiUserIdPutForm: async (id: string, imageFile?: Blob, name?: string, firstName?: string, lastName?: string, url?: string, countryCode?: string, titleAbbreviation?: string, gender?: GenderEnum, phone?: string, country?: string, city?: string, address?: string, birthDate?: Date, costPerAppointment?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling apiUserIdPut.');
+                throw new RequiredError('id','Required parameter id was null or undefined when calling apiUserIdPutForm.');
             }
             const localVarPath = `/api/User/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
@@ -194,6 +206,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarRequestOptions :AxiosRequestConfig = { method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+            const localVarFormParams = new FormData();
 
             // authentication Bearer required
             if (configuration && configuration.apiKey) {
@@ -203,8 +216,64 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
-            localVarHeaderParameter['Content-Type'] = 'application/json';
 
+            if (imageFile !== undefined) { 
+                localVarFormParams.append('imageFile', imageFile as any);
+            }
+
+            if (name !== undefined) { 
+                localVarFormParams.append('name', name as any);
+            }
+
+            if (firstName !== undefined) { 
+                localVarFormParams.append('firstName', firstName as any);
+            }
+
+            if (lastName !== undefined) { 
+                localVarFormParams.append('lastName', lastName as any);
+            }
+
+            if (url !== undefined) { 
+                localVarFormParams.append('Url', url as any);
+            }
+
+            if (countryCode !== undefined) { 
+                localVarFormParams.append('countryCode', countryCode as any);
+            }
+
+            if (titleAbbreviation !== undefined) { 
+                localVarFormParams.append('titleAbbreviation', titleAbbreviation as any);
+            }
+
+            if (gender !== undefined) { 
+                localVarFormParams.append('gender', gender as any);
+            }
+
+            if (phone !== undefined) { 
+                localVarFormParams.append('phone', phone as any);
+            }
+
+            if (country !== undefined) { 
+                localVarFormParams.append('country', country as any);
+            }
+
+            if (city !== undefined) { 
+                localVarFormParams.append('city', city as any);
+            }
+
+            if (address !== undefined) { 
+                localVarFormParams.append('address', address as any);
+            }
+
+            if (birthDate !== undefined) { 
+                localVarFormParams.append('birthDate', birthDate as any);
+            }
+
+            if (costPerAppointment !== undefined) { 
+                localVarFormParams.append('costPerAppointment', costPerAppointment as any);
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
                 query.set(key, localVarQueryParameter[key]);
@@ -215,8 +284,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             localVarUrlObj.search = (new URLSearchParams(query)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+            localVarRequestOptions.data = localVarFormParams;
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -250,7 +318,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
-            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Content-Type'] = 'application/json;odata.metadata=minimal;odata.streaming=true';
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -352,14 +420,14 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * 
          * @param {string} id 
-         * @param {UploadImageIdBody} [body] 
+         * @param {Blob} [image] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiUserUploadImageIdPost: async (id: string, body?: UploadImageIdBody, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiUserUploadImageIdPostForm: async (id: string, image?: Blob, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling apiUserUploadImageIdPost.');
+                throw new RequiredError('id','Required parameter id was null or undefined when calling apiUserUploadImageIdPostForm.');
             }
             const localVarPath = `/api/User/UploadImage/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
@@ -372,6 +440,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+            const localVarFormParams = new FormData();
 
             // authentication Bearer required
             if (configuration && configuration.apiKey) {
@@ -381,8 +450,12 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
-            localVarHeaderParameter['Content-Type'] = 'application/json';
 
+            if (image !== undefined) { 
+                localVarFormParams.append('image', image as any);
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
                 query.set(key, localVarQueryParameter[key]);
@@ -393,8 +466,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             localVarUrlObj.search = (new URLSearchParams(query)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+            localVarRequestOptions.data = localVarFormParams;
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -452,12 +524,25 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {string} id 
-         * @param {UserIdBody} [body] 
+         * @param {Blob} [imageFile] 
+         * @param {string} [name] 
+         * @param {string} [firstName] 
+         * @param {string} [lastName] 
+         * @param {string} [url] 
+         * @param {string} [countryCode] 
+         * @param {string} [titleAbbreviation] 
+         * @param {GenderEnum} [gender] 
+         * @param {string} [phone] 
+         * @param {string} [country] 
+         * @param {string} [city] 
+         * @param {string} [address] 
+         * @param {Date} [birthDate] 
+         * @param {number} [costPerAppointment] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiUserIdPut(id: string, body?: UserIdBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<EditUserResponse>>> {
-            const localVarAxiosArgs = await UserApiAxiosParamCreator(configuration).apiUserIdPut(id, body, options);
+        async apiUserIdPutForm(id: string, imageFile?: Blob, name?: string, firstName?: string, lastName?: string, url?: string, countryCode?: string, titleAbbreviation?: string, gender?: GenderEnum, phone?: string, country?: string, city?: string, address?: string, birthDate?: Date, costPerAppointment?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<EditUserResponse>>> {
+            const localVarAxiosArgs = await UserApiAxiosParamCreator(configuration).apiUserIdPutForm(id, imageFile, name, firstName, lastName, url, countryCode, titleAbbreviation, gender, phone, country, city, address, birthDate, costPerAppointment, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -498,12 +583,12 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {string} id 
-         * @param {UploadImageIdBody} [body] 
+         * @param {Blob} [image] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiUserUploadImageIdPost(id: string, body?: UploadImageIdBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<EditUserResponse>>> {
-            const localVarAxiosArgs = await UserApiAxiosParamCreator(configuration).apiUserUploadImageIdPost(id, body, options);
+        async apiUserUploadImageIdPostForm(id: string, image?: Blob, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<EditUserResponse>>> {
+            const localVarAxiosArgs = await UserApiAxiosParamCreator(configuration).apiUserUploadImageIdPostForm(id, image, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -548,12 +633,25 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         /**
          * 
          * @param {string} id 
-         * @param {UserIdBody} [body] 
+         * @param {Blob} [imageFile] 
+         * @param {string} [name] 
+         * @param {string} [firstName] 
+         * @param {string} [lastName] 
+         * @param {string} [url] 
+         * @param {string} [countryCode] 
+         * @param {string} [titleAbbreviation] 
+         * @param {GenderEnum} [gender] 
+         * @param {string} [phone] 
+         * @param {string} [country] 
+         * @param {string} [city] 
+         * @param {string} [address] 
+         * @param {Date} [birthDate] 
+         * @param {number} [costPerAppointment] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiUserIdPut(id: string, body?: UserIdBody, options?: AxiosRequestConfig): Promise<AxiosResponse<EditUserResponse>> {
-            return UserApiFp(configuration).apiUserIdPut(id, body, options).then((request) => request(axios, basePath));
+        async apiUserIdPutForm(id: string, imageFile?: Blob, name?: string, firstName?: string, lastName?: string, url?: string, countryCode?: string, titleAbbreviation?: string, gender?: GenderEnum, phone?: string, country?: string, city?: string, address?: string, birthDate?: Date, costPerAppointment?: number, options?: AxiosRequestConfig): Promise<AxiosResponse<EditUserResponse>> {
+            return UserApiFp(configuration).apiUserIdPutForm(id, imageFile, name, firstName, lastName, url, countryCode, titleAbbreviation, gender, phone, country, city, address, birthDate, costPerAppointment, options).then((request) => request(axios, basePath));
         },
         /**
          * Sample request:                   GET api/User/Registrar \\n     [FirstName] Opcional\\n     [LastName] Opcional\\n     \\n     [RoleName] Opcional si se deja vacío sera rol tipo \"User\"\\n     Para los roles existentes consultar el recurso \"/api/Role\"                El user
@@ -582,12 +680,12 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         /**
          * 
          * @param {string} id 
-         * @param {UploadImageIdBody} [body] 
+         * @param {Blob} [image] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiUserUploadImageIdPost(id: string, body?: UploadImageIdBody, options?: AxiosRequestConfig): Promise<AxiosResponse<EditUserResponse>> {
-            return UserApiFp(configuration).apiUserUploadImageIdPost(id, body, options).then((request) => request(axios, basePath));
+        async apiUserUploadImageIdPostForm(id: string, image?: Blob, options?: AxiosRequestConfig): Promise<AxiosResponse<EditUserResponse>> {
+            return UserApiFp(configuration).apiUserUploadImageIdPostForm(id, image, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -632,13 +730,26 @@ export class UserApi extends BaseAPI {
     /**
      * 
      * @param {string} id 
-     * @param {UserIdBody} [body] 
+     * @param {Blob} [imageFile] 
+     * @param {string} [name] 
+     * @param {string} [firstName] 
+     * @param {string} [lastName] 
+     * @param {string} [url] 
+     * @param {string} [countryCode] 
+     * @param {string} [titleAbbreviation] 
+     * @param {GenderEnum} [gender] 
+     * @param {string} [phone] 
+     * @param {string} [country] 
+     * @param {string} [city] 
+     * @param {string} [address] 
+     * @param {Date} [birthDate] 
+     * @param {number} [costPerAppointment] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public async apiUserIdPut(id: string, body?: UserIdBody, options?: AxiosRequestConfig) : Promise<AxiosResponse<EditUserResponse>> {
-        return UserApiFp(this.configuration).apiUserIdPut(id, body, options).then((request) => request(this.axios, this.basePath));
+    public async apiUserIdPutForm(id: string, imageFile?: Blob, name?: string, firstName?: string, lastName?: string, url?: string, countryCode?: string, titleAbbreviation?: string, gender?: GenderEnum, phone?: string, country?: string, city?: string, address?: string, birthDate?: Date, costPerAppointment?: number, options?: AxiosRequestConfig) : Promise<AxiosResponse<EditUserResponse>> {
+        return UserApiFp(this.configuration).apiUserIdPutForm(id, imageFile, name, firstName, lastName, url, countryCode, titleAbbreviation, gender, phone, country, city, address, birthDate, costPerAppointment, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Sample request:                   GET api/User/Registrar \\n     [FirstName] Opcional\\n     [LastName] Opcional\\n     \\n     [RoleName] Opcional si se deja vacío sera rol tipo \"User\"\\n     Para los roles existentes consultar el recurso \"/api/Role\"                El user
@@ -669,12 +780,12 @@ export class UserApi extends BaseAPI {
     /**
      * 
      * @param {string} id 
-     * @param {UploadImageIdBody} [body] 
+     * @param {Blob} [image] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public async apiUserUploadImageIdPost(id: string, body?: UploadImageIdBody, options?: AxiosRequestConfig) : Promise<AxiosResponse<EditUserResponse>> {
-        return UserApiFp(this.configuration).apiUserUploadImageIdPost(id, body, options).then((request) => request(this.axios, this.basePath));
+    public async apiUserUploadImageIdPostForm(id: string, image?: Blob, options?: AxiosRequestConfig) : Promise<AxiosResponse<EditUserResponse>> {
+        return UserApiFp(this.configuration).apiUserUploadImageIdPostForm(id, image, options).then((request) => request(this.axios, this.basePath));
     }
 }

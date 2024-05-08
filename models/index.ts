@@ -91,6 +91,7 @@ export * from './reset-password-model';
 export * from './role-dto';
 export * from './role-dtopaged-result';
 export * from './select-dto';
+export * from './select-model-dto';
 export * from './select-vehicle-dto';
 export * from './service-dto';
 export * from './service-dtopaged-result';

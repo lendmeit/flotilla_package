@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+import { CategoryTypeEnum } from './category-type-enum';
  /**
  * 
  *
@@ -49,4 +50,10 @@ export interface FuelLoadDetailDTO {
      * @memberof FuelLoadDetailDTO
      */
     totalAmount?: string | null;
+
+    /**
+     * @type {CategoryTypeEnum}
+     * @memberof FuelLoadDetailDTO
+     */
+    categoryType?: CategoryTypeEnum;
 }

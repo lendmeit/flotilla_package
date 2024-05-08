@@ -110,7 +110,7 @@ export interface VehicleFormDTO {
      * @type {string}
      * @memberof VehicleFormDTO
      */
-    categoryId?: string | null;
+    categoryId: string;
 
     /**
      * @type {number}

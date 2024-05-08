@@ -132,7 +132,7 @@ export interface ApiVehicleBody {
      * @type {string}
      * @memberof ApiVehicleBody
      */
-    categoryId?: string;
+    categoryId: string;
 
     /**
      * @type {number}

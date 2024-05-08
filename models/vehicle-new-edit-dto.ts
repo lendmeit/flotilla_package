@@ -13,6 +13,7 @@
  */
 
 import { SelectDTO } from './select-dto';
+import { SelectModelDTO } from './select-model-dto';
 import { VehicleFormDTO } from './vehicle-form-dto';
  /**
  * 
@@ -47,10 +48,10 @@ export interface VehicleNewEditDTO {
     categories?: Array<SelectDTO> | null;
 
     /**
-     * @type {Array<SelectDTO>}
+     * @type {Array<SelectModelDTO>}
      * @memberof VehicleNewEditDTO
      */
-    models?: Array<SelectDTO> | null;
+    models?: Array<SelectModelDTO> | null;
 
     /**
      * @type {Array<SelectDTO>}

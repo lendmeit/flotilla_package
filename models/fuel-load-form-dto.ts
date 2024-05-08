@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+import { CategoryTypeEnum } from './category-type-enum';
 import { ImageDTO } from './image-dto';
  /**
  * 
@@ -122,4 +123,10 @@ export interface FuelLoadFormDTO {
      * @memberof FuelLoadFormDTO
      */
     images?: Array<ImageDTO> | null;
+
+    /**
+     * @type {CategoryTypeEnum}
+     * @memberof FuelLoadFormDTO
+     */
+    categoryType?: CategoryTypeEnum;
 }

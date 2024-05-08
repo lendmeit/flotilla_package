@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+import { CategoryTypeEnum } from './category-type-enum';
  /**
  * 
  *
@@ -55,4 +56,10 @@ export interface SelectVehicleDTO {
      * @memberof SelectVehicleDTO
      */
     fuelType?: string | null;
+
+    /**
+     * @type {CategoryTypeEnum}
+     * @memberof SelectVehicleDTO
+     */
+    categoryType?: CategoryTypeEnum;
 }

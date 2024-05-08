@@ -132,7 +132,7 @@ export interface VehiclePostDTO {
      * @type {string}
      * @memberof VehiclePostDTO
      */
-    categoryId?: string | null;
+    categoryId: string;
 
     /**
      * @type {number}

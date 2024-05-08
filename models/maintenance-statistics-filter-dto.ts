@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+import { CategoryTypeEnum } from './category-type-enum';
  /**
  * 
  *
@@ -43,4 +44,10 @@ export interface MaintenanceStatisticsFilterDTO {
      * @memberof MaintenanceStatisticsFilterDTO
      */
     dateEnd?: string | null;
+
+    /**
+     * @type {CategoryTypeEnum}
+     * @memberof MaintenanceStatisticsFilterDTO
+     */
+    categoryType?: CategoryTypeEnum;
 }

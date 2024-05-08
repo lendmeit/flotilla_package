@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+import { CategoryTypeEnum } from './category-type-enum';
  /**
  * 
  *
@@ -55,4 +56,10 @@ export interface MaintenanceDetailDTO {
      * @memberof MaintenanceDetailDTO
      */
     maintenanceType?: string | null;
+
+    /**
+     * @type {CategoryTypeEnum}
+     * @memberof MaintenanceDetailDTO
+     */
+    categoryType?: CategoryTypeEnum;
 }

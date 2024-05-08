@@ -74,6 +74,12 @@ export interface EditIdBody1 {
      * @type {string}
      * @memberof EditIdBody1
      */
+    horometro?: string;
+
+    /**
+     * @type {string}
+     * @memberof EditIdBody1
+     */
     maintenanceTypeId?: string;
 
     /**
