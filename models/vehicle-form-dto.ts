@@ -107,12 +107,6 @@ export interface VehicleFormDTO {
     companyId?: string | null;
 
     /**
-     * @type {string}
-     * @memberof VehicleFormDTO
-     */
-    categoryId: string;
-
-    /**
      * @type {number}
      * @memberof VehicleFormDTO
      */
@@ -165,6 +159,12 @@ export interface VehicleFormDTO {
      * @memberof VehicleFormDTO
      */
     economicNumber?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof VehicleFormDTO
+     */
+    categoryId?: string | null;
 
     /**
      * @type {Array<ImageDTO>}

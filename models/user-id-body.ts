@@ -73,7 +73,7 @@ export interface UserIdBody {
      * @type {string}
      * @memberof UserIdBody
      */
-    phone: string;
+    phoneNumber: string;
 
     /**
      * @type {string}

@@ -105,6 +105,12 @@ export interface FuelLoadPostDTO {
     odometer: number;
 
     /**
+     * @type {number}
+     * @memberof FuelLoadPostDTO
+     */
+    horometro?: number;
+
+    /**
      * @type {string}
      * @memberof FuelLoadPostDTO
      */

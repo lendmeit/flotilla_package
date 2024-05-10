@@ -105,6 +105,12 @@ export interface ApiFuelLoadBody {
     odometer: number;
 
     /**
+     * @type {number}
+     * @memberof ApiFuelLoadBody
+     */
+    horometro?: number;
+
+    /**
      * @type {string}
      * @memberof ApiFuelLoadBody
      */

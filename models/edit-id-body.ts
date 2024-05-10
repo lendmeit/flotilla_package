@@ -111,6 +111,12 @@ export interface EditIdBody {
     odometer: number;
 
     /**
+     * @type {number}
+     * @memberof EditIdBody
+     */
+    horometro?: number;
+
+    /**
      * @type {string}
      * @memberof EditIdBody
      */

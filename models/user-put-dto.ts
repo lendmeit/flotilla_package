@@ -73,7 +73,7 @@ export interface UserPutDTO {
      * @type {string}
      * @memberof UserPutDTO
      */
-    phone: string;
+    phoneNumber: string;
 
     /**
      * @type {string}

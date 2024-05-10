@@ -181,7 +181,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {string} [countryCode] 
          * @param {string} [titleAbbreviation] 
          * @param {GenderEnum} [gender] 
-         * @param {string} [phone] 
+         * @param {string} [phoneNumber] 
          * @param {string} [country] 
          * @param {string} [city] 
          * @param {string} [address] 
@@ -190,7 +190,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiUserIdPutForm: async (id: string, imageFile?: Blob, name?: string, firstName?: string, lastName?: string, url?: string, countryCode?: string, titleAbbreviation?: string, gender?: GenderEnum, phone?: string, country?: string, city?: string, address?: string, birthDate?: Date, costPerAppointment?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiUserIdPutForm: async (id: string, imageFile?: Blob, name?: string, firstName?: string, lastName?: string, url?: string, countryCode?: string, titleAbbreviation?: string, gender?: GenderEnum, phoneNumber?: string, country?: string, city?: string, address?: string, birthDate?: Date, costPerAppointment?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling apiUserIdPutForm.');
@@ -249,8 +249,8 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarFormParams.append('gender', gender as any);
             }
 
-            if (phone !== undefined) { 
-                localVarFormParams.append('phone', phone as any);
+            if (phoneNumber !== undefined) { 
+                localVarFormParams.append('phoneNumber', phoneNumber as any);
             }
 
             if (country !== undefined) { 
@@ -532,7 +532,7 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {string} [countryCode] 
          * @param {string} [titleAbbreviation] 
          * @param {GenderEnum} [gender] 
-         * @param {string} [phone] 
+         * @param {string} [phoneNumber] 
          * @param {string} [country] 
          * @param {string} [city] 
          * @param {string} [address] 
@@ -541,8 +541,8 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiUserIdPutForm(id: string, imageFile?: Blob, name?: string, firstName?: string, lastName?: string, url?: string, countryCode?: string, titleAbbreviation?: string, gender?: GenderEnum, phone?: string, country?: string, city?: string, address?: string, birthDate?: Date, costPerAppointment?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<EditUserResponse>>> {
-            const localVarAxiosArgs = await UserApiAxiosParamCreator(configuration).apiUserIdPutForm(id, imageFile, name, firstName, lastName, url, countryCode, titleAbbreviation, gender, phone, country, city, address, birthDate, costPerAppointment, options);
+        async apiUserIdPutForm(id: string, imageFile?: Blob, name?: string, firstName?: string, lastName?: string, url?: string, countryCode?: string, titleAbbreviation?: string, gender?: GenderEnum, phoneNumber?: string, country?: string, city?: string, address?: string, birthDate?: Date, costPerAppointment?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<EditUserResponse>>> {
+            const localVarAxiosArgs = await UserApiAxiosParamCreator(configuration).apiUserIdPutForm(id, imageFile, name, firstName, lastName, url, countryCode, titleAbbreviation, gender, phoneNumber, country, city, address, birthDate, costPerAppointment, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -641,7 +641,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * @param {string} [countryCode] 
          * @param {string} [titleAbbreviation] 
          * @param {GenderEnum} [gender] 
-         * @param {string} [phone] 
+         * @param {string} [phoneNumber] 
          * @param {string} [country] 
          * @param {string} [city] 
          * @param {string} [address] 
@@ -650,8 +650,8 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiUserIdPutForm(id: string, imageFile?: Blob, name?: string, firstName?: string, lastName?: string, url?: string, countryCode?: string, titleAbbreviation?: string, gender?: GenderEnum, phone?: string, country?: string, city?: string, address?: string, birthDate?: Date, costPerAppointment?: number, options?: AxiosRequestConfig): Promise<AxiosResponse<EditUserResponse>> {
-            return UserApiFp(configuration).apiUserIdPutForm(id, imageFile, name, firstName, lastName, url, countryCode, titleAbbreviation, gender, phone, country, city, address, birthDate, costPerAppointment, options).then((request) => request(axios, basePath));
+        async apiUserIdPutForm(id: string, imageFile?: Blob, name?: string, firstName?: string, lastName?: string, url?: string, countryCode?: string, titleAbbreviation?: string, gender?: GenderEnum, phoneNumber?: string, country?: string, city?: string, address?: string, birthDate?: Date, costPerAppointment?: number, options?: AxiosRequestConfig): Promise<AxiosResponse<EditUserResponse>> {
+            return UserApiFp(configuration).apiUserIdPutForm(id, imageFile, name, firstName, lastName, url, countryCode, titleAbbreviation, gender, phoneNumber, country, city, address, birthDate, costPerAppointment, options).then((request) => request(axios, basePath));
         },
         /**
          * Sample request:                   GET api/User/Registrar \\n     [FirstName] Opcional\\n     [LastName] Opcional\\n     \\n     [RoleName] Opcional si se deja vacío sera rol tipo \"User\"\\n     Para los roles existentes consultar el recurso \"/api/Role\"                El user
@@ -738,7 +738,7 @@ export class UserApi extends BaseAPI {
      * @param {string} [countryCode] 
      * @param {string} [titleAbbreviation] 
      * @param {GenderEnum} [gender] 
-     * @param {string} [phone] 
+     * @param {string} [phoneNumber] 
      * @param {string} [country] 
      * @param {string} [city] 
      * @param {string} [address] 
@@ -748,8 +748,8 @@ export class UserApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public async apiUserIdPutForm(id: string, imageFile?: Blob, name?: string, firstName?: string, lastName?: string, url?: string, countryCode?: string, titleAbbreviation?: string, gender?: GenderEnum, phone?: string, country?: string, city?: string, address?: string, birthDate?: Date, costPerAppointment?: number, options?: AxiosRequestConfig) : Promise<AxiosResponse<EditUserResponse>> {
-        return UserApiFp(this.configuration).apiUserIdPutForm(id, imageFile, name, firstName, lastName, url, countryCode, titleAbbreviation, gender, phone, country, city, address, birthDate, costPerAppointment, options).then((request) => request(this.axios, this.basePath));
+    public async apiUserIdPutForm(id: string, imageFile?: Blob, name?: string, firstName?: string, lastName?: string, url?: string, countryCode?: string, titleAbbreviation?: string, gender?: GenderEnum, phoneNumber?: string, country?: string, city?: string, address?: string, birthDate?: Date, costPerAppointment?: number, options?: AxiosRequestConfig) : Promise<AxiosResponse<EditUserResponse>> {
+        return UserApiFp(this.configuration).apiUserIdPutForm(id, imageFile, name, firstName, lastName, url, countryCode, titleAbbreviation, gender, phoneNumber, country, city, address, birthDate, costPerAppointment, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Sample request:                   GET api/User/Registrar \\n     [FirstName] Opcional\\n     [LastName] Opcional\\n     \\n     [RoleName] Opcional si se deja vacío sera rol tipo \"User\"\\n     Para los roles existentes consultar el recurso \"/api/Role\"                El user

@@ -109,12 +109,13 @@ export const FuelLoadApiAxiosParamCreator = function (configuration?: Configurat
          * @param {number} [amount] 
          * @param {number} [unitCost] 
          * @param {number} [odometer] 
+         * @param {number} [horometro] 
          * @param {string} [odometerMeasurementId] 
          * @param {boolean} [summary] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiFuelLoadEditIdPutForm: async (id: string, imagesToRemove?: Array<string>, vehicleId?: string, chargeDate?: string, chargeHour?: string, reference?: string, full?: boolean, resetTank?: boolean, imageFiles?: Array<Blob>, providerId?: number, liters?: number, fuelMeasureId?: string, userDriverId?: string, amount?: number, unitCost?: number, odometer?: number, odometerMeasurementId?: string, summary?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiFuelLoadEditIdPutForm: async (id: string, imagesToRemove?: Array<string>, vehicleId?: string, chargeDate?: string, chargeHour?: string, reference?: string, full?: boolean, resetTank?: boolean, imageFiles?: Array<Blob>, providerId?: number, liters?: number, fuelMeasureId?: string, userDriverId?: string, amount?: number, unitCost?: number, odometer?: number, horometro?: number, odometerMeasurementId?: string, summary?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling apiFuelLoadEditIdPutForm.');
@@ -201,6 +202,10 @@ export const FuelLoadApiAxiosParamCreator = function (configuration?: Configurat
 
             if (odometer !== undefined) { 
                 localVarFormParams.append('Odometer', odometer as any);
+            }
+
+            if (horometro !== undefined) { 
+                localVarFormParams.append('Horometro', horometro as any);
             }
 
             if (odometerMeasurementId !== undefined) { 
@@ -657,11 +662,12 @@ export const FuelLoadApiAxiosParamCreator = function (configuration?: Configurat
          * @param {string} [fuelMeasureId] 
          * @param {string} [userDriverId] 
          * @param {number} [unitCost] 
+         * @param {number} [horometro] 
          * @param {boolean} [summary] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiFuelLoadIdPutForm: async (vehicleId: string, chargeDate: string, chargeHour: string, liters: number, amount: number, odometer: number, odometerMeasurementId: string, id: string, imageFiles?: Array<Blob>, imagesToRemove?: Array<string>, reference?: string, full?: boolean, resetTank?: boolean, providerId?: number, fuelMeasureId?: string, userDriverId?: string, unitCost?: number, summary?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiFuelLoadIdPutForm: async (vehicleId: string, chargeDate: string, chargeHour: string, liters: number, amount: number, odometer: number, odometerMeasurementId: string, id: string, imageFiles?: Array<Blob>, imagesToRemove?: Array<string>, reference?: string, full?: boolean, resetTank?: boolean, providerId?: number, fuelMeasureId?: string, userDriverId?: string, unitCost?: number, horometro?: number, summary?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'vehicleId' is not null or undefined
             if (vehicleId === null || vehicleId === undefined) {
                 throw new RequiredError('vehicleId','Required parameter vehicleId was null or undefined when calling apiFuelLoadIdPutForm.');
@@ -771,6 +777,10 @@ export const FuelLoadApiAxiosParamCreator = function (configuration?: Configurat
                 localVarQueryParameter['Odometer'] = odometer;
             }
 
+            if (horometro !== undefined) {
+                localVarQueryParameter['Horometro'] = horometro;
+            }
+
             if (odometerMeasurementId !== undefined) {
                 localVarQueryParameter['OdometerMeasurementId'] = odometerMeasurementId;
             }
@@ -819,12 +829,13 @@ export const FuelLoadApiAxiosParamCreator = function (configuration?: Configurat
          * @param {number} [amount] 
          * @param {number} [unitCost] 
          * @param {number} [odometer] 
+         * @param {number} [horometro] 
          * @param {string} [odometerMeasurementId] 
          * @param {boolean} [summary] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiFuelLoadPostForm: async (vehicleId?: string, chargeDate?: string, chargeHour?: string, reference?: string, full?: boolean, resetTank?: boolean, imageFiles?: Array<Blob>, providerId?: number, liters?: number, fuelMeasureId?: string, userDriverId?: string, amount?: number, unitCost?: number, odometer?: number, odometerMeasurementId?: string, summary?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiFuelLoadPostForm: async (vehicleId?: string, chargeDate?: string, chargeHour?: string, reference?: string, full?: boolean, resetTank?: boolean, imageFiles?: Array<Blob>, providerId?: number, liters?: number, fuelMeasureId?: string, userDriverId?: string, amount?: number, unitCost?: number, odometer?: number, horometro?: number, odometerMeasurementId?: string, summary?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/FuelLoad`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -901,6 +912,10 @@ export const FuelLoadApiAxiosParamCreator = function (configuration?: Configurat
 
             if (odometer !== undefined) { 
                 localVarFormParams.append('Odometer', odometer as any);
+            }
+
+            if (horometro !== undefined) { 
+                localVarFormParams.append('Horometro', horometro as any);
             }
 
             if (odometerMeasurementId !== undefined) { 
@@ -1142,13 +1157,14 @@ export const FuelLoadApiFp = function(configuration?: Configuration) {
          * @param {number} [amount] 
          * @param {number} [unitCost] 
          * @param {number} [odometer] 
+         * @param {number} [horometro] 
          * @param {string} [odometerMeasurementId] 
          * @param {boolean} [summary] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiFuelLoadEditIdPutForm(id: string, imagesToRemove?: Array<string>, vehicleId?: string, chargeDate?: string, chargeHour?: string, reference?: string, full?: boolean, resetTank?: boolean, imageFiles?: Array<Blob>, providerId?: number, liters?: number, fuelMeasureId?: string, userDriverId?: string, amount?: number, unitCost?: number, odometer?: number, odometerMeasurementId?: string, summary?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<boolean>>> {
-            const localVarAxiosArgs = await FuelLoadApiAxiosParamCreator(configuration).apiFuelLoadEditIdPutForm(id, imagesToRemove, vehicleId, chargeDate, chargeHour, reference, full, resetTank, imageFiles, providerId, liters, fuelMeasureId, userDriverId, amount, unitCost, odometer, odometerMeasurementId, summary, options);
+        async apiFuelLoadEditIdPutForm(id: string, imagesToRemove?: Array<string>, vehicleId?: string, chargeDate?: string, chargeHour?: string, reference?: string, full?: boolean, resetTank?: boolean, imageFiles?: Array<Blob>, providerId?: number, liters?: number, fuelMeasureId?: string, userDriverId?: string, amount?: number, unitCost?: number, odometer?: number, horometro?: number, odometerMeasurementId?: string, summary?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<boolean>>> {
+            const localVarAxiosArgs = await FuelLoadApiAxiosParamCreator(configuration).apiFuelLoadEditIdPutForm(id, imagesToRemove, vehicleId, chargeDate, chargeHour, reference, full, resetTank, imageFiles, providerId, liters, fuelMeasureId, userDriverId, amount, unitCost, odometer, horometro, odometerMeasurementId, summary, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1277,12 +1293,13 @@ export const FuelLoadApiFp = function(configuration?: Configuration) {
          * @param {string} [fuelMeasureId] 
          * @param {string} [userDriverId] 
          * @param {number} [unitCost] 
+         * @param {number} [horometro] 
          * @param {boolean} [summary] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiFuelLoadIdPutForm(vehicleId: string, chargeDate: string, chargeHour: string, liters: number, amount: number, odometer: number, odometerMeasurementId: string, id: string, imageFiles?: Array<Blob>, imagesToRemove?: Array<string>, reference?: string, full?: boolean, resetTank?: boolean, providerId?: number, fuelMeasureId?: string, userDriverId?: string, unitCost?: number, summary?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<boolean>>> {
-            const localVarAxiosArgs = await FuelLoadApiAxiosParamCreator(configuration).apiFuelLoadIdPutForm(vehicleId, chargeDate, chargeHour, liters, amount, odometer, odometerMeasurementId, id, imageFiles, imagesToRemove, reference, full, resetTank, providerId, fuelMeasureId, userDriverId, unitCost, summary, options);
+        async apiFuelLoadIdPutForm(vehicleId: string, chargeDate: string, chargeHour: string, liters: number, amount: number, odometer: number, odometerMeasurementId: string, id: string, imageFiles?: Array<Blob>, imagesToRemove?: Array<string>, reference?: string, full?: boolean, resetTank?: boolean, providerId?: number, fuelMeasureId?: string, userDriverId?: string, unitCost?: number, horometro?: number, summary?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<boolean>>> {
+            const localVarAxiosArgs = await FuelLoadApiAxiosParamCreator(configuration).apiFuelLoadIdPutForm(vehicleId, chargeDate, chargeHour, liters, amount, odometer, odometerMeasurementId, id, imageFiles, imagesToRemove, reference, full, resetTank, providerId, fuelMeasureId, userDriverId, unitCost, horometro, summary, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1304,13 +1321,14 @@ export const FuelLoadApiFp = function(configuration?: Configuration) {
          * @param {number} [amount] 
          * @param {number} [unitCost] 
          * @param {number} [odometer] 
+         * @param {number} [horometro] 
          * @param {string} [odometerMeasurementId] 
          * @param {boolean} [summary] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiFuelLoadPostForm(vehicleId?: string, chargeDate?: string, chargeHour?: string, reference?: string, full?: boolean, resetTank?: boolean, imageFiles?: Array<Blob>, providerId?: number, liters?: number, fuelMeasureId?: string, userDriverId?: string, amount?: number, unitCost?: number, odometer?: number, odometerMeasurementId?: string, summary?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<string>>> {
-            const localVarAxiosArgs = await FuelLoadApiAxiosParamCreator(configuration).apiFuelLoadPostForm(vehicleId, chargeDate, chargeHour, reference, full, resetTank, imageFiles, providerId, liters, fuelMeasureId, userDriverId, amount, unitCost, odometer, odometerMeasurementId, summary, options);
+        async apiFuelLoadPostForm(vehicleId?: string, chargeDate?: string, chargeHour?: string, reference?: string, full?: boolean, resetTank?: boolean, imageFiles?: Array<Blob>, providerId?: number, liters?: number, fuelMeasureId?: string, userDriverId?: string, amount?: number, unitCost?: number, odometer?: number, horometro?: number, odometerMeasurementId?: string, summary?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<string>>> {
+            const localVarAxiosArgs = await FuelLoadApiAxiosParamCreator(configuration).apiFuelLoadPostForm(vehicleId, chargeDate, chargeHour, reference, full, resetTank, imageFiles, providerId, liters, fuelMeasureId, userDriverId, amount, unitCost, odometer, horometro, odometerMeasurementId, summary, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1398,13 +1416,14 @@ export const FuelLoadApiFactory = function (configuration?: Configuration, baseP
          * @param {number} [amount] 
          * @param {number} [unitCost] 
          * @param {number} [odometer] 
+         * @param {number} [horometro] 
          * @param {string} [odometerMeasurementId] 
          * @param {boolean} [summary] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiFuelLoadEditIdPutForm(id: string, imagesToRemove?: Array<string>, vehicleId?: string, chargeDate?: string, chargeHour?: string, reference?: string, full?: boolean, resetTank?: boolean, imageFiles?: Array<Blob>, providerId?: number, liters?: number, fuelMeasureId?: string, userDriverId?: string, amount?: number, unitCost?: number, odometer?: number, odometerMeasurementId?: string, summary?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<boolean>> {
-            return FuelLoadApiFp(configuration).apiFuelLoadEditIdPutForm(id, imagesToRemove, vehicleId, chargeDate, chargeHour, reference, full, resetTank, imageFiles, providerId, liters, fuelMeasureId, userDriverId, amount, unitCost, odometer, odometerMeasurementId, summary, options).then((request) => request(axios, basePath));
+        async apiFuelLoadEditIdPutForm(id: string, imagesToRemove?: Array<string>, vehicleId?: string, chargeDate?: string, chargeHour?: string, reference?: string, full?: boolean, resetTank?: boolean, imageFiles?: Array<Blob>, providerId?: number, liters?: number, fuelMeasureId?: string, userDriverId?: string, amount?: number, unitCost?: number, odometer?: number, horometro?: number, odometerMeasurementId?: string, summary?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<boolean>> {
+            return FuelLoadApiFp(configuration).apiFuelLoadEditIdPutForm(id, imagesToRemove, vehicleId, chargeDate, chargeHour, reference, full, resetTank, imageFiles, providerId, liters, fuelMeasureId, userDriverId, amount, unitCost, odometer, horometro, odometerMeasurementId, summary, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1501,12 +1520,13 @@ export const FuelLoadApiFactory = function (configuration?: Configuration, baseP
          * @param {string} [fuelMeasureId] 
          * @param {string} [userDriverId] 
          * @param {number} [unitCost] 
+         * @param {number} [horometro] 
          * @param {boolean} [summary] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiFuelLoadIdPutForm(vehicleId: string, chargeDate: string, chargeHour: string, liters: number, amount: number, odometer: number, odometerMeasurementId: string, id: string, imageFiles?: Array<Blob>, imagesToRemove?: Array<string>, reference?: string, full?: boolean, resetTank?: boolean, providerId?: number, fuelMeasureId?: string, userDriverId?: string, unitCost?: number, summary?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<boolean>> {
-            return FuelLoadApiFp(configuration).apiFuelLoadIdPutForm(vehicleId, chargeDate, chargeHour, liters, amount, odometer, odometerMeasurementId, id, imageFiles, imagesToRemove, reference, full, resetTank, providerId, fuelMeasureId, userDriverId, unitCost, summary, options).then((request) => request(axios, basePath));
+        async apiFuelLoadIdPutForm(vehicleId: string, chargeDate: string, chargeHour: string, liters: number, amount: number, odometer: number, odometerMeasurementId: string, id: string, imageFiles?: Array<Blob>, imagesToRemove?: Array<string>, reference?: string, full?: boolean, resetTank?: boolean, providerId?: number, fuelMeasureId?: string, userDriverId?: string, unitCost?: number, horometro?: number, summary?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<boolean>> {
+            return FuelLoadApiFp(configuration).apiFuelLoadIdPutForm(vehicleId, chargeDate, chargeHour, liters, amount, odometer, odometerMeasurementId, id, imageFiles, imagesToRemove, reference, full, resetTank, providerId, fuelMeasureId, userDriverId, unitCost, horometro, summary, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1524,13 +1544,14 @@ export const FuelLoadApiFactory = function (configuration?: Configuration, baseP
          * @param {number} [amount] 
          * @param {number} [unitCost] 
          * @param {number} [odometer] 
+         * @param {number} [horometro] 
          * @param {string} [odometerMeasurementId] 
          * @param {boolean} [summary] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiFuelLoadPostForm(vehicleId?: string, chargeDate?: string, chargeHour?: string, reference?: string, full?: boolean, resetTank?: boolean, imageFiles?: Array<Blob>, providerId?: number, liters?: number, fuelMeasureId?: string, userDriverId?: string, amount?: number, unitCost?: number, odometer?: number, odometerMeasurementId?: string, summary?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<string>> {
-            return FuelLoadApiFp(configuration).apiFuelLoadPostForm(vehicleId, chargeDate, chargeHour, reference, full, resetTank, imageFiles, providerId, liters, fuelMeasureId, userDriverId, amount, unitCost, odometer, odometerMeasurementId, summary, options).then((request) => request(axios, basePath));
+        async apiFuelLoadPostForm(vehicleId?: string, chargeDate?: string, chargeHour?: string, reference?: string, full?: boolean, resetTank?: boolean, imageFiles?: Array<Blob>, providerId?: number, liters?: number, fuelMeasureId?: string, userDriverId?: string, amount?: number, unitCost?: number, odometer?: number, horometro?: number, odometerMeasurementId?: string, summary?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<string>> {
+            return FuelLoadApiFp(configuration).apiFuelLoadPostForm(vehicleId, chargeDate, chargeHour, reference, full, resetTank, imageFiles, providerId, liters, fuelMeasureId, userDriverId, amount, unitCost, odometer, horometro, odometerMeasurementId, summary, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1604,14 +1625,15 @@ export class FuelLoadApi extends BaseAPI {
      * @param {number} [amount] 
      * @param {number} [unitCost] 
      * @param {number} [odometer] 
+     * @param {number} [horometro] 
      * @param {string} [odometerMeasurementId] 
      * @param {boolean} [summary] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FuelLoadApi
      */
-    public async apiFuelLoadEditIdPutForm(id: string, imagesToRemove?: Array<string>, vehicleId?: string, chargeDate?: string, chargeHour?: string, reference?: string, full?: boolean, resetTank?: boolean, imageFiles?: Array<Blob>, providerId?: number, liters?: number, fuelMeasureId?: string, userDriverId?: string, amount?: number, unitCost?: number, odometer?: number, odometerMeasurementId?: string, summary?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<boolean>> {
-        return FuelLoadApiFp(this.configuration).apiFuelLoadEditIdPutForm(id, imagesToRemove, vehicleId, chargeDate, chargeHour, reference, full, resetTank, imageFiles, providerId, liters, fuelMeasureId, userDriverId, amount, unitCost, odometer, odometerMeasurementId, summary, options).then((request) => request(this.axios, this.basePath));
+    public async apiFuelLoadEditIdPutForm(id: string, imagesToRemove?: Array<string>, vehicleId?: string, chargeDate?: string, chargeHour?: string, reference?: string, full?: boolean, resetTank?: boolean, imageFiles?: Array<Blob>, providerId?: number, liters?: number, fuelMeasureId?: string, userDriverId?: string, amount?: number, unitCost?: number, odometer?: number, horometro?: number, odometerMeasurementId?: string, summary?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<boolean>> {
+        return FuelLoadApiFp(this.configuration).apiFuelLoadEditIdPutForm(id, imagesToRemove, vehicleId, chargeDate, chargeHour, reference, full, resetTank, imageFiles, providerId, liters, fuelMeasureId, userDriverId, amount, unitCost, odometer, horometro, odometerMeasurementId, summary, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
@@ -1715,13 +1737,14 @@ export class FuelLoadApi extends BaseAPI {
      * @param {string} [fuelMeasureId] 
      * @param {string} [userDriverId] 
      * @param {number} [unitCost] 
+     * @param {number} [horometro] 
      * @param {boolean} [summary] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FuelLoadApi
      */
-    public async apiFuelLoadIdPutForm(vehicleId: string, chargeDate: string, chargeHour: string, liters: number, amount: number, odometer: number, odometerMeasurementId: string, id: string, imageFiles?: Array<Blob>, imagesToRemove?: Array<string>, reference?: string, full?: boolean, resetTank?: boolean, providerId?: number, fuelMeasureId?: string, userDriverId?: string, unitCost?: number, summary?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<boolean>> {
-        return FuelLoadApiFp(this.configuration).apiFuelLoadIdPutForm(vehicleId, chargeDate, chargeHour, liters, amount, odometer, odometerMeasurementId, id, imageFiles, imagesToRemove, reference, full, resetTank, providerId, fuelMeasureId, userDriverId, unitCost, summary, options).then((request) => request(this.axios, this.basePath));
+    public async apiFuelLoadIdPutForm(vehicleId: string, chargeDate: string, chargeHour: string, liters: number, amount: number, odometer: number, odometerMeasurementId: string, id: string, imageFiles?: Array<Blob>, imagesToRemove?: Array<string>, reference?: string, full?: boolean, resetTank?: boolean, providerId?: number, fuelMeasureId?: string, userDriverId?: string, unitCost?: number, horometro?: number, summary?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<boolean>> {
+        return FuelLoadApiFp(this.configuration).apiFuelLoadIdPutForm(vehicleId, chargeDate, chargeHour, liters, amount, odometer, odometerMeasurementId, id, imageFiles, imagesToRemove, reference, full, resetTank, providerId, fuelMeasureId, userDriverId, unitCost, horometro, summary, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
@@ -1739,14 +1762,15 @@ export class FuelLoadApi extends BaseAPI {
      * @param {number} [amount] 
      * @param {number} [unitCost] 
      * @param {number} [odometer] 
+     * @param {number} [horometro] 
      * @param {string} [odometerMeasurementId] 
      * @param {boolean} [summary] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FuelLoadApi
      */
-    public async apiFuelLoadPostForm(vehicleId?: string, chargeDate?: string, chargeHour?: string, reference?: string, full?: boolean, resetTank?: boolean, imageFiles?: Array<Blob>, providerId?: number, liters?: number, fuelMeasureId?: string, userDriverId?: string, amount?: number, unitCost?: number, odometer?: number, odometerMeasurementId?: string, summary?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<string>> {
-        return FuelLoadApiFp(this.configuration).apiFuelLoadPostForm(vehicleId, chargeDate, chargeHour, reference, full, resetTank, imageFiles, providerId, liters, fuelMeasureId, userDriverId, amount, unitCost, odometer, odometerMeasurementId, summary, options).then((request) => request(this.axios, this.basePath));
+    public async apiFuelLoadPostForm(vehicleId?: string, chargeDate?: string, chargeHour?: string, reference?: string, full?: boolean, resetTank?: boolean, imageFiles?: Array<Blob>, providerId?: number, liters?: number, fuelMeasureId?: string, userDriverId?: string, amount?: number, unitCost?: number, odometer?: number, horometro?: number, odometerMeasurementId?: string, summary?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<string>> {
+        return FuelLoadApiFp(this.configuration).apiFuelLoadPostForm(vehicleId, chargeDate, chargeHour, reference, full, resetTank, imageFiles, providerId, liters, fuelMeasureId, userDriverId, amount, unitCost, odometer, horometro, odometerMeasurementId, summary, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
