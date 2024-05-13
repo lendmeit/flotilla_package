@@ -33,6 +33,12 @@ export interface MaintenanceNewEditDTO {
      * @type {string}
      * @memberof MaintenanceNewEditDTO
      */
+    horometro?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof MaintenanceNewEditDTO
+     */
     maintenanceId?: string | null;
 
     /**

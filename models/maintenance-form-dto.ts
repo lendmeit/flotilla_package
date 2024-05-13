@@ -79,6 +79,12 @@ export interface MaintenanceFormDTO {
     odometer?: string | null;
 
     /**
+     * @type {number}
+     * @memberof MaintenanceFormDTO
+     */
+    horometro?: number;
+
+    /**
      * @type {string}
      * @memberof MaintenanceFormDTO
      */

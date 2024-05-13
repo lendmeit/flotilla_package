@@ -71,12 +71,6 @@ export interface FuelLoadFormDTO {
     unitCost?: number;
 
     /**
-     * @type {number}
-     * @memberof FuelLoadFormDTO
-     */
-    horometro?: number;
-
-    /**
      * @type {boolean}
      * @memberof FuelLoadFormDTO
      */
@@ -117,6 +111,12 @@ export interface FuelLoadFormDTO {
      * @memberof FuelLoadFormDTO
      */
     odometer?: number;
+
+    /**
+     * @type {number}
+     * @memberof FuelLoadFormDTO
+     */
+    horometro?: number;
 
     /**
      * @type {string}
