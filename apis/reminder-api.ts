@@ -18,6 +18,7 @@ import { Configuration } from '../configuration';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 import { ReminderDTOPagedResult } from '../models';
+import { ReminderNewEditDTO } from '../models';
 import { ReminderPostDTO } from '../models';
 import { SortOrderEnum } from '../models';
 /**
@@ -49,6 +50,52 @@ export const ReminderApiAxiosParamCreator = function (configuration?: Configurat
                     ? await configuration.apiKey("Authorization")
                     : await configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} [id] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiReminderGetFormGet: async (id?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Reminder/GetForm`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("Authorization")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            if (id !== undefined) {
+                localVarQueryParameter['id'] = id;
             }
 
             const query = new URLSearchParams(localVarUrlObj.search);
@@ -370,6 +417,19 @@ export const ReminderApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} [id] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiReminderGetFormGet(id?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<ReminderNewEditDTO>>> {
+            const localVarAxiosArgs = await ReminderApiAxiosParamCreator(configuration).apiReminderGetFormGet(id, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
          * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -459,6 +519,15 @@ export const ReminderApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
+         * @param {string} [id] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiReminderGetFormGet(id?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<ReminderNewEditDTO>> {
+            return ReminderApiFp(configuration).apiReminderGetFormGet(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -527,6 +596,16 @@ export class ReminderApi extends BaseAPI {
      */
     public async apiReminderGet(options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<ReminderPostDTO>>> {
         return ReminderApiFp(this.configuration).apiReminderGet(options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
+     * @param {string} [id] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReminderApi
+     */
+    public async apiReminderGetFormGet(id?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<ReminderNewEditDTO>> {
+        return ReminderApiFp(this.configuration).apiReminderGetFormGet(id, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 

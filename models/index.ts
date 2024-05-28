@@ -86,6 +86,8 @@ export * from './project-dto';
 export * from './project-dtopaged-result';
 export * from './reminder-dto';
 export * from './reminder-dtopaged-result';
+export * from './reminder-form-dto';
+export * from './reminder-new-edit-dto';
 export * from './reminder-post-dto';
 export * from './reset-password-model';
 export * from './role-dto';

@@ -1,6 +1,6 @@
 {
   "name": "@lendmeit/flotilla_api",
-  "version": "1.0.42",
+  "version": "1.0.43",
   "description": "OpenAPI client for Moddtech",
   "author": "Moddtech",
   "repository": {
