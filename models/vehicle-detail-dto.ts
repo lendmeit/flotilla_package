@@ -17,7 +17,7 @@ import { FuelLoadDetailDTOPagedResult } from './fuel-load-detail-dtopaged-result
 import { ImageDTO } from './image-dto';
 import { MaintenanceDetailDTOPagedResult } from './maintenance-detail-dtopaged-result';
 import { PerformanceDTO } from './performance-dto';
-import { ReminderDTOPagedResult } from './reminder-dtopaged-result';
+import { ReminderFormDTOPagedResult } from './reminder-form-dtopaged-result';
 import { VehicleStatisticsDTO } from './vehicle-statistics-dto';
 import { VehicleStatusEnum } from './vehicle-status-enum';
  /**
@@ -137,10 +137,10 @@ export interface VehicleDetailDTO {
     pedimento?: DocumentDTO;
 
     /**
-     * @type {ReminderDTOPagedResult}
+     * @type {ReminderFormDTOPagedResult}
      * @memberof VehicleDetailDTO
      */
-    listReminders?: ReminderDTOPagedResult;
+    listReminders?: ReminderFormDTOPagedResult;
 
     /**
      * @type {boolean}

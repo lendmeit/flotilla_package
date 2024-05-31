@@ -12,42 +12,42 @@
  * Do not edit the class manually.
  */
 
-import { ReminderDTO } from './reminder-dto';
+import { ReminderFormDTO } from './reminder-form-dto';
  /**
  * 
  *
  * @export
- * @interface ReminderDTOPagedResult
+ * @interface ReminderFormDTOPagedResult
  */
-export interface ReminderDTOPagedResult {
+export interface ReminderFormDTOPagedResult {
 
     /**
      * @type {number}
-     * @memberof ReminderDTOPagedResult
+     * @memberof ReminderFormDTOPagedResult
      */
     totalCount?: number;
 
     /**
      * @type {number}
-     * @memberof ReminderDTOPagedResult
+     * @memberof ReminderFormDTOPagedResult
      */
     pageNumber?: number;
 
     /**
      * @type {number}
-     * @memberof ReminderDTOPagedResult
+     * @memberof ReminderFormDTOPagedResult
      */
     recordNumber?: number;
 
     /**
      * @type {number}
-     * @memberof ReminderDTOPagedResult
+     * @memberof ReminderFormDTOPagedResult
      */
     totalPages?: number;
 
     /**
-     * @type {Array<ReminderDTO>}
-     * @memberof ReminderDTOPagedResult
+     * @type {Array<ReminderFormDTO>}
+     * @memberof ReminderFormDTOPagedResult
      */
-    items?: Array<ReminderDTO> | null;
+    items?: Array<ReminderFormDTO> | null;
 }
