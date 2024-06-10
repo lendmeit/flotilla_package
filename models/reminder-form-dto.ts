@@ -116,4 +116,16 @@ export interface ReminderFormDTO {
      * @memberof ReminderFormDTO
      */
     periodToReminder?: PeriodEnum;
+
+    /**
+     * @type {Date}
+     * @memberof ReminderFormDTO
+     */
+    initialDate?: Date | null;
+
+    /**
+     * @type {number}
+     * @memberof ReminderFormDTO
+     */
+    initialOdometer?: number;
 }

@@ -86,4 +86,16 @@ export interface ReminderPostDTO {
      * @memberof ReminderPostDTO
      */
     vehicleId: string;
+
+    /**
+     * @type {Date}
+     * @memberof ReminderPostDTO
+     */
+    initialDate?: Date | null;
+
+    /**
+     * @type {number}
+     * @memberof ReminderPostDTO
+     */
+    initialOdometer?: number;
 }
