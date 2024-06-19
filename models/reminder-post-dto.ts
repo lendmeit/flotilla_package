@@ -98,4 +98,10 @@ export interface ReminderPostDTO {
      * @memberof ReminderPostDTO
      */
     initialOdometer?: number;
+
+    /**
+     * @type {boolean}
+     * @memberof ReminderPostDTO
+     */
+    notified?: boolean;
 }

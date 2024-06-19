@@ -1,5 +1,6 @@
 export * from './api-fuel-load-body';
 export * from './api-maintenance-body';
+export * from './api-policy-body';
 export * from './api-vehicle-body';
 export * from './app-user-dto';
 export * from './app-user-dtopaged-result';
@@ -78,6 +79,8 @@ export * from './performance-filter-dto';
 export * from './period-enum';
 export * from './policy-dto';
 export * from './policy-dtopaged-result';
+export * from './policy-new-edit-dto';
+export * from './policy-post-dto';
 export * from './policy-status-dto';
 export * from './policy-status-dtopaged-result';
 export * from './problem-details';

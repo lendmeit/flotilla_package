@@ -72,10 +72,10 @@ export interface MaintenanceDTO {
     comments?: string | null;
 
     /**
-     * @type {string}
+     * @type {number}
      * @memberof MaintenanceDTO
      */
-    odometer?: string | null;
+    odometer?: number;
 
     /**
      * @type {number}

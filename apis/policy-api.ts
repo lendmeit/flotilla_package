@@ -19,6 +19,8 @@ import { Configuration } from '../configuration';
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 import { PolicyDTO } from '../models';
 import { PolicyDTOPagedResult } from '../models';
+import { PolicyNewEditDTO } from '../models';
+import { PolicyPostDTO } from '../models';
 import { SortOrderEnum } from '../models';
 /**
  * PolicyApi - axios parameter creator
@@ -49,6 +51,52 @@ export const PolicyApiAxiosParamCreator = function (configuration?: Configuratio
                     ? await configuration.apiKey("Authorization")
                     : await configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} [id] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPolicyGetFormGet: async (id?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Policy/GetForm`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("Authorization")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            if (id !== undefined) {
+                localVarQueryParameter['id'] = id;
             }
 
             const query = new URLSearchParams(localVarUrlObj.search);
@@ -197,7 +245,7 @@ export const PolicyApiAxiosParamCreator = function (configuration?: Configuratio
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
-            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Content-Type'] = 'application/json;odata.metadata=minimal;odata.streaming=true';
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -219,12 +267,107 @@ export const PolicyApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
-         * @param {PolicyDTO} [body] 
+         * @param {string} [name] 
+         * @param {string} [code] 
+         * @param {string} [description] 
+         * @param {string} [startDate] 
+         * @param {string} [endDate] 
+         * @param {number} [quantityVehicles] 
+         * @param {string} [policyStatusId] 
+         * @param {string} [packagePolicyId] 
+         * @param {string} [insuranceCompanyId] 
+         * @param {Blob} [policyFile] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiPolicyPost: async (body?: PolicyDTO, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiPolicyPostForm: async (name?: string, code?: string, description?: string, startDate?: string, endDate?: string, quantityVehicles?: number, policyStatusId?: string, packagePolicyId?: string, insuranceCompanyId?: string, policyFile?: Blob, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/Policy`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new FormData();
+
+            // authentication Bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("Authorization")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+
+            if (name !== undefined) { 
+                localVarFormParams.append('Name', name as any);
+            }
+
+            if (code !== undefined) { 
+                localVarFormParams.append('Code', code as any);
+            }
+
+            if (description !== undefined) { 
+                localVarFormParams.append('Description', description as any);
+            }
+
+            if (startDate !== undefined) { 
+                localVarFormParams.append('StartDate', startDate as any);
+            }
+
+            if (endDate !== undefined) { 
+                localVarFormParams.append('EndDate', endDate as any);
+            }
+
+            if (quantityVehicles !== undefined) { 
+                localVarFormParams.append('QuantityVehicles', quantityVehicles as any);
+            }
+
+            if (policyStatusId !== undefined) { 
+                localVarFormParams.append('PolicyStatusId', policyStatusId as any);
+            }
+
+            if (packagePolicyId !== undefined) { 
+                localVarFormParams.append('PackagePolicyId', packagePolicyId as any);
+            }
+
+            if (insuranceCompanyId !== undefined) { 
+                localVarFormParams.append('InsuranceCompanyId', insuranceCompanyId as any);
+            }
+
+            if (policyFile !== undefined) { 
+                localVarFormParams.append('PolicyFile', policyFile as any);
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {PolicyPostDTO} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPolicySavePost: async (body?: PolicyPostDTO, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Policy/Save`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -243,7 +386,7 @@ export const PolicyApiAxiosParamCreator = function (configuration?: Configuratio
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
-            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Content-Type'] = 'application/json;odata.metadata=minimal;odata.streaming=true';
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -365,6 +508,19 @@ export const PolicyApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} [id] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiPolicyGetFormGet(id?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<PolicyNewEditDTO>>> {
+            const localVarAxiosArgs = await PolicyApiAxiosParamCreator(configuration).apiPolicyGetFormGet(id, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
          * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -405,12 +561,34 @@ export const PolicyApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {PolicyDTO} [body] 
+         * @param {string} [name] 
+         * @param {string} [code] 
+         * @param {string} [description] 
+         * @param {string} [startDate] 
+         * @param {string} [endDate] 
+         * @param {number} [quantityVehicles] 
+         * @param {string} [policyStatusId] 
+         * @param {string} [packagePolicyId] 
+         * @param {string} [insuranceCompanyId] 
+         * @param {Blob} [policyFile] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiPolicyPost(body?: PolicyDTO, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<string>>> {
-            const localVarAxiosArgs = await PolicyApiAxiosParamCreator(configuration).apiPolicyPost(body, options);
+        async apiPolicyPostForm(name?: string, code?: string, description?: string, startDate?: string, endDate?: string, quantityVehicles?: number, policyStatusId?: string, packagePolicyId?: string, insuranceCompanyId?: string, policyFile?: Blob, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<string>>> {
+            const localVarAxiosArgs = await PolicyApiAxiosParamCreator(configuration).apiPolicyPostForm(name, code, description, startDate, endDate, quantityVehicles, policyStatusId, packagePolicyId, insuranceCompanyId, policyFile, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {PolicyPostDTO} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiPolicySavePost(body?: PolicyPostDTO, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<string>>> {
+            const localVarAxiosArgs = await PolicyApiAxiosParamCreator(configuration).apiPolicySavePost(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -453,6 +631,15 @@ export const PolicyApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * 
+         * @param {string} [id] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiPolicyGetFormGet(id?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<PolicyNewEditDTO>> {
+            return PolicyApiFp(configuration).apiPolicyGetFormGet(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -481,12 +668,30 @@ export const PolicyApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * 
-         * @param {PolicyDTO} [body] 
+         * @param {string} [name] 
+         * @param {string} [code] 
+         * @param {string} [description] 
+         * @param {string} [startDate] 
+         * @param {string} [endDate] 
+         * @param {number} [quantityVehicles] 
+         * @param {string} [policyStatusId] 
+         * @param {string} [packagePolicyId] 
+         * @param {string} [insuranceCompanyId] 
+         * @param {Blob} [policyFile] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiPolicyPost(body?: PolicyDTO, options?: AxiosRequestConfig): Promise<AxiosResponse<string>> {
-            return PolicyApiFp(configuration).apiPolicyPost(body, options).then((request) => request(axios, basePath));
+        async apiPolicyPostForm(name?: string, code?: string, description?: string, startDate?: string, endDate?: string, quantityVehicles?: number, policyStatusId?: string, packagePolicyId?: string, insuranceCompanyId?: string, policyFile?: Blob, options?: AxiosRequestConfig): Promise<AxiosResponse<string>> {
+            return PolicyApiFp(configuration).apiPolicyPostForm(name, code, description, startDate, endDate, quantityVehicles, policyStatusId, packagePolicyId, insuranceCompanyId, policyFile, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {PolicyPostDTO} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiPolicySavePost(body?: PolicyPostDTO, options?: AxiosRequestConfig): Promise<AxiosResponse<string>> {
+            return PolicyApiFp(configuration).apiPolicySavePost(body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -523,6 +728,16 @@ export class PolicyApi extends BaseAPI {
     }
     /**
      * 
+     * @param {string} [id] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PolicyApi
+     */
+    public async apiPolicyGetFormGet(id?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<PolicyNewEditDTO>> {
+        return PolicyApiFp(this.configuration).apiPolicyGetFormGet(id, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
      * @param {string} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -554,13 +769,32 @@ export class PolicyApi extends BaseAPI {
     }
     /**
      * 
-     * @param {PolicyDTO} [body] 
+     * @param {string} [name] 
+     * @param {string} [code] 
+     * @param {string} [description] 
+     * @param {string} [startDate] 
+     * @param {string} [endDate] 
+     * @param {number} [quantityVehicles] 
+     * @param {string} [policyStatusId] 
+     * @param {string} [packagePolicyId] 
+     * @param {string} [insuranceCompanyId] 
+     * @param {Blob} [policyFile] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PolicyApi
      */
-    public async apiPolicyPost(body?: PolicyDTO, options?: AxiosRequestConfig) : Promise<AxiosResponse<string>> {
-        return PolicyApiFp(this.configuration).apiPolicyPost(body, options).then((request) => request(this.axios, this.basePath));
+    public async apiPolicyPostForm(name?: string, code?: string, description?: string, startDate?: string, endDate?: string, quantityVehicles?: number, policyStatusId?: string, packagePolicyId?: string, insuranceCompanyId?: string, policyFile?: Blob, options?: AxiosRequestConfig) : Promise<AxiosResponse<string>> {
+        return PolicyApiFp(this.configuration).apiPolicyPostForm(name, code, description, startDate, endDate, quantityVehicles, policyStatusId, packagePolicyId, insuranceCompanyId, policyFile, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
+     * @param {PolicyPostDTO} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PolicyApi
+     */
+    public async apiPolicySavePost(body?: PolicyPostDTO, options?: AxiosRequestConfig) : Promise<AxiosResponse<string>> {
+        return PolicyApiFp(this.configuration).apiPolicySavePost(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
