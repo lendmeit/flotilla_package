@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+import { DocumentDTO } from './document-dto';
  /**
  * 
  *
@@ -85,4 +86,10 @@ export interface PolicyDTO {
      * @memberof PolicyDTO
      */
     insuranceCompanyId?: string | null;
+
+    /**
+     * @type {DocumentDTO}
+     * @memberof PolicyDTO
+     */
+    documentPolicy?: DocumentDTO;
 }

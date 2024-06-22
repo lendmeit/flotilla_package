@@ -21,88 +21,46 @@
 export interface EditIdBody2 {
 
     /**
-     * @type {Array<string>}
+     * @type {string}
      * @memberof EditIdBody2
      */
-    photosToRemove?: Array<string>;
+    name?: string;
 
     /**
      * @type {string}
      * @memberof EditIdBody2
      */
-    VIN: string;
+    code: string;
 
     /**
      * @type {string}
      * @memberof EditIdBody2
      */
-    machineId: string;
+    description?: string;
 
     /**
      * @type {string}
      * @memberof EditIdBody2
      */
-    description: string;
+    startDate: string;
 
     /**
      * @type {string}
      * @memberof EditIdBody2
      */
-    economicNumber: string;
-
-    /**
-     * @type {string}
-     * @memberof EditIdBody2
-     */
-    assignedId?: string;
-
-    /**
-     * @type {string}
-     * @memberof EditIdBody2
-     */
-    brandId?: string;
-
-    /**
-     * @type {string}
-     * @memberof EditIdBody2
-     */
-    modelId?: string;
+    endDate?: string;
 
     /**
      * @type {number}
      * @memberof EditIdBody2
      */
-    modelYear?: number;
+    quantityVehicles?: number;
 
     /**
      * @type {string}
      * @memberof EditIdBody2
      */
-    engineId?: string;
-
-    /**
-     * @type {string}
-     * @memberof EditIdBody2
-     */
-    placas?: string;
-
-    /**
-     * @type {number}
-     * @memberof EditIdBody2
-     */
-    drillRigId?: number;
-
-    /**
-     * @type {string}
-     * @memberof EditIdBody2
-     */
-    policyId?: string;
-
-    /**
-     * @type {string}
-     * @memberof EditIdBody2
-     */
-    incisoId?: string;
+    policyStatusId?: string;
 
     /**
      * @type {string}
@@ -114,59 +72,11 @@ export interface EditIdBody2 {
      * @type {string}
      * @memberof EditIdBody2
      */
-    measureId?: string;
-
-    /**
-     * @type {string}
-     * @memberof EditIdBody2
-     */
-    fuelMeasureId?: string;
-
-    /**
-     * @type {string}
-     * @memberof EditIdBody2
-     */
-    fuelTypeId?: string;
-
-    /**
-     * @type {string}
-     * @memberof EditIdBody2
-     */
-    companyId?: string;
-
-    /**
-     * @type {string}
-     * @memberof EditIdBody2
-     */
-    categoryId: string;
-
-    /**
-     * @type {number}
-     * @memberof EditIdBody2
-     */
-    tankSize?: number;
-
-    /**
-     * @type {boolean}
-     * @memberof EditIdBody2
-     */
-    active?: boolean;
-
-    /**
-     * @type {Array<Blob>}
-     * @memberof EditIdBody2
-     */
-    photographsFiles?: Array<Blob>;
+    insuranceCompanyId?: string;
 
     /**
      * @type {Blob}
      * @memberof EditIdBody2
      */
-    billFile?: Blob;
-
-    /**
-     * @type {Blob}
-     * @memberof EditIdBody2
-     */
-    pedimentoFile?: Blob;
+    policyFile?: Blob;
 }

@@ -19,6 +19,7 @@ import { Configuration } from '../configuration';
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 import { PolicyDTO } from '../models';
 import { PolicyDTOPagedResult } from '../models';
+import { PolicyInboxDTOPagedResult } from '../models';
 import { PolicyNewEditDTO } from '../models';
 import { PolicyPostDTO } from '../models';
 import { SortOrderEnum } from '../models';
@@ -28,6 +29,107 @@ import { SortOrderEnum } from '../models';
  */
 export const PolicyApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * 
+         * @param {string} id 
+         * @param {string} [name] 
+         * @param {string} [code] 
+         * @param {string} [description] 
+         * @param {string} [startDate] 
+         * @param {string} [endDate] 
+         * @param {number} [quantityVehicles] 
+         * @param {string} [policyStatusId] 
+         * @param {string} [packagePolicyId] 
+         * @param {string} [insuranceCompanyId] 
+         * @param {Blob} [policyFile] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPolicyEditIdPutForm: async (id: string, name?: string, code?: string, description?: string, startDate?: string, endDate?: string, quantityVehicles?: number, policyStatusId?: string, packagePolicyId?: string, insuranceCompanyId?: string, policyFile?: Blob, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling apiPolicyEditIdPutForm.');
+            }
+            const localVarPath = `/api/Policy/Edit/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new FormData();
+
+            // authentication Bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("Authorization")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+
+            if (name !== undefined) { 
+                localVarFormParams.append('Name', name as any);
+            }
+
+            if (code !== undefined) { 
+                localVarFormParams.append('Code', code as any);
+            }
+
+            if (description !== undefined) { 
+                localVarFormParams.append('Description', description as any);
+            }
+
+            if (startDate !== undefined) { 
+                localVarFormParams.append('StartDate', startDate as any);
+            }
+
+            if (endDate !== undefined) { 
+                localVarFormParams.append('EndDate', endDate as any);
+            }
+
+            if (quantityVehicles !== undefined) { 
+                localVarFormParams.append('QuantityVehicles', quantityVehicles as any);
+            }
+
+            if (policyStatusId !== undefined) { 
+                localVarFormParams.append('PolicyStatusId', policyStatusId as any);
+            }
+
+            if (packagePolicyId !== undefined) { 
+                localVarFormParams.append('PackagePolicyId', packagePolicyId as any);
+            }
+
+            if (insuranceCompanyId !== undefined) { 
+                localVarFormParams.append('InsuranceCompanyId', insuranceCompanyId as any);
+            }
+
+            if (policyFile !== undefined) { 
+                localVarFormParams.append('PolicyFile', policyFile as any);
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * 
          * @param {*} [options] Override http request option.
@@ -211,16 +313,12 @@ export const PolicyApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
-         * @param {PolicyDTO} body 
          * @param {string} id 
+         * @param {PolicyPostDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiPolicyIdPut: async (body: PolicyDTO, id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'body' is not null or undefined
-            if (body === null || body === undefined) {
-                throw new RequiredError('body','Required parameter body was null or undefined when calling apiPolicyIdPut.');
-            }
+        apiPolicyIdPut: async (id: string, body?: PolicyPostDTO, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling apiPolicyIdPut.');
@@ -259,6 +357,85 @@ export const PolicyApiAxiosParamCreator = function (configuration?: Configuratio
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} page 
+         * @param {number} pageSize 
+         * @param {string} [search] 
+         * @param {string} [orderByPropertyName] 
+         * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPolicyInboxGet: async (page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'page' is not null or undefined
+            if (page === null || page === undefined) {
+                throw new RequiredError('page','Required parameter page was null or undefined when calling apiPolicyInboxGet.');
+            }
+            // verify required parameter 'pageSize' is not null or undefined
+            if (pageSize === null || pageSize === undefined) {
+                throw new RequiredError('pageSize','Required parameter pageSize was null or undefined when calling apiPolicyInboxGet.');
+            }
+            const localVarPath = `/api/Policy/Inbox`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("Authorization")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            if (page !== undefined) {
+                localVarQueryParameter['Page'] = page;
+            }
+
+            if (search !== undefined) {
+                localVarQueryParameter['Search'] = search;
+            }
+
+            if (orderByPropertyName !== undefined) {
+                localVarQueryParameter['OrderByPropertyName'] = orderByPropertyName;
+            }
+
+            if (sortOrder !== undefined) {
+                localVarQueryParameter['SortOrder'] = sortOrder;
+            }
+
+            if (pageSize !== undefined) {
+                localVarQueryParameter['PageSize'] = pageSize;
+            }
+
+            if (active !== undefined) {
+                localVarQueryParameter['Active'] = active;
+            }
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -496,6 +673,29 @@ export const PolicyApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {string} id 
+         * @param {string} [name] 
+         * @param {string} [code] 
+         * @param {string} [description] 
+         * @param {string} [startDate] 
+         * @param {string} [endDate] 
+         * @param {number} [quantityVehicles] 
+         * @param {string} [policyStatusId] 
+         * @param {string} [packagePolicyId] 
+         * @param {string} [insuranceCompanyId] 
+         * @param {Blob} [policyFile] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiPolicyEditIdPutForm(id: string, name?: string, code?: string, description?: string, startDate?: string, endDate?: string, quantityVehicles?: number, policyStatusId?: string, packagePolicyId?: string, insuranceCompanyId?: string, policyFile?: Blob, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<boolean>>> {
+            const localVarAxiosArgs = await PolicyApiAxiosParamCreator(configuration).apiPolicyEditIdPutForm(id, name, code, description, startDate, endDate, quantityVehicles, policyStatusId, packagePolicyId, insuranceCompanyId, policyFile, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -547,13 +747,31 @@ export const PolicyApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {PolicyDTO} body 
          * @param {string} id 
+         * @param {PolicyPostDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiPolicyIdPut(body: PolicyDTO, id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<boolean>>> {
-            const localVarAxiosArgs = await PolicyApiAxiosParamCreator(configuration).apiPolicyIdPut(body, id, options);
+        async apiPolicyIdPut(id: string, body?: PolicyPostDTO, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<boolean>>> {
+            const localVarAxiosArgs = await PolicyApiAxiosParamCreator(configuration).apiPolicyIdPut(id, body, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {number} page 
+         * @param {number} pageSize 
+         * @param {string} [search] 
+         * @param {string} [orderByPropertyName] 
+         * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiPolicyInboxGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<PolicyInboxDTOPagedResult>>> {
+            const localVarAxiosArgs = await PolicyApiAxiosParamCreator(configuration).apiPolicyInboxGet(page, pageSize, search, orderByPropertyName, sortOrder, active, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -623,6 +841,25 @@ export const PolicyApiFactory = function (configuration?: Configuration, basePat
     return {
         /**
          * 
+         * @param {string} id 
+         * @param {string} [name] 
+         * @param {string} [code] 
+         * @param {string} [description] 
+         * @param {string} [startDate] 
+         * @param {string} [endDate] 
+         * @param {number} [quantityVehicles] 
+         * @param {string} [policyStatusId] 
+         * @param {string} [packagePolicyId] 
+         * @param {string} [insuranceCompanyId] 
+         * @param {Blob} [policyFile] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiPolicyEditIdPutForm(id: string, name?: string, code?: string, description?: string, startDate?: string, endDate?: string, quantityVehicles?: number, policyStatusId?: string, packagePolicyId?: string, insuranceCompanyId?: string, policyFile?: Blob, options?: AxiosRequestConfig): Promise<AxiosResponse<boolean>> {
+            return PolicyApiFp(configuration).apiPolicyEditIdPutForm(id, name, code, description, startDate, endDate, quantityVehicles, policyStatusId, packagePolicyId, insuranceCompanyId, policyFile, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -658,13 +895,27 @@ export const PolicyApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * 
-         * @param {PolicyDTO} body 
          * @param {string} id 
+         * @param {PolicyPostDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiPolicyIdPut(body: PolicyDTO, id: string, options?: AxiosRequestConfig): Promise<AxiosResponse<boolean>> {
-            return PolicyApiFp(configuration).apiPolicyIdPut(body, id, options).then((request) => request(axios, basePath));
+        async apiPolicyIdPut(id: string, body?: PolicyPostDTO, options?: AxiosRequestConfig): Promise<AxiosResponse<boolean>> {
+            return PolicyApiFp(configuration).apiPolicyIdPut(id, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} page 
+         * @param {number} pageSize 
+         * @param {string} [search] 
+         * @param {string} [orderByPropertyName] 
+         * @param {SortOrderEnum} [sortOrder] 
+         * @param {boolean} [active] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiPolicyInboxGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<PolicyInboxDTOPagedResult>> {
+            return PolicyApiFp(configuration).apiPolicyInboxGet(page, pageSize, search, orderByPropertyName, sortOrder, active, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -719,6 +970,26 @@ export const PolicyApiFactory = function (configuration?: Configuration, basePat
 export class PolicyApi extends BaseAPI {
     /**
      * 
+     * @param {string} id 
+     * @param {string} [name] 
+     * @param {string} [code] 
+     * @param {string} [description] 
+     * @param {string} [startDate] 
+     * @param {string} [endDate] 
+     * @param {number} [quantityVehicles] 
+     * @param {string} [policyStatusId] 
+     * @param {string} [packagePolicyId] 
+     * @param {string} [insuranceCompanyId] 
+     * @param {Blob} [policyFile] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PolicyApi
+     */
+    public async apiPolicyEditIdPutForm(id: string, name?: string, code?: string, description?: string, startDate?: string, endDate?: string, quantityVehicles?: number, policyStatusId?: string, packagePolicyId?: string, insuranceCompanyId?: string, policyFile?: Blob, options?: AxiosRequestConfig) : Promise<AxiosResponse<boolean>> {
+        return PolicyApiFp(this.configuration).apiPolicyEditIdPutForm(id, name, code, description, startDate, endDate, quantityVehicles, policyStatusId, packagePolicyId, insuranceCompanyId, policyFile, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PolicyApi
@@ -758,14 +1029,29 @@ export class PolicyApi extends BaseAPI {
     }
     /**
      * 
-     * @param {PolicyDTO} body 
      * @param {string} id 
+     * @param {PolicyPostDTO} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PolicyApi
      */
-    public async apiPolicyIdPut(body: PolicyDTO, id: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<boolean>> {
-        return PolicyApiFp(this.configuration).apiPolicyIdPut(body, id, options).then((request) => request(this.axios, this.basePath));
+    public async apiPolicyIdPut(id: string, body?: PolicyPostDTO, options?: AxiosRequestConfig) : Promise<AxiosResponse<boolean>> {
+        return PolicyApiFp(this.configuration).apiPolicyIdPut(id, body, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
+     * @param {number} page 
+     * @param {number} pageSize 
+     * @param {string} [search] 
+     * @param {string} [orderByPropertyName] 
+     * @param {SortOrderEnum} [sortOrder] 
+     * @param {boolean} [active] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PolicyApi
+     */
+    public async apiPolicyInboxGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<PolicyInboxDTOPagedResult>> {
+        return PolicyApiFp(this.configuration).apiPolicyInboxGet(page, pageSize, search, orderByPropertyName, sortOrder, active, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
