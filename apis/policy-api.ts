@@ -31,6 +31,52 @@ export const PolicyApiAxiosParamCreator = function (configuration?: Configuratio
     return {
         /**
          * 
+         * @param {boolean} [active] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPolicyDownloadGet: async (active?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Policy/Download`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("Authorization")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            if (active !== undefined) {
+                localVarQueryParameter['active'] = active;
+            }
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {string} id 
          * @param {string} [name] 
          * @param {string} [code] 
@@ -673,6 +719,19 @@ export const PolicyApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {boolean} [active] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiPolicyDownloadGet(active?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
+            const localVarAxiosArgs = await PolicyApiAxiosParamCreator(configuration).apiPolicyDownloadGet(active, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
          * @param {string} id 
          * @param {string} [name] 
          * @param {string} [code] 
@@ -841,6 +900,15 @@ export const PolicyApiFactory = function (configuration?: Configuration, basePat
     return {
         /**
          * 
+         * @param {boolean} [active] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiPolicyDownloadGet(active?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
+            return PolicyApiFp(configuration).apiPolicyDownloadGet(active, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {string} id 
          * @param {string} [name] 
          * @param {string} [code] 
@@ -968,6 +1036,16 @@ export const PolicyApiFactory = function (configuration?: Configuration, basePat
  * @extends {BaseAPI}
  */
 export class PolicyApi extends BaseAPI {
+    /**
+     * 
+     * @param {boolean} [active] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PolicyApi
+     */
+    public async apiPolicyDownloadGet(active?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
+        return PolicyApiFp(this.configuration).apiPolicyDownloadGet(active, options).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * 
      * @param {string} id 
