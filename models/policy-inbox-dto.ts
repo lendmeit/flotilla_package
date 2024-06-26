@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+import { DocumentDTO } from './document-dto';
  /**
  * 
  *
@@ -97,4 +98,10 @@ export interface PolicyInboxDTO {
      * @memberof PolicyInboxDTO
      */
     active?: boolean;
+
+    /**
+     * @type {DocumentDTO}
+     * @memberof PolicyInboxDTO
+     */
+    document?: DocumentDTO;
 }
