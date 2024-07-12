@@ -417,10 +417,11 @@ export const PolicyApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {string} [orderByPropertyName] 
          * @param {SortOrderEnum} [sortOrder] 
          * @param {boolean} [active] 
+         * @param {boolean} [expired] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiPolicyInboxGet: async (page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiPolicyInboxGet: async (page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, expired?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'page' is not null or undefined
             if (page === null || page === undefined) {
                 throw new RequiredError('page','Required parameter page was null or undefined when calling apiPolicyInboxGet.');
@@ -470,6 +471,10 @@ export const PolicyApiAxiosParamCreator = function (configuration?: Configuratio
 
             if (active !== undefined) {
                 localVarQueryParameter['Active'] = active;
+            }
+
+            if (expired !== undefined) {
+                localVarQueryParameter['Expired'] = expired;
             }
 
             const query = new URLSearchParams(localVarUrlObj.search);
@@ -826,11 +831,12 @@ export const PolicyApiFp = function(configuration?: Configuration) {
          * @param {string} [orderByPropertyName] 
          * @param {SortOrderEnum} [sortOrder] 
          * @param {boolean} [active] 
+         * @param {boolean} [expired] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiPolicyInboxGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<PolicyInboxDTOPagedResult>>> {
-            const localVarAxiosArgs = await PolicyApiAxiosParamCreator(configuration).apiPolicyInboxGet(page, pageSize, search, orderByPropertyName, sortOrder, active, options);
+        async apiPolicyInboxGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, expired?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<PolicyInboxDTOPagedResult>>> {
+            const localVarAxiosArgs = await PolicyApiAxiosParamCreator(configuration).apiPolicyInboxGet(page, pageSize, search, orderByPropertyName, sortOrder, active, expired, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -979,11 +985,12 @@ export const PolicyApiFactory = function (configuration?: Configuration, basePat
          * @param {string} [orderByPropertyName] 
          * @param {SortOrderEnum} [sortOrder] 
          * @param {boolean} [active] 
+         * @param {boolean} [expired] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiPolicyInboxGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<PolicyInboxDTOPagedResult>> {
-            return PolicyApiFp(configuration).apiPolicyInboxGet(page, pageSize, search, orderByPropertyName, sortOrder, active, options).then((request) => request(axios, basePath));
+        async apiPolicyInboxGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, expired?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<PolicyInboxDTOPagedResult>> {
+            return PolicyApiFp(configuration).apiPolicyInboxGet(page, pageSize, search, orderByPropertyName, sortOrder, active, expired, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1124,12 +1131,13 @@ export class PolicyApi extends BaseAPI {
      * @param {string} [orderByPropertyName] 
      * @param {SortOrderEnum} [sortOrder] 
      * @param {boolean} [active] 
+     * @param {boolean} [expired] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PolicyApi
      */
-    public async apiPolicyInboxGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<PolicyInboxDTOPagedResult>> {
-        return PolicyApiFp(this.configuration).apiPolicyInboxGet(page, pageSize, search, orderByPropertyName, sortOrder, active, options).then((request) => request(this.axios, this.basePath));
+    public async apiPolicyInboxGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, expired?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<PolicyInboxDTOPagedResult>> {
+        return PolicyApiFp(this.configuration).apiPolicyInboxGet(page, pageSize, search, orderByPropertyName, sortOrder, active, expired, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
