@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * PROJECT API - Development
+ * PROJECT API - QA
  * PROJECT .NET Core Web API
  *
  * OpenAPI spec version: v1
