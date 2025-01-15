@@ -1,3 +1,6 @@
+export * from './address-dto';
+export * from './address-dtopaged-result';
+export * from './address-post-dto';
 export * from './api-fuel-load-body';
 export * from './api-maintenance-body';
 export * from './api-policy-body';
@@ -90,6 +93,10 @@ export * from './problem-details';
 export * from './project-company-dto';
 export * from './project-dto';
 export * from './project-dtopaged-result';
+export * from './provider-dto';
+export * from './provider-dtopaged-result';
+export * from './provider-list-address-dto';
+export * from './provider-post-dto';
 export * from './reminder-form-dto';
 export * from './reminder-form-dtopaged-result';
 export * from './reminder-new-edit-dto';

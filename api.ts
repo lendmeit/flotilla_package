@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * PROJECT API - QA
+ * PROJECT API - Development
  * PROJECT .NET Core Web API
  *
  * OpenAPI spec version: v1
@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 export * from './apis/account-api';
+export * from './apis/address-api';
 export * from './apis/brand-api';
 export * from './apis/category-api';
 export * from './apis/company-api';
@@ -37,6 +38,7 @@ export * from './apis/part-api';
 export * from './apis/policy-api';
 export * from './apis/policy-status-api';
 export * from './apis/project-api';
+export * from './apis/provider-api';
 export * from './apis/reminder-api';
 export * from './apis/role-api';
 export * from './apis/service-api';
