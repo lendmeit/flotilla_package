@@ -63,10 +63,10 @@ export interface FuelLoadPostDTO {
     imageFiles?: Array<Blob> | null;
 
     /**
-     * @type {number}
+     * @type {string}
      * @memberof FuelLoadPostDTO
      */
-    providerId?: number;
+    providerId?: string | null;
 
     /**
      * @type {number}

@@ -32,6 +32,8 @@ export enum CatalogsEnum {
     Measures = 'Measures',
     ActiveCategories = 'ActiveCategories',
     MaintenanceTypes = 'MaintenanceTypes',
-    InsuranceCompanies = 'InsuranceCompanies'
+    InsuranceCompanies = 'InsuranceCompanies',
+    Providers = 'Providers',
+    Drivers = 'Drivers'
 }
 

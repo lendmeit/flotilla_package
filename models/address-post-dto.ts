@@ -42,7 +42,7 @@ export interface AddressPostDTO {
      * @type {string}
      * @memberof AddressPostDTO
      */
-    providerID?: string | null;
+    providerId?: string | null;
 
     /**
      * @type {string}

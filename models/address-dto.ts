@@ -54,7 +54,7 @@ export interface AddressDTO {
      * @type {string}
      * @memberof AddressDTO
      */
-    providerID?: string | null;
+    providerId?: string | null;
 
     /**
      * @type {string}

@@ -69,10 +69,10 @@ export interface EditIdBody {
     imageFiles?: Array<Blob>;
 
     /**
-     * @type {number}
+     * @type {string}
      * @memberof EditIdBody
      */
-    providerId?: number;
+    providerId?: string;
 
     /**
      * @type {number}

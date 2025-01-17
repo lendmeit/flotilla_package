@@ -36,7 +36,7 @@ export interface ProviderListAddressDTO {
      * @type {string}
      * @memberof ProviderListAddressDTO
      */
-    provId?: string | null;
+    providerId?: string | null;
 
     /**
      * @type {string}

@@ -63,10 +63,10 @@ export interface ApiFuelLoadBody {
     imageFiles?: Array<Blob>;
 
     /**
-     * @type {number}
+     * @type {string}
      * @memberof ApiFuelLoadBody
      */
-    providerId?: number;
+    providerId?: string;
 
     /**
      * @type {number}

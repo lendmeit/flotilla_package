@@ -47,10 +47,10 @@ export interface FuelLoadFormDTO {
     imageFiles?: Array<Blob> | null;
 
     /**
-     * @type {number}
+     * @type {string}
      * @memberof FuelLoadFormDTO
      */
-    providerId?: number;
+    providerId?: string | null;
 
     /**
      * @type {string}
