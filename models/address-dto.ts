@@ -93,6 +93,36 @@ export interface AddressDTO {
     cityId?: string | null;
 
     /**
+     * @type {string}
+     * @memberof AddressDTO
+     */
+    cityName?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof AddressDTO
+     */
+    stateId?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof AddressDTO
+     */
+    stateName?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof AddressDTO
+     */
+    countryId?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof AddressDTO
+     */
+    countryName?: string | null;
+
+    /**
      * @type {boolean}
      * @memberof AddressDTO
      */

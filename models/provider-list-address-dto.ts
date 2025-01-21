@@ -75,6 +75,36 @@ export interface ProviderListAddressDTO {
     cityId?: string | null;
 
     /**
+     * @type {string}
+     * @memberof ProviderListAddressDTO
+     */
+    cityName?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof ProviderListAddressDTO
+     */
+    stateId?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof ProviderListAddressDTO
+     */
+    stateName?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof ProviderListAddressDTO
+     */
+    countryId?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof ProviderListAddressDTO
+     */
+    countryName?: string | null;
+
+    /**
      * @type {boolean}
      * @memberof ProviderListAddressDTO
      */
