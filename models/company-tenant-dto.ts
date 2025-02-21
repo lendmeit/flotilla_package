@@ -12,48 +12,35 @@
  * Do not edit the class manually.
  */
 
-import { SystemStateDTO } from './system-state-dto';
  /**
  * 
  *
  * @export
- * @interface SystemCityDTO
+ * @interface CompanyTenantDTO
  */
-export interface SystemCityDTO {
+export interface CompanyTenantDTO {
 
     /**
      * @type {string}
-     * @memberof SystemCityDTO
+     * @memberof CompanyTenantDTO
      */
     id?: string | null;
 
     /**
-     * @type {boolean}
-     * @memberof SystemCityDTO
-     */
-    active?: boolean;
-
-    /**
      * @type {string}
-     * @memberof SystemCityDTO
-     */
-    stateId?: string | null;
-
-    /**
-     * @type {string}
-     * @memberof SystemCityDTO
-     */
-    code?: string | null;
-
-    /**
-     * @type {string}
-     * @memberof SystemCityDTO
+     * @memberof CompanyTenantDTO
      */
     name?: string | null;
 
     /**
-     * @type {SystemStateDTO}
-     * @memberof SystemCityDTO
+     * @type {string}
+     * @memberof CompanyTenantDTO
      */
-    state?: SystemStateDTO;
+    description?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof CompanyTenantDTO
+     */
+    userCreationId?: string | null;
 }

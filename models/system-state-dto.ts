@@ -44,7 +44,7 @@ export interface SystemStateDTO {
      * @type {string}
      * @memberof SystemStateDTO
      */
-    code: string;
+    code?: string | null;
 
     /**
      * @type {string}

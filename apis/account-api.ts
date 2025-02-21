@@ -18,6 +18,7 @@ import { Configuration } from '../configuration';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 import { AuthResponseDTO } from '../models';
+import { CompanyTenantDTO } from '../models';
 import { LoginDTO } from '../models';
 import { ProblemDetails } from '../models';
 import { ResetPasswordModel } from '../models';
@@ -139,7 +140,7 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Sample request:                   GET api/Account/Login
+         * Sample request:                   GET api/Account/Login. test
          * @summary Endpoint para realizar el login del usuario de los usuarios
          * @param {LoginDTO} [body] 
          * @param {*} [options] Override http request option.
@@ -179,47 +180,6 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiAccountLogoutPost: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/Account/logout`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("Authorization")
-                    : await configuration.apiKey;
-                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
-            }
-
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.params) {
-                query.set(key, options.params[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -319,6 +279,185 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @param {string} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiAccountTenantCompaniesForUserPost: async (body?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Account/TenantCompaniesForUser`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("Authorization")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiAccountTenantCompanyChangePost: async (body?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Account/TenantCompanyChange`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("Authorization")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {CompanyTenantDTO} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiAccountTenantCompanyPost: async (body?: CompanyTenantDTO, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Account/TenantCompany`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("Authorization")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiAccountTenantGetCompaniesGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Account/TenantGetCompanies`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("Authorization")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -358,7 +497,7 @@ export const AccountApiFp = function(configuration?: Configuration) {
             };
         },
         /**
-         * Sample request:                   GET api/Account/Login
+         * Sample request:                   GET api/Account/Login. test
          * @summary Endpoint para realizar el login del usuario de los usuarios
          * @param {LoginDTO} [body] 
          * @param {*} [options] Override http request option.
@@ -366,18 +505,6 @@ export const AccountApiFp = function(configuration?: Configuration) {
          */
         async apiAccountLoginPost(body?: LoginDTO, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
             const localVarAxiosArgs = await AccountApiAxiosParamCreator(configuration).apiAccountLoginPost(body, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async apiAccountLogoutPost(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<boolean>>> {
-            const localVarAxiosArgs = await AccountApiAxiosParamCreator(configuration).apiAccountLogoutPost(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -405,6 +532,57 @@ export const AccountApiFp = function(configuration?: Configuration) {
          */
         async apiAccountResetpasswordPost(body?: ResetPasswordModel, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<boolean>>> {
             const localVarAxiosArgs = await AccountApiAxiosParamCreator(configuration).apiAccountResetpasswordPost(body, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {string} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiAccountTenantCompaniesForUserPost(body?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<CompanyTenantDTO>>>> {
+            const localVarAxiosArgs = await AccountApiAxiosParamCreator(configuration).apiAccountTenantCompaniesForUserPost(body, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {string} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiAccountTenantCompanyChangePost(body?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AuthResponseDTO>>> {
+            const localVarAxiosArgs = await AccountApiAxiosParamCreator(configuration).apiAccountTenantCompanyChangePost(body, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {CompanyTenantDTO} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiAccountTenantCompanyPost(body?: CompanyTenantDTO, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AuthResponseDTO>>> {
+            const localVarAxiosArgs = await AccountApiAxiosParamCreator(configuration).apiAccountTenantCompanyPost(body, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiAccountTenantGetCompaniesGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<CompanyTenantDTO>>>> {
+            const localVarAxiosArgs = await AccountApiAxiosParamCreator(configuration).apiAccountTenantGetCompaniesGet(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -441,7 +619,7 @@ export const AccountApiFactory = function (configuration?: Configuration, basePa
             return AccountApiFp(configuration).apiAccountForgotpasswordPost(email, options).then((request) => request(axios, basePath));
         },
         /**
-         * Sample request:                   GET api/Account/Login
+         * Sample request:                   GET api/Account/Login. test
          * @summary Endpoint para realizar el login del usuario de los usuarios
          * @param {LoginDTO} [body] 
          * @param {*} [options] Override http request option.
@@ -449,14 +627,6 @@ export const AccountApiFactory = function (configuration?: Configuration, basePa
          */
         async apiAccountLoginPost(body?: LoginDTO, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
             return AccountApiFp(configuration).apiAccountLoginPost(body, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async apiAccountLogoutPost(options?: AxiosRequestConfig): Promise<AxiosResponse<boolean>> {
-            return AccountApiFp(configuration).apiAccountLogoutPost(options).then((request) => request(axios, basePath));
         },
         /**
          * Sample request:                   GET api/Account/Login
@@ -476,6 +646,41 @@ export const AccountApiFactory = function (configuration?: Configuration, basePa
          */
         async apiAccountResetpasswordPost(body?: ResetPasswordModel, options?: AxiosRequestConfig): Promise<AxiosResponse<boolean>> {
             return AccountApiFp(configuration).apiAccountResetpasswordPost(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiAccountTenantCompaniesForUserPost(body?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<CompanyTenantDTO>>> {
+            return AccountApiFp(configuration).apiAccountTenantCompaniesForUserPost(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiAccountTenantCompanyChangePost(body?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<AuthResponseDTO>> {
+            return AccountApiFp(configuration).apiAccountTenantCompanyChangePost(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {CompanyTenantDTO} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiAccountTenantCompanyPost(body?: CompanyTenantDTO, options?: AxiosRequestConfig): Promise<AxiosResponse<AuthResponseDTO>> {
+            return AccountApiFp(configuration).apiAccountTenantCompanyPost(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiAccountTenantGetCompaniesGet(options?: AxiosRequestConfig): Promise<AxiosResponse<Array<CompanyTenantDTO>>> {
+            return AccountApiFp(configuration).apiAccountTenantGetCompaniesGet(options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -511,7 +716,7 @@ export class AccountApi extends BaseAPI {
         return AccountApiFp(this.configuration).apiAccountForgotpasswordPost(email, options).then((request) => request(this.axios, this.basePath));
     }
     /**
-     * Sample request:                   GET api/Account/Login
+     * Sample request:                   GET api/Account/Login. test
      * @summary Endpoint para realizar el login del usuario de los usuarios
      * @param {LoginDTO} [body] 
      * @param {*} [options] Override http request option.
@@ -520,15 +725,6 @@ export class AccountApi extends BaseAPI {
      */
     public async apiAccountLoginPost(body?: LoginDTO, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
         return AccountApiFp(this.configuration).apiAccountLoginPost(body, options).then((request) => request(this.axios, this.basePath));
-    }
-    /**
-     * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AccountApi
-     */
-    public async apiAccountLogoutPost(options?: AxiosRequestConfig) : Promise<AxiosResponse<boolean>> {
-        return AccountApiFp(this.configuration).apiAccountLogoutPost(options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Sample request:                   GET api/Account/Login
@@ -550,5 +746,44 @@ export class AccountApi extends BaseAPI {
      */
     public async apiAccountResetpasswordPost(body?: ResetPasswordModel, options?: AxiosRequestConfig) : Promise<AxiosResponse<boolean>> {
         return AccountApiFp(this.configuration).apiAccountResetpasswordPost(body, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
+     * @param {string} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountApi
+     */
+    public async apiAccountTenantCompaniesForUserPost(body?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<CompanyTenantDTO>>> {
+        return AccountApiFp(this.configuration).apiAccountTenantCompaniesForUserPost(body, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
+     * @param {string} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountApi
+     */
+    public async apiAccountTenantCompanyChangePost(body?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<AuthResponseDTO>> {
+        return AccountApiFp(this.configuration).apiAccountTenantCompanyChangePost(body, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
+     * @param {CompanyTenantDTO} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountApi
+     */
+    public async apiAccountTenantCompanyPost(body?: CompanyTenantDTO, options?: AxiosRequestConfig) : Promise<AxiosResponse<AuthResponseDTO>> {
+        return AccountApiFp(this.configuration).apiAccountTenantCompanyPost(body, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountApi
+     */
+    public async apiAccountTenantGetCompaniesGet(options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<CompanyTenantDTO>>> {
+        return AccountApiFp(this.configuration).apiAccountTenantGetCompaniesGet(options).then((request) => request(this.axios, this.basePath));
     }
 }

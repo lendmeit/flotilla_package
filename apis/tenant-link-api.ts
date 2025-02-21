@@ -17,22 +17,73 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
-import { SystemCityDTO } from '../models';
-import { SystemCountryDTO } from '../models';
-import { SystemStateDTO } from '../models';
+import { TenantLink } from '../models';
+import { TenantLinkStatusEnum } from '../models';
+import { TenantLinkUserDTO } from '../models';
 /**
- * LocationApi - axios parameter creator
+ * TenantLinkApi - axios parameter creator
  * @export
  */
-export const LocationApiAxiosParamCreator = function (configuration?: Configuration) {
+export const TenantLinkApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {string} [tenantCompany] 
+         * @param {TenantLinkStatusEnum} [vinculacionEstatus] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiLocationCountriesGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/Location/Countries`;
+        changeLinkStatusPut: async (tenantCompany?: string, vinculacionEstatus?: TenantLinkStatusEnum, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/ChangeLinkStatus`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("Authorization")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            if (tenantCompany !== undefined) {
+                localVarQueryParameter['tenantCompany'] = tenantCompany;
+            }
+
+            if (vinculacionEstatus !== undefined) {
+                localVarQueryParameter['vinculacionEstatus'] = vinculacionEstatus;
+            }
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPendingLinksGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/GetPendingLinks`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -69,24 +120,19 @@ export const LocationApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @param {string} countryId 
+         * @param {TenantLinkUserDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiLocationCountryIdStatesGet: async (countryId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'countryId' is not null or undefined
-            if (countryId === null || countryId === undefined) {
-                throw new RequiredError('countryId','Required parameter countryId was null or undefined when calling apiLocationCountryIdStatesGet.');
-            }
-            const localVarPath = `/api/Location/{countryId}/States`
-                .replace(`{${"countryId"}}`, encodeURIComponent(String(countryId)));
+        linkUserPost: async (body?: TenantLinkUserDTO, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/LinkUser`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -98,52 +144,7 @@ export const LocationApiAxiosParamCreator = function (configuration?: Configurat
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.params) {
-                query.set(key, options.params[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} stateId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiLocationStateIdCitiesGet: async (stateId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'stateId' is not null or undefined
-            if (stateId === null || stateId === undefined) {
-                throw new RequiredError('stateId','Required parameter stateId was null or undefined when calling apiLocationStateIdCitiesGet.');
-            }
-            const localVarPath = `/api/Location/{stateId}/Cities`
-                .replace(`{${"stateId"}}`, encodeURIComponent(String(stateId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("Authorization")
-                    : await configuration.apiKey;
-                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
-            }
+            localVarHeaderParameter['Content-Type'] = 'application/json;odata.metadata=minimal;odata.streaming=true';
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -155,6 +156,8 @@ export const LocationApiAxiosParamCreator = function (configuration?: Configurat
             localVarUrlObj.search = (new URLSearchParams(query)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -165,18 +168,20 @@ export const LocationApiAxiosParamCreator = function (configuration?: Configurat
 };
 
 /**
- * LocationApi - functional programming interface
+ * TenantLinkApi - functional programming interface
  * @export
  */
-export const LocationApiFp = function(configuration?: Configuration) {
+export const TenantLinkApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {string} [tenantCompany] 
+         * @param {TenantLinkStatusEnum} [vinculacionEstatus] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiLocationCountriesGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<SystemCountryDTO>>>> {
-            const localVarAxiosArgs = await LocationApiAxiosParamCreator(configuration).apiLocationCountriesGet(options);
+        async changeLinkStatusPut(tenantCompany?: string, vinculacionEstatus?: TenantLinkStatusEnum, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<TenantLink>>>> {
+            const localVarAxiosArgs = await TenantLinkApiAxiosParamCreator(configuration).changeLinkStatusPut(tenantCompany, vinculacionEstatus, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -184,12 +189,11 @@ export const LocationApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {string} countryId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiLocationCountryIdStatesGet(countryId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<SystemStateDTO>>>> {
-            const localVarAxiosArgs = await LocationApiAxiosParamCreator(configuration).apiLocationCountryIdStatesGet(countryId, options);
+        async getPendingLinksGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<TenantLink>>>> {
+            const localVarAxiosArgs = await TenantLinkApiAxiosParamCreator(configuration).getPendingLinksGet(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -197,12 +201,12 @@ export const LocationApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {string} stateId 
+         * @param {TenantLinkUserDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiLocationStateIdCitiesGet(stateId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<SystemCityDTO>>>> {
-            const localVarAxiosArgs = await LocationApiAxiosParamCreator(configuration).apiLocationStateIdCitiesGet(stateId, options);
+        async linkUserPost(body?: TenantLinkUserDTO, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<boolean>>> {
+            const localVarAxiosArgs = await TenantLinkApiAxiosParamCreator(configuration).linkUserPost(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -212,74 +216,76 @@ export const LocationApiFp = function(configuration?: Configuration) {
 };
 
 /**
- * LocationApi - factory interface
+ * TenantLinkApi - factory interface
  * @export
  */
-export const LocationApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+export const TenantLinkApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     return {
         /**
          * 
+         * @param {string} [tenantCompany] 
+         * @param {TenantLinkStatusEnum} [vinculacionEstatus] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiLocationCountriesGet(options?: AxiosRequestConfig): Promise<AxiosResponse<Array<SystemCountryDTO>>> {
-            return LocationApiFp(configuration).apiLocationCountriesGet(options).then((request) => request(axios, basePath));
+        async changeLinkStatusPut(tenantCompany?: string, vinculacionEstatus?: TenantLinkStatusEnum, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<TenantLink>>> {
+            return TenantLinkApiFp(configuration).changeLinkStatusPut(tenantCompany, vinculacionEstatus, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {string} countryId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiLocationCountryIdStatesGet(countryId: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<SystemStateDTO>>> {
-            return LocationApiFp(configuration).apiLocationCountryIdStatesGet(countryId, options).then((request) => request(axios, basePath));
+        async getPendingLinksGet(options?: AxiosRequestConfig): Promise<AxiosResponse<Array<TenantLink>>> {
+            return TenantLinkApiFp(configuration).getPendingLinksGet(options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {string} stateId 
+         * @param {TenantLinkUserDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiLocationStateIdCitiesGet(stateId: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<SystemCityDTO>>> {
-            return LocationApiFp(configuration).apiLocationStateIdCitiesGet(stateId, options).then((request) => request(axios, basePath));
+        async linkUserPost(body?: TenantLinkUserDTO, options?: AxiosRequestConfig): Promise<AxiosResponse<boolean>> {
+            return TenantLinkApiFp(configuration).linkUserPost(body, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * LocationApi - object-oriented interface
+ * TenantLinkApi - object-oriented interface
  * @export
- * @class LocationApi
+ * @class TenantLinkApi
  * @extends {BaseAPI}
  */
-export class LocationApi extends BaseAPI {
+export class TenantLinkApi extends BaseAPI {
     /**
      * 
+     * @param {string} [tenantCompany] 
+     * @param {TenantLinkStatusEnum} [vinculacionEstatus] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof LocationApi
+     * @memberof TenantLinkApi
      */
-    public async apiLocationCountriesGet(options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<SystemCountryDTO>>> {
-        return LocationApiFp(this.configuration).apiLocationCountriesGet(options).then((request) => request(this.axios, this.basePath));
+    public async changeLinkStatusPut(tenantCompany?: string, vinculacionEstatus?: TenantLinkStatusEnum, options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<TenantLink>>> {
+        return TenantLinkApiFp(this.configuration).changeLinkStatusPut(tenantCompany, vinculacionEstatus, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
-     * @param {string} countryId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof LocationApi
+     * @memberof TenantLinkApi
      */
-    public async apiLocationCountryIdStatesGet(countryId: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<SystemStateDTO>>> {
-        return LocationApiFp(this.configuration).apiLocationCountryIdStatesGet(countryId, options).then((request) => request(this.axios, this.basePath));
+    public async getPendingLinksGet(options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<TenantLink>>> {
+        return TenantLinkApiFp(this.configuration).getPendingLinksGet(options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
-     * @param {string} stateId 
+     * @param {TenantLinkUserDTO} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof LocationApi
+     * @memberof TenantLinkApi
      */
-    public async apiLocationStateIdCitiesGet(stateId: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<SystemCityDTO>>> {
-        return LocationApiFp(this.configuration).apiLocationStateIdCitiesGet(stateId, options).then((request) => request(this.axios, this.basePath));
+    public async linkUserPost(body?: TenantLinkUserDTO, options?: AxiosRequestConfig) : Promise<AxiosResponse<boolean>> {
+        return TenantLinkApiFp(this.configuration).linkUserPost(body, options).then((request) => request(this.axios, this.basePath));
     }
 }
