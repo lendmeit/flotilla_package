@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+import { TenantCompanyUserPermissionDTO } from './tenant-company-user-permission-dto';
  /**
  * 
  *
@@ -43,4 +44,16 @@ export interface CompanyTenantDTO {
      * @memberof CompanyTenantDTO
      */
     userCreationId?: string | null;
+
+    /**
+     * @type {boolean}
+     * @memberof CompanyTenantDTO
+     */
+    owner?: boolean;
+
+    /**
+     * @type {Array<TenantCompanyUserPermissionDTO>}
+     * @memberof CompanyTenantDTO
+     */
+    permissions?: Array<TenantCompanyUserPermissionDTO> | null;
 }

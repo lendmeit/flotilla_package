@@ -13,6 +13,9 @@
  */
 
 import { GenderEnum } from './gender-enum';
+import { TenantCompany } from './tenant-company';
+import { TenantCompanyUserPermission } from './tenant-company-user-permission';
+import { TenantLink } from './tenant-link';
 import { UserRole } from './user-role';
  /**
  * 
@@ -167,12 +170,6 @@ export interface AppUsuario {
     parentId?: string | null;
 
     /**
-     * @type {string}
-     * @memberof AppUsuario
-     */
-    projectId?: string | null;
-
-    /**
      * @type {AppUsuario}
      * @memberof AppUsuario
      */
@@ -189,6 +186,24 @@ export interface AppUsuario {
      * @memberof AppUsuario
      */
     userRoles?: Array<UserRole> | null;
+
+    /**
+     * @type {Array<TenantLink>}
+     * @memberof AppUsuario
+     */
+    tenantLinks?: Array<TenantLink> | null;
+
+    /**
+     * @type {Array<TenantCompanyUserPermission>}
+     * @memberof AppUsuario
+     */
+    tenantCompanyUserPermissions?: Array<TenantCompanyUserPermission> | null;
+
+    /**
+     * @type {Array<TenantCompany>}
+     * @memberof AppUsuario
+     */
+    tenantOwnerCompanies?: Array<TenantCompany> | null;
 
     /**
      * @type {string}

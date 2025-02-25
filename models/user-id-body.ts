@@ -55,12 +55,6 @@ export interface UserIdBody {
      * @type {string}
      * @memberof UserIdBody
      */
-    countryCode?: string;
-
-    /**
-     * @type {string}
-     * @memberof UserIdBody
-     */
     titleAbbreviation?: string;
 
     /**
@@ -92,16 +86,4 @@ export interface UserIdBody {
      * @memberof UserIdBody
      */
     address?: string;
-
-    /**
-     * @type {Date}
-     * @memberof UserIdBody
-     */
-    birthDate?: Date;
-
-    /**
-     * @type {number}
-     * @memberof UserIdBody
-     */
-    costPerAppointment?: number;
 }

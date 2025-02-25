@@ -13,7 +13,9 @@
  */
 
 import { AppUsuario } from './app-usuario';
+import { Project } from './project';
 import { TenantCompanyUserPermission } from './tenant-company-user-permission';
+import { TenantLink } from './tenant-link';
  /**
  * 
  *
@@ -59,8 +61,26 @@ export interface TenantCompany {
     active?: boolean;
 
     /**
+     * @type {Date}
+     * @memberof TenantCompany
+     */
+    createDate?: Date;
+
+    /**
      * @type {Array<TenantCompanyUserPermission>}
      * @memberof TenantCompany
      */
     tenantCompanyUserPermissions?: Array<TenantCompanyUserPermission> | null;
+
+    /**
+     * @type {Array<Project>}
+     * @memberof TenantCompany
+     */
+    projects?: Array<Project> | null;
+
+    /**
+     * @type {Array<TenantLink>}
+     * @memberof TenantCompany
+     */
+    tenantLinks?: Array<TenantLink> | null;
 }

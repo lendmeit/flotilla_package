@@ -18,6 +18,7 @@ export * from './apis/category-api';
 export * from './apis/company-api';
 export * from './apis/document-api';
 export * from './apis/driver-api';
+export * from './apis/email-api';
 export * from './apis/engine-api';
 export * from './apis/fuel-load-api';
 export * from './apis/fuel-measure-api';

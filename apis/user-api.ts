@@ -19,6 +19,7 @@ import { Configuration } from '../configuration';
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 import { AppUserDTO } from '../models';
 import { AppUserDTOPagedResult } from '../models';
+import { CompanyTenantDTO } from '../models';
 import { EditUserResponse } from '../models';
 import { GenderEnum } from '../models';
 import { SortOrderEnum } from '../models';
@@ -178,19 +179,16 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {string} [firstName] 
          * @param {string} [lastName] 
          * @param {string} [url] 
-         * @param {string} [countryCode] 
          * @param {string} [titleAbbreviation] 
          * @param {GenderEnum} [gender] 
          * @param {string} [phoneNumber] 
          * @param {string} [country] 
          * @param {string} [city] 
          * @param {string} [address] 
-         * @param {Date} [birthDate] 
-         * @param {number} [costPerAppointment] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiUserIdPutForm: async (id: string, imageFile?: Blob, name?: string, firstName?: string, lastName?: string, url?: string, countryCode?: string, titleAbbreviation?: string, gender?: GenderEnum, phoneNumber?: string, country?: string, city?: string, address?: string, birthDate?: Date, costPerAppointment?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiUserIdPutForm: async (id: string, imageFile?: Blob, name?: string, firstName?: string, lastName?: string, url?: string, titleAbbreviation?: string, gender?: GenderEnum, phoneNumber?: string, country?: string, city?: string, address?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling apiUserIdPutForm.');
@@ -237,10 +235,6 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarFormParams.append('Url', url as any);
             }
 
-            if (countryCode !== undefined) { 
-                localVarFormParams.append('countryCode', countryCode as any);
-            }
-
             if (titleAbbreviation !== undefined) { 
                 localVarFormParams.append('titleAbbreviation', titleAbbreviation as any);
             }
@@ -263,14 +257,6 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (address !== undefined) { 
                 localVarFormParams.append('address', address as any);
-            }
-
-            if (birthDate !== undefined) { 
-                localVarFormParams.append('birthDate', birthDate as any);
-            }
-
-            if (costPerAppointment !== undefined) { 
-                localVarFormParams.append('costPerAppointment', costPerAppointment as any);
             }
 
             localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
@@ -419,6 +405,88 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiUserTenantAllCompaniesForUserGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/User/TenantAllCompaniesForUser`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("Authorization")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiUserTenantMyCompaniesGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/User/TenantMyCompanies`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("Authorization")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {string} id 
          * @param {Blob} [image] 
          * @param {*} [options] Override http request option.
@@ -529,20 +597,17 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {string} [firstName] 
          * @param {string} [lastName] 
          * @param {string} [url] 
-         * @param {string} [countryCode] 
          * @param {string} [titleAbbreviation] 
          * @param {GenderEnum} [gender] 
          * @param {string} [phoneNumber] 
          * @param {string} [country] 
          * @param {string} [city] 
          * @param {string} [address] 
-         * @param {Date} [birthDate] 
-         * @param {number} [costPerAppointment] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiUserIdPutForm(id: string, imageFile?: Blob, name?: string, firstName?: string, lastName?: string, url?: string, countryCode?: string, titleAbbreviation?: string, gender?: GenderEnum, phoneNumber?: string, country?: string, city?: string, address?: string, birthDate?: Date, costPerAppointment?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<EditUserResponse>>> {
-            const localVarAxiosArgs = await UserApiAxiosParamCreator(configuration).apiUserIdPutForm(id, imageFile, name, firstName, lastName, url, countryCode, titleAbbreviation, gender, phoneNumber, country, city, address, birthDate, costPerAppointment, options);
+        async apiUserIdPutForm(id: string, imageFile?: Blob, name?: string, firstName?: string, lastName?: string, url?: string, titleAbbreviation?: string, gender?: GenderEnum, phoneNumber?: string, country?: string, city?: string, address?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<EditUserResponse>>> {
+            const localVarAxiosArgs = await UserApiAxiosParamCreator(configuration).apiUserIdPutForm(id, imageFile, name, firstName, lastName, url, titleAbbreviation, gender, phoneNumber, country, city, address, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -575,6 +640,30 @@ export const UserApiFp = function(configuration?: Configuration) {
          */
         async apiUserSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AppUserDTOPagedResult>>> {
             const localVarAxiosArgs = await UserApiAxiosParamCreator(configuration).apiUserSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, active, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiUserTenantAllCompaniesForUserGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<CompanyTenantDTO>>>> {
+            const localVarAxiosArgs = await UserApiAxiosParamCreator(configuration).apiUserTenantAllCompaniesForUserGet(options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiUserTenantMyCompaniesGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<CompanyTenantDTO>>>> {
+            const localVarAxiosArgs = await UserApiAxiosParamCreator(configuration).apiUserTenantMyCompaniesGet(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -638,20 +727,17 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * @param {string} [firstName] 
          * @param {string} [lastName] 
          * @param {string} [url] 
-         * @param {string} [countryCode] 
          * @param {string} [titleAbbreviation] 
          * @param {GenderEnum} [gender] 
          * @param {string} [phoneNumber] 
          * @param {string} [country] 
          * @param {string} [city] 
          * @param {string} [address] 
-         * @param {Date} [birthDate] 
-         * @param {number} [costPerAppointment] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiUserIdPutForm(id: string, imageFile?: Blob, name?: string, firstName?: string, lastName?: string, url?: string, countryCode?: string, titleAbbreviation?: string, gender?: GenderEnum, phoneNumber?: string, country?: string, city?: string, address?: string, birthDate?: Date, costPerAppointment?: number, options?: AxiosRequestConfig): Promise<AxiosResponse<EditUserResponse>> {
-            return UserApiFp(configuration).apiUserIdPutForm(id, imageFile, name, firstName, lastName, url, countryCode, titleAbbreviation, gender, phoneNumber, country, city, address, birthDate, costPerAppointment, options).then((request) => request(axios, basePath));
+        async apiUserIdPutForm(id: string, imageFile?: Blob, name?: string, firstName?: string, lastName?: string, url?: string, titleAbbreviation?: string, gender?: GenderEnum, phoneNumber?: string, country?: string, city?: string, address?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<EditUserResponse>> {
+            return UserApiFp(configuration).apiUserIdPutForm(id, imageFile, name, firstName, lastName, url, titleAbbreviation, gender, phoneNumber, country, city, address, options).then((request) => request(axios, basePath));
         },
         /**
          * Sample request:                   GET api/User/Registrar \\n     [FirstName] Opcional\\n     [LastName] Opcional\\n     \\n     [RoleName] Opcional si se deja vacío sera rol tipo \"User\"\\n     Para los roles existentes consultar el recurso \"/api/Role\"                El user
@@ -676,6 +762,22 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          */
         async apiUserSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<AppUserDTOPagedResult>> {
             return UserApiFp(configuration).apiUserSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, active, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiUserTenantAllCompaniesForUserGet(options?: AxiosRequestConfig): Promise<AxiosResponse<Array<CompanyTenantDTO>>> {
+            return UserApiFp(configuration).apiUserTenantAllCompaniesForUserGet(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiUserTenantMyCompaniesGet(options?: AxiosRequestConfig): Promise<AxiosResponse<Array<CompanyTenantDTO>>> {
+            return UserApiFp(configuration).apiUserTenantMyCompaniesGet(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -735,21 +837,18 @@ export class UserApi extends BaseAPI {
      * @param {string} [firstName] 
      * @param {string} [lastName] 
      * @param {string} [url] 
-     * @param {string} [countryCode] 
      * @param {string} [titleAbbreviation] 
      * @param {GenderEnum} [gender] 
      * @param {string} [phoneNumber] 
      * @param {string} [country] 
      * @param {string} [city] 
      * @param {string} [address] 
-     * @param {Date} [birthDate] 
-     * @param {number} [costPerAppointment] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public async apiUserIdPutForm(id: string, imageFile?: Blob, name?: string, firstName?: string, lastName?: string, url?: string, countryCode?: string, titleAbbreviation?: string, gender?: GenderEnum, phoneNumber?: string, country?: string, city?: string, address?: string, birthDate?: Date, costPerAppointment?: number, options?: AxiosRequestConfig) : Promise<AxiosResponse<EditUserResponse>> {
-        return UserApiFp(this.configuration).apiUserIdPutForm(id, imageFile, name, firstName, lastName, url, countryCode, titleAbbreviation, gender, phoneNumber, country, city, address, birthDate, costPerAppointment, options).then((request) => request(this.axios, this.basePath));
+    public async apiUserIdPutForm(id: string, imageFile?: Blob, name?: string, firstName?: string, lastName?: string, url?: string, titleAbbreviation?: string, gender?: GenderEnum, phoneNumber?: string, country?: string, city?: string, address?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<EditUserResponse>> {
+        return UserApiFp(this.configuration).apiUserIdPutForm(id, imageFile, name, firstName, lastName, url, titleAbbreviation, gender, phoneNumber, country, city, address, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Sample request:                   GET api/User/Registrar \\n     [FirstName] Opcional\\n     [LastName] Opcional\\n     \\n     [RoleName] Opcional si se deja vacío sera rol tipo \"User\"\\n     Para los roles existentes consultar el recurso \"/api/Role\"                El user
@@ -776,6 +875,24 @@ export class UserApi extends BaseAPI {
      */
     public async apiUserSearchGet(page: number, pageSize: number, search?: string, orderByPropertyName?: string, sortOrder?: SortOrderEnum, active?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<AppUserDTOPagedResult>> {
         return UserApiFp(this.configuration).apiUserSearchGet(page, pageSize, search, orderByPropertyName, sortOrder, active, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public async apiUserTenantAllCompaniesForUserGet(options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<CompanyTenantDTO>>> {
+        return UserApiFp(this.configuration).apiUserTenantAllCompaniesForUserGet(options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public async apiUserTenantMyCompaniesGet(options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<CompanyTenantDTO>>> {
+        return UserApiFp(this.configuration).apiUserTenantMyCompaniesGet(options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 

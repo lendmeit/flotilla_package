@@ -12,8 +12,10 @@
  * Do not edit the class manually.
  */
 
+import { CompanyTenantDTO } from './company-tenant-dto';
 import { GenderEnum } from './gender-enum';
 import { SelectDTO } from './select-dto';
+import { TenantLinkStatusEnum } from './tenant-link-status-enum';
  /**
  * 
  *
@@ -125,14 +127,26 @@ export interface AppUserDTO {
     active?: boolean;
 
     /**
-     * @type {number}
+     * @type {boolean}
      * @memberof AppUserDTO
      */
-    costPerAppointment?: number | null;
+    isOwner?: boolean;
+
+    /**
+     * @type {TenantLinkStatusEnum}
+     * @memberof AppUserDTO
+     */
+    tenantLinkStatusEnum?: TenantLinkStatusEnum;
 
     /**
      * @type {Array<SelectDTO>}
      * @memberof AppUserDTO
      */
     department?: Array<SelectDTO> | null;
+
+    /**
+     * @type {Array<CompanyTenantDTO>}
+     * @memberof AppUserDTO
+     */
+    companies?: Array<CompanyTenantDTO> | null;
 }

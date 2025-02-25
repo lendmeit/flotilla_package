@@ -285,52 +285,6 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiAccountTenantCompaniesForUserPost: async (body?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/Account/TenantCompaniesForUser`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("Authorization")
-                    : await configuration.apiKey;
-                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
-            }
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.params) {
-                query.set(key, options.params[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} [body] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
         apiAccountTenantCompanyChangePost: async (body?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/Account/TenantCompanyChange`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -543,19 +497,6 @@ export const AccountApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiAccountTenantCompaniesForUserPost(body?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<CompanyTenantDTO>>>> {
-            const localVarAxiosArgs = await AccountApiAxiosParamCreator(configuration).apiAccountTenantCompaniesForUserPost(body, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
-         * @param {string} [body] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
         async apiAccountTenantCompanyChangePost(body?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AuthResponseDTO>>> {
             const localVarAxiosArgs = await AccountApiAxiosParamCreator(configuration).apiAccountTenantCompanyChangePost(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
@@ -653,15 +594,6 @@ export const AccountApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiAccountTenantCompaniesForUserPost(body?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<CompanyTenantDTO>>> {
-            return AccountApiFp(configuration).apiAccountTenantCompaniesForUserPost(body, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} [body] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
         async apiAccountTenantCompanyChangePost(body?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<AuthResponseDTO>> {
             return AccountApiFp(configuration).apiAccountTenantCompanyChangePost(body, options).then((request) => request(axios, basePath));
         },
@@ -746,16 +678,6 @@ export class AccountApi extends BaseAPI {
      */
     public async apiAccountResetpasswordPost(body?: ResetPasswordModel, options?: AxiosRequestConfig) : Promise<AxiosResponse<boolean>> {
         return AccountApiFp(this.configuration).apiAccountResetpasswordPost(body, options).then((request) => request(this.axios, this.basePath));
-    }
-    /**
-     * 
-     * @param {string} [body] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AccountApi
-     */
-    public async apiAccountTenantCompaniesForUserPost(body?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<CompanyTenantDTO>>> {
-        return AccountApiFp(this.configuration).apiAccountTenantCompaniesForUserPost(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 

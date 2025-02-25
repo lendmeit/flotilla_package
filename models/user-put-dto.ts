@@ -55,12 +55,6 @@ export interface UserPutDTO {
      * @type {string}
      * @memberof UserPutDTO
      */
-    countryCode?: string | null;
-
-    /**
-     * @type {string}
-     * @memberof UserPutDTO
-     */
     titleAbbreviation?: string | null;
 
     /**
@@ -92,16 +86,4 @@ export interface UserPutDTO {
      * @memberof UserPutDTO
      */
     address?: string | null;
-
-    /**
-     * @type {Date}
-     * @memberof UserPutDTO
-     */
-    birthDate?: Date | null;
-
-    /**
-     * @type {number}
-     * @memberof UserPutDTO
-     */
-    costPerAppointment?: number | null;
 }
