@@ -58,6 +58,18 @@ export interface SelectVehicleDTO {
     fuelType?: string | null;
 
     /**
+     * @type {string}
+     * @memberof SelectVehicleDTO
+     */
+    measureId?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof SelectVehicleDTO
+     */
+    fuelMeasureId?: string | null;
+
+    /**
      * @type {CategoryTypeEnum}
      * @memberof SelectVehicleDTO
      */
