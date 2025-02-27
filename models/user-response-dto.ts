@@ -19,85 +19,85 @@ import { SelectDTO } from './select-dto';
  * 
  *
  * @export
- * @interface AppUserDTO
+ * @interface UserResponseDTO
  */
-export interface AppUserDTO {
+export interface UserResponseDTO {
 
     /**
      * @type {string}
-     * @memberof AppUserDTO
+     * @memberof UserResponseDTO
      */
     id?: string | null;
 
     /**
      * @type {string}
-     * @memberof AppUserDTO
+     * @memberof UserResponseDTO
      */
     email?: string | null;
 
     /**
      * @type {string}
-     * @memberof AppUserDTO
+     * @memberof UserResponseDTO
      */
     name?: string | null;
 
     /**
      * @type {string}
-     * @memberof AppUserDTO
+     * @memberof UserResponseDTO
      */
     image?: string | null;
 
     /**
      * @type {string}
-     * @memberof AppUserDTO
+     * @memberof UserResponseDTO
      */
     firstName?: string | null;
 
     /**
      * @type {string}
-     * @memberof AppUserDTO
+     * @memberof UserResponseDTO
      */
     lastName?: string | null;
 
     /**
      * @type {GenderEnum}
-     * @memberof AppUserDTO
+     * @memberof UserResponseDTO
      */
     gender?: GenderEnum;
 
     /**
      * @type {string}
-     * @memberof AppUserDTO
+     * @memberof UserResponseDTO
      */
     url?: string | null;
 
     /**
      * @type {string}
-     * @memberof AppUserDTO
+     * @memberof UserResponseDTO
      */
     countryCode?: string | null;
 
     /**
      * @type {string}
-     * @memberof AppUserDTO
+     * @memberof UserResponseDTO
      */
     phone?: string | null;
 
     /**
-     * @type {boolean}
-     * @memberof AppUserDTO
-     */
-    active?: boolean;
-
-    /**
      * @type {Array<SelectDTO>}
-     * @memberof AppUserDTO
+     * @memberof UserResponseDTO
      */
     department?: Array<SelectDTO> | null;
 
     /**
      * @type {Array<CompanyTenantDTO>}
-     * @memberof AppUserDTO
+     * @memberof UserResponseDTO
      */
     companies?: Array<CompanyTenantDTO> | null;
+
+    /**
+     * @type {string}
+     * @memberof UserResponseDTO
+     */
+    role?: string | null;
 }

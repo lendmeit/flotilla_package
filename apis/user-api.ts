@@ -25,6 +25,7 @@ import { GenderEnum } from '../models';
 import { SortOrderEnum } from '../models';
 import { UserPostDTO } from '../models';
 import { UserPutDTO } from '../models';
+import { UserResponseDTO } from '../models';
 /**
  * UserApi - axios parameter creator
  * @export
@@ -582,7 +583,7 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiUserIdGet(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AppUserDTO>>> {
+        async apiUserIdGet(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<UserResponseDTO>>> {
             const localVarAxiosArgs = await UserApiAxiosParamCreator(configuration).apiUserIdGet(id, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -716,7 +717,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiUserIdGet(id: string, options?: AxiosRequestConfig): Promise<AxiosResponse<AppUserDTO>> {
+        async apiUserIdGet(id: string, options?: AxiosRequestConfig): Promise<AxiosResponse<UserResponseDTO>> {
             return UserApiFp(configuration).apiUserIdGet(id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -826,7 +827,7 @@ export class UserApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public async apiUserIdGet(id: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<AppUserDTO>> {
+    public async apiUserIdGet(id: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<UserResponseDTO>> {
         return UserApiFp(this.configuration).apiUserIdGet(id, options).then((request) => request(this.axios, this.basePath));
     }
     /**

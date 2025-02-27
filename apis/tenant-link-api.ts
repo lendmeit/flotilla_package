@@ -17,7 +17,7 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
-import { TenantLink } from '../models';
+import { TenantLinkDTO } from '../models';
 import { TenantLinkStatusEnum } from '../models';
 import { TenantLinkUserDTO } from '../models';
 /**
@@ -180,7 +180,7 @@ export const TenantLinkApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async changeLinkStatusPut(tenantCompany?: string, vinculacionEstatus?: TenantLinkStatusEnum, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<TenantLink>>>> {
+        async changeLinkStatusPut(tenantCompany?: string, vinculacionEstatus?: TenantLinkStatusEnum, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<TenantLinkDTO>>>> {
             const localVarAxiosArgs = await TenantLinkApiAxiosParamCreator(configuration).changeLinkStatusPut(tenantCompany, vinculacionEstatus, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -192,7 +192,7 @@ export const TenantLinkApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getPendingLinksGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<TenantLink>>>> {
+        async getPendingLinksGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<TenantLinkDTO>>>> {
             const localVarAxiosArgs = await TenantLinkApiAxiosParamCreator(configuration).getPendingLinksGet(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -228,7 +228,7 @@ export const TenantLinkApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async changeLinkStatusPut(tenantCompany?: string, vinculacionEstatus?: TenantLinkStatusEnum, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<TenantLink>>> {
+        async changeLinkStatusPut(tenantCompany?: string, vinculacionEstatus?: TenantLinkStatusEnum, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<TenantLinkDTO>>> {
             return TenantLinkApiFp(configuration).changeLinkStatusPut(tenantCompany, vinculacionEstatus, options).then((request) => request(axios, basePath));
         },
         /**
@@ -236,7 +236,7 @@ export const TenantLinkApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getPendingLinksGet(options?: AxiosRequestConfig): Promise<AxiosResponse<Array<TenantLink>>> {
+        async getPendingLinksGet(options?: AxiosRequestConfig): Promise<AxiosResponse<Array<TenantLinkDTO>>> {
             return TenantLinkApiFp(configuration).getPendingLinksGet(options).then((request) => request(axios, basePath));
         },
         /**
@@ -266,7 +266,7 @@ export class TenantLinkApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TenantLinkApi
      */
-    public async changeLinkStatusPut(tenantCompany?: string, vinculacionEstatus?: TenantLinkStatusEnum, options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<TenantLink>>> {
+    public async changeLinkStatusPut(tenantCompany?: string, vinculacionEstatus?: TenantLinkStatusEnum, options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<TenantLinkDTO>>> {
         return TenantLinkApiFp(this.configuration).changeLinkStatusPut(tenantCompany, vinculacionEstatus, options).then((request) => request(this.axios, this.basePath));
     }
     /**
@@ -275,7 +275,7 @@ export class TenantLinkApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TenantLinkApi
      */
-    public async getPendingLinksGet(options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<TenantLink>>> {
+    public async getPendingLinksGet(options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<TenantLinkDTO>>> {
         return TenantLinkApiFp(this.configuration).getPendingLinksGet(options).then((request) => request(this.axios, this.basePath));
     }
     /**

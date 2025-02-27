@@ -13,6 +13,7 @@
  */
 
 import { TenantCompanyUserPermissionDTO } from './tenant-company-user-permission-dto';
+import { TenantLinkStatusEnum } from './tenant-link-status-enum';
  /**
  * 
  *
@@ -50,6 +51,12 @@ export interface CompanyTenantDTO {
      * @memberof CompanyTenantDTO
      */
     owner?: boolean;
+
+    /**
+     * @type {TenantLinkStatusEnum}
+     * @memberof CompanyTenantDTO
+     */
+    tenantLinkStatusEnum?: TenantLinkStatusEnum;
 
     /**
      * @type {Array<TenantCompanyUserPermissionDTO>}

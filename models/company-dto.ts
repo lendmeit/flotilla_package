@@ -42,11 +42,5 @@ export interface CompanyDTO {
      * @type {string}
      * @memberof CompanyDTO
      */
-    code?: string | null;
-
-    /**
-     * @type {string}
-     * @memberof CompanyDTO
-     */
     description?: string | null;
 }

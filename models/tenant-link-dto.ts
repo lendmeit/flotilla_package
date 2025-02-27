@@ -12,50 +12,36 @@
  * Do not edit the class manually.
  */
 
-import { AppUsuario } from './app-usuario';
-import { TenantCompany } from './tenant-company';
 import { TenantLinkStatusEnum } from './tenant-link-status-enum';
  /**
  * 
  *
  * @export
- * @interface TenantLink
+ * @interface TenantLinkDTO
  */
-export interface TenantLink {
+export interface TenantLinkDTO {
 
     /**
      * @type {number}
-     * @memberof TenantLink
+     * @memberof TenantLinkDTO
      */
     id?: number;
 
     /**
      * @type {string}
-     * @memberof TenantLink
+     * @memberof TenantLinkDTO
      */
     tenantCompanyId?: string | null;
 
     /**
      * @type {string}
-     * @memberof TenantLink
+     * @memberof TenantLinkDTO
      */
     userId?: string | null;
 
     /**
      * @type {TenantLinkStatusEnum}
-     * @memberof TenantLink
+     * @memberof TenantLinkDTO
      */
     status?: TenantLinkStatusEnum;
-
-    /**
-     * @type {TenantCompany}
-     * @memberof TenantLink
-     */
-    tenantCompany?: TenantCompany;
-
-    /**
-     * @type {AppUsuario}
-     * @memberof TenantLink
-     */
-    user?: AppUsuario;
 }
