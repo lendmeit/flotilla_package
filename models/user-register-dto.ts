@@ -16,37 +16,43 @@
  * 
  *
  * @export
- * @interface UserPostDTO
+ * @interface UserRegisterDTO
  */
-export interface UserPostDTO {
+export interface UserRegisterDTO {
 
     /**
      * @type {string}
-     * @memberof UserPostDTO
+     * @memberof UserRegisterDTO
      */
     email: string;
 
     /**
      * @type {string}
-     * @memberof UserPostDTO
+     * @memberof UserRegisterDTO
      */
     password: string;
 
     /**
      * @type {string}
-     * @memberof UserPostDTO
+     * @memberof UserRegisterDTO
      */
     firstName?: string | null;
 
     /**
      * @type {string}
-     * @memberof UserPostDTO
+     * @memberof UserRegisterDTO
      */
     lastName?: string | null;
 
     /**
      * @type {string}
-     * @memberof UserPostDTO
+     * @memberof UserRegisterDTO
      */
     roleName?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof UserRegisterDTO
+     */
+    companyName: string;
 }

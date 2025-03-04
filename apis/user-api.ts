@@ -22,9 +22,10 @@ import { AppUserDTOPagedResult } from '../models';
 import { CompanyTenantDTO } from '../models';
 import { EditUserResponse } from '../models';
 import { GenderEnum } from '../models';
+import { RoleTenatDTO } from '../models';
 import { SortOrderEnum } from '../models';
-import { UserPostDTO } from '../models';
 import { UserPutDTO } from '../models';
+import { UserRegisterDTO } from '../models';
 import { UserResponseDTO } from '../models';
 /**
  * UserApi - axios parameter creator
@@ -32,6 +33,92 @@ import { UserResponseDTO } from '../models';
  */
 export const UserApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * 
+         * @param {string} [email] 
+         * @param {string} [password] 
+         * @param {Array<RoleTenatDTO>} [roleCompany] 
+         * @param {Blob} [imageFile] 
+         * @param {string} [firstName] 
+         * @param {string} [lastName] 
+         * @param {GenderEnum} [gender] 
+         * @param {string} [phoneNumber] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiUserCreateUserPostForm: async (email?: string, password?: string, roleCompany?: Array<RoleTenatDTO>, imageFile?: Blob, firstName?: string, lastName?: string, gender?: GenderEnum, phoneNumber?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/User/CreateUser`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new FormData();
+
+            // authentication Bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("Authorization")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+
+            if (email !== undefined) { 
+                localVarFormParams.append('Email', email as any);
+            }
+
+            if (password !== undefined) { 
+                localVarFormParams.append('Password', password as any);
+            }
+            if (roleCompany) {
+                roleCompany.forEach((element) => {
+                    localVarFormParams.append('RoleCompany', element as any);
+                })
+            }
+
+            if (imageFile !== undefined) { 
+                localVarFormParams.append('ImageFile', imageFile as any);
+            }
+
+            if (firstName !== undefined) { 
+                localVarFormParams.append('FirstName', firstName as any);
+            }
+
+            if (lastName !== undefined) { 
+                localVarFormParams.append('LastName', lastName as any);
+            }
+
+            if (gender !== undefined) { 
+                localVarFormParams.append('Gender', gender as any);
+            }
+
+            if (phoneNumber !== undefined) { 
+                localVarFormParams.append('PhoneNumber', phoneNumber as any);
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * 
          * @param {string} id 
@@ -176,20 +263,14 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * 
          * @param {string} id 
          * @param {Blob} [imageFile] 
-         * @param {string} [name] 
          * @param {string} [firstName] 
          * @param {string} [lastName] 
-         * @param {string} [url] 
-         * @param {string} [titleAbbreviation] 
          * @param {GenderEnum} [gender] 
          * @param {string} [phoneNumber] 
-         * @param {string} [country] 
-         * @param {string} [city] 
-         * @param {string} [address] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiUserIdPutForm: async (id: string, imageFile?: Blob, name?: string, firstName?: string, lastName?: string, url?: string, titleAbbreviation?: string, gender?: GenderEnum, phoneNumber?: string, country?: string, city?: string, address?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiUserIdPutForm: async (id: string, imageFile?: Blob, firstName?: string, lastName?: string, gender?: GenderEnum, phoneNumber?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling apiUserIdPutForm.');
@@ -217,47 +298,23 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
 
 
             if (imageFile !== undefined) { 
-                localVarFormParams.append('imageFile', imageFile as any);
-            }
-
-            if (name !== undefined) { 
-                localVarFormParams.append('name', name as any);
+                localVarFormParams.append('ImageFile', imageFile as any);
             }
 
             if (firstName !== undefined) { 
-                localVarFormParams.append('firstName', firstName as any);
+                localVarFormParams.append('FirstName', firstName as any);
             }
 
             if (lastName !== undefined) { 
-                localVarFormParams.append('lastName', lastName as any);
-            }
-
-            if (url !== undefined) { 
-                localVarFormParams.append('Url', url as any);
-            }
-
-            if (titleAbbreviation !== undefined) { 
-                localVarFormParams.append('titleAbbreviation', titleAbbreviation as any);
+                localVarFormParams.append('LastName', lastName as any);
             }
 
             if (gender !== undefined) { 
-                localVarFormParams.append('gender', gender as any);
+                localVarFormParams.append('Gender', gender as any);
             }
 
             if (phoneNumber !== undefined) { 
-                localVarFormParams.append('phoneNumber', phoneNumber as any);
-            }
-
-            if (country !== undefined) { 
-                localVarFormParams.append('country', country as any);
-            }
-
-            if (city !== undefined) { 
-                localVarFormParams.append('city', city as any);
-            }
-
-            if (address !== undefined) { 
-                localVarFormParams.append('address', address as any);
+                localVarFormParams.append('PhoneNumber', phoneNumber as any);
             }
 
             localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
@@ -281,12 +338,12 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Sample request:                   GET api/User/Registrar \\n     [FirstName] Opcional\\n     [LastName] Opcional\\n     \\n     [RoleName] Opcional si se deja vacío sera rol tipo \"User\"\\n     Para los roles existentes consultar el recurso \"/api/Role\"                El user
          * @summary Endpoint para el registro de los usuarios
-         * @param {UserPostDTO} [body] 
+         * @param {UserRegisterDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiUserPost: async (body?: UserPostDTO, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/User`;
+        apiUserRegisterPost: async (body?: UserRegisterDTO, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/User/Register`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -553,6 +610,26 @@ export const UserApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {string} [email] 
+         * @param {string} [password] 
+         * @param {Array<RoleTenatDTO>} [roleCompany] 
+         * @param {Blob} [imageFile] 
+         * @param {string} [firstName] 
+         * @param {string} [lastName] 
+         * @param {GenderEnum} [gender] 
+         * @param {string} [phoneNumber] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiUserCreateUserPostForm(email?: string, password?: string, roleCompany?: Array<RoleTenatDTO>, imageFile?: Blob, firstName?: string, lastName?: string, gender?: GenderEnum, phoneNumber?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<EditUserResponse>>> {
+            const localVarAxiosArgs = await UserApiAxiosParamCreator(configuration).apiUserCreateUserPostForm(email, password, roleCompany, imageFile, firstName, lastName, gender, phoneNumber, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
          * @param {string} id 
          * @param {UserPutDTO} [body] 
          * @param {*} [options] Override http request option.
@@ -594,21 +671,15 @@ export const UserApiFp = function(configuration?: Configuration) {
          * 
          * @param {string} id 
          * @param {Blob} [imageFile] 
-         * @param {string} [name] 
          * @param {string} [firstName] 
          * @param {string} [lastName] 
-         * @param {string} [url] 
-         * @param {string} [titleAbbreviation] 
          * @param {GenderEnum} [gender] 
          * @param {string} [phoneNumber] 
-         * @param {string} [country] 
-         * @param {string} [city] 
-         * @param {string} [address] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiUserIdPutForm(id: string, imageFile?: Blob, name?: string, firstName?: string, lastName?: string, url?: string, titleAbbreviation?: string, gender?: GenderEnum, phoneNumber?: string, country?: string, city?: string, address?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<EditUserResponse>>> {
-            const localVarAxiosArgs = await UserApiAxiosParamCreator(configuration).apiUserIdPutForm(id, imageFile, name, firstName, lastName, url, titleAbbreviation, gender, phoneNumber, country, city, address, options);
+        async apiUserIdPutForm(id: string, imageFile?: Blob, firstName?: string, lastName?: string, gender?: GenderEnum, phoneNumber?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<EditUserResponse>>> {
+            const localVarAxiosArgs = await UserApiAxiosParamCreator(configuration).apiUserIdPutForm(id, imageFile, firstName, lastName, gender, phoneNumber, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -617,12 +688,12 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * Sample request:                   GET api/User/Registrar \\n     [FirstName] Opcional\\n     [LastName] Opcional\\n     \\n     [RoleName] Opcional si se deja vacío sera rol tipo \"User\"\\n     Para los roles existentes consultar el recurso \"/api/Role\"                El user
          * @summary Endpoint para el registro de los usuarios
-         * @param {UserPostDTO} [body] 
+         * @param {UserRegisterDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiUserPost(body?: UserPostDTO, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<string>>> {
-            const localVarAxiosArgs = await UserApiAxiosParamCreator(configuration).apiUserPost(body, options);
+        async apiUserRegisterPost(body?: UserRegisterDTO, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<string>>> {
+            const localVarAxiosArgs = await UserApiAxiosParamCreator(configuration).apiUserRegisterPost(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -695,6 +766,22 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
     return {
         /**
          * 
+         * @param {string} [email] 
+         * @param {string} [password] 
+         * @param {Array<RoleTenatDTO>} [roleCompany] 
+         * @param {Blob} [imageFile] 
+         * @param {string} [firstName] 
+         * @param {string} [lastName] 
+         * @param {GenderEnum} [gender] 
+         * @param {string} [phoneNumber] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiUserCreateUserPostForm(email?: string, password?: string, roleCompany?: Array<RoleTenatDTO>, imageFile?: Blob, firstName?: string, lastName?: string, gender?: GenderEnum, phoneNumber?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<EditUserResponse>> {
+            return UserApiFp(configuration).apiUserCreateUserPostForm(email, password, roleCompany, imageFile, firstName, lastName, gender, phoneNumber, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {string} id 
          * @param {UserPutDTO} [body] 
          * @param {*} [options] Override http request option.
@@ -724,31 +811,25 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * 
          * @param {string} id 
          * @param {Blob} [imageFile] 
-         * @param {string} [name] 
          * @param {string} [firstName] 
          * @param {string} [lastName] 
-         * @param {string} [url] 
-         * @param {string} [titleAbbreviation] 
          * @param {GenderEnum} [gender] 
          * @param {string} [phoneNumber] 
-         * @param {string} [country] 
-         * @param {string} [city] 
-         * @param {string} [address] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiUserIdPutForm(id: string, imageFile?: Blob, name?: string, firstName?: string, lastName?: string, url?: string, titleAbbreviation?: string, gender?: GenderEnum, phoneNumber?: string, country?: string, city?: string, address?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<EditUserResponse>> {
-            return UserApiFp(configuration).apiUserIdPutForm(id, imageFile, name, firstName, lastName, url, titleAbbreviation, gender, phoneNumber, country, city, address, options).then((request) => request(axios, basePath));
+        async apiUserIdPutForm(id: string, imageFile?: Blob, firstName?: string, lastName?: string, gender?: GenderEnum, phoneNumber?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<EditUserResponse>> {
+            return UserApiFp(configuration).apiUserIdPutForm(id, imageFile, firstName, lastName, gender, phoneNumber, options).then((request) => request(axios, basePath));
         },
         /**
          * Sample request:                   GET api/User/Registrar \\n     [FirstName] Opcional\\n     [LastName] Opcional\\n     \\n     [RoleName] Opcional si se deja vacío sera rol tipo \"User\"\\n     Para los roles existentes consultar el recurso \"/api/Role\"                El user
          * @summary Endpoint para el registro de los usuarios
-         * @param {UserPostDTO} [body] 
+         * @param {UserRegisterDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiUserPost(body?: UserPostDTO, options?: AxiosRequestConfig): Promise<AxiosResponse<string>> {
-            return UserApiFp(configuration).apiUserPost(body, options).then((request) => request(axios, basePath));
+        async apiUserRegisterPost(body?: UserRegisterDTO, options?: AxiosRequestConfig): Promise<AxiosResponse<string>> {
+            return UserApiFp(configuration).apiUserRegisterPost(body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -802,6 +883,23 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
 export class UserApi extends BaseAPI {
     /**
      * 
+     * @param {string} [email] 
+     * @param {string} [password] 
+     * @param {Array<RoleTenatDTO>} [roleCompany] 
+     * @param {Blob} [imageFile] 
+     * @param {string} [firstName] 
+     * @param {string} [lastName] 
+     * @param {GenderEnum} [gender] 
+     * @param {string} [phoneNumber] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public async apiUserCreateUserPostForm(email?: string, password?: string, roleCompany?: Array<RoleTenatDTO>, imageFile?: Blob, firstName?: string, lastName?: string, gender?: GenderEnum, phoneNumber?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<EditUserResponse>> {
+        return UserApiFp(this.configuration).apiUserCreateUserPostForm(email, password, roleCompany, imageFile, firstName, lastName, gender, phoneNumber, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
      * @param {string} id 
      * @param {UserPutDTO} [body] 
      * @param {*} [options] Override http request option.
@@ -834,33 +932,27 @@ export class UserApi extends BaseAPI {
      * 
      * @param {string} id 
      * @param {Blob} [imageFile] 
-     * @param {string} [name] 
      * @param {string} [firstName] 
      * @param {string} [lastName] 
-     * @param {string} [url] 
-     * @param {string} [titleAbbreviation] 
      * @param {GenderEnum} [gender] 
      * @param {string} [phoneNumber] 
-     * @param {string} [country] 
-     * @param {string} [city] 
-     * @param {string} [address] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public async apiUserIdPutForm(id: string, imageFile?: Blob, name?: string, firstName?: string, lastName?: string, url?: string, titleAbbreviation?: string, gender?: GenderEnum, phoneNumber?: string, country?: string, city?: string, address?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<EditUserResponse>> {
-        return UserApiFp(this.configuration).apiUserIdPutForm(id, imageFile, name, firstName, lastName, url, titleAbbreviation, gender, phoneNumber, country, city, address, options).then((request) => request(this.axios, this.basePath));
+    public async apiUserIdPutForm(id: string, imageFile?: Blob, firstName?: string, lastName?: string, gender?: GenderEnum, phoneNumber?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<EditUserResponse>> {
+        return UserApiFp(this.configuration).apiUserIdPutForm(id, imageFile, firstName, lastName, gender, phoneNumber, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Sample request:                   GET api/User/Registrar \\n     [FirstName] Opcional\\n     [LastName] Opcional\\n     \\n     [RoleName] Opcional si se deja vacío sera rol tipo \"User\"\\n     Para los roles existentes consultar el recurso \"/api/Role\"                El user
      * @summary Endpoint para el registro de los usuarios
-     * @param {UserPostDTO} [body] 
+     * @param {UserRegisterDTO} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public async apiUserPost(body?: UserPostDTO, options?: AxiosRequestConfig) : Promise<AxiosResponse<string>> {
-        return UserApiFp(this.configuration).apiUserPost(body, options).then((request) => request(this.axios, this.basePath));
+    public async apiUserRegisterPost(body?: UserRegisterDTO, options?: AxiosRequestConfig) : Promise<AxiosResponse<string>> {
+        return UserApiFp(this.configuration).apiUserRegisterPost(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 

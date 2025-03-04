@@ -13,41 +13,60 @@
  */
 
 import { GenderEnum } from './gender-enum';
+import { RoleTenatDTO } from './role-tenat-dto';
  /**
  * 
  *
  * @export
- * @interface UserPutDTO
+ * @interface UserCreateUserBody
  */
-export interface UserPutDTO {
-
-    /**
-     * @type {Blob}
-     * @memberof UserPutDTO
-     */
-    imageFile?: Blob | null;
+export interface UserCreateUserBody {
 
     /**
      * @type {string}
-     * @memberof UserPutDTO
+     * @memberof UserCreateUserBody
+     */
+    email: string;
+
+    /**
+     * @type {string}
+     * @memberof UserCreateUserBody
+     */
+    password: string;
+
+    /**
+     * @type {Array<RoleTenatDTO>}
+     * @memberof UserCreateUserBody
+     */
+    roleCompany: Array<RoleTenatDTO>;
+
+    /**
+     * @type {Blob}
+     * @memberof UserCreateUserBody
+     */
+    imageFile?: Blob;
+
+    /**
+     * @type {string}
+     * @memberof UserCreateUserBody
      */
     firstName: string;
 
     /**
      * @type {string}
-     * @memberof UserPutDTO
+     * @memberof UserCreateUserBody
      */
     lastName: string;
 
     /**
      * @type {GenderEnum}
-     * @memberof UserPutDTO
+     * @memberof UserCreateUserBody
      */
     gender?: GenderEnum;
 
     /**
      * @type {string}
-     * @memberof UserPutDTO
+     * @memberof UserCreateUserBody
      */
     phoneNumber: string;
 }

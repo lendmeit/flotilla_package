@@ -31,12 +31,6 @@ export interface UserIdBody {
      * @type {string}
      * @memberof UserIdBody
      */
-    name?: string;
-
-    /**
-     * @type {string}
-     * @memberof UserIdBody
-     */
     firstName: string;
 
     /**
@@ -44,18 +38,6 @@ export interface UserIdBody {
      * @memberof UserIdBody
      */
     lastName: string;
-
-    /**
-     * @type {string}
-     * @memberof UserIdBody
-     */
-    url?: string;
-
-    /**
-     * @type {string}
-     * @memberof UserIdBody
-     */
-    titleAbbreviation?: string;
 
     /**
      * @type {GenderEnum}
@@ -68,22 +50,4 @@ export interface UserIdBody {
      * @memberof UserIdBody
      */
     phoneNumber: string;
-
-    /**
-     * @type {string}
-     * @memberof UserIdBody
-     */
-    country?: string;
-
-    /**
-     * @type {string}
-     * @memberof UserIdBody
-     */
-    city?: string;
-
-    /**
-     * @type {string}
-     * @memberof UserIdBody
-     */
-    address?: string;
 }

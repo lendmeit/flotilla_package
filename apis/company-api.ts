@@ -19,6 +19,7 @@ import { Configuration } from '../configuration';
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 import { CompanyDTO } from '../models';
 import { CompanyDTOPagedResult } from '../models';
+import { CompanyPostDTO } from '../models';
 import { SortOrderEnum } from '../models';
 /**
  * CompanyApi - axios parameter creator
@@ -219,11 +220,11 @@ export const CompanyApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {CompanyDTO} [body] 
+         * @param {CompanyPostDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiCompanyPost: async (body?: CompanyDTO, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiCompanyPost: async (body?: CompanyPostDTO, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/Company`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -405,11 +406,11 @@ export const CompanyApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {CompanyDTO} [body] 
+         * @param {CompanyPostDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiCompanyPost(body?: CompanyDTO, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<string>>> {
+        async apiCompanyPost(body?: CompanyPostDTO, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<string>>> {
             const localVarAxiosArgs = await CompanyApiAxiosParamCreator(configuration).apiCompanyPost(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -481,11 +482,11 @@ export const CompanyApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @param {CompanyDTO} [body] 
+         * @param {CompanyPostDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiCompanyPost(body?: CompanyDTO, options?: AxiosRequestConfig): Promise<AxiosResponse<string>> {
+        async apiCompanyPost(body?: CompanyPostDTO, options?: AxiosRequestConfig): Promise<AxiosResponse<string>> {
             return CompanyApiFp(configuration).apiCompanyPost(body, options).then((request) => request(axios, basePath));
         },
         /**
@@ -554,12 +555,12 @@ export class CompanyApi extends BaseAPI {
     }
     /**
      * 
-     * @param {CompanyDTO} [body] 
+     * @param {CompanyPostDTO} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CompanyApi
      */
-    public async apiCompanyPost(body?: CompanyDTO, options?: AxiosRequestConfig) : Promise<AxiosResponse<string>> {
+    public async apiCompanyPost(body?: CompanyPostDTO, options?: AxiosRequestConfig) : Promise<AxiosResponse<string>> {
         return CompanyApiFp(this.configuration).apiCompanyPost(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**

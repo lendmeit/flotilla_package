@@ -16,37 +16,43 @@
  * 
  *
  * @export
- * @interface CompanyDTO
+ * @interface CompanyPostDTO
  */
-export interface CompanyDTO {
+export interface CompanyPostDTO {
 
     /**
      * @type {string}
-     * @memberof CompanyDTO
+     * @memberof CompanyPostDTO
      */
     id?: string | null;
 
     /**
      * @type {boolean}
-     * @memberof CompanyDTO
+     * @memberof CompanyPostDTO
      */
     active?: boolean;
 
     /**
      * @type {string}
-     * @memberof CompanyDTO
+     * @memberof CompanyPostDTO
      */
     name?: string | null;
 
     /**
      * @type {string}
-     * @memberof CompanyDTO
+     * @memberof CompanyPostDTO
      */
     description?: string | null;
 
     /**
      * @type {string}
-     * @memberof CompanyDTO
+     * @memberof CompanyPostDTO
      */
     logo?: string | null;
+
+    /**
+     * @type {Blob}
+     * @memberof CompanyPostDTO
+     */
+    logoFile?: Blob | null;
 }
