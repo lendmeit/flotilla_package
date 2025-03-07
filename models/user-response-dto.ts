@@ -14,6 +14,7 @@
 
 import { CompanyTenantDTO } from './company-tenant-dto';
 import { GenderEnum } from './gender-enum';
+import { RoleTenantDTO } from './role-tenant-dto';
 import { SelectDTO } from './select-dto';
  /**
  * 
@@ -94,6 +95,12 @@ export interface UserResponseDTO {
      * @memberof UserResponseDTO
      */
     companies?: Array<CompanyTenantDTO> | null;
+
+    /**
+     * @type {Array<RoleTenantDTO>}
+     * @memberof UserResponseDTO
+     */
+    roleCompany?: Array<RoleTenantDTO> | null;
 
     /**
      * @type {string}

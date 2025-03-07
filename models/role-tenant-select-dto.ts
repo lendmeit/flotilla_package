@@ -12,23 +12,30 @@
  * Do not edit the class manually.
  */
 
+import { SelectDTO } from './select-dto';
  /**
  * 
  *
  * @export
- * @interface RoleTenatDTO
+ * @interface RoleTenantSelectDTO
  */
-export interface RoleTenatDTO {
+export interface RoleTenantSelectDTO {
 
     /**
      * @type {string}
-     * @memberof RoleTenatDTO
+     * @memberof RoleTenantSelectDTO
      */
-    roleId: string;
+    tenantCompanyId?: string | null;
 
     /**
      * @type {string}
-     * @memberof RoleTenatDTO
+     * @memberof RoleTenantSelectDTO
      */
-    tenantCompanyId: string;
+    tenantCompanyName?: string | null;
+
+    /**
+     * @type {Array<SelectDTO>}
+     * @memberof RoleTenantSelectDTO
+     */
+    roles?: Array<SelectDTO> | null;
 }

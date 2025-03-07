@@ -13,6 +13,7 @@
  */
 
 import { GenderEnum } from './gender-enum';
+import { RoleTenantDTO } from './role-tenant-dto';
  /**
  * 
  *
@@ -50,4 +51,10 @@ export interface UserIdBody {
      * @memberof UserIdBody
      */
     phoneNumber: string;
+
+    /**
+     * @type {Array<RoleTenantDTO>}
+     * @memberof UserIdBody
+     */
+    roleCompany?: Array<RoleTenantDTO>;
 }

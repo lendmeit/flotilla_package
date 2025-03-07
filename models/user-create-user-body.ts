@@ -13,7 +13,7 @@
  */
 
 import { GenderEnum } from './gender-enum';
-import { RoleTenatDTO } from './role-tenat-dto';
+import { RoleTenantDTO } from './role-tenant-dto';
  /**
  * 
  *
@@ -33,12 +33,6 @@ export interface UserCreateUserBody {
      * @memberof UserCreateUserBody
      */
     password: string;
-
-    /**
-     * @type {Array<RoleTenatDTO>}
-     * @memberof UserCreateUserBody
-     */
-    roleCompany: Array<RoleTenatDTO>;
 
     /**
      * @type {Blob}
@@ -69,4 +63,10 @@ export interface UserCreateUserBody {
      * @memberof UserCreateUserBody
      */
     phoneNumber: string;
+
+    /**
+     * @type {Array<RoleTenantDTO>}
+     * @memberof UserCreateUserBody
+     */
+    roleCompany?: Array<RoleTenantDTO>;
 }

@@ -12,30 +12,23 @@
  * Do not edit the class manually.
  */
 
-import { PermissionsEnum } from './permissions-enum';
  /**
  * 
  *
  * @export
- * @interface PermissionUserDTO
+ * @interface RoleTenantDTO
  */
-export interface PermissionUserDTO {
-
-    /**
-     * @type {PermissionsEnum}
-     * @memberof PermissionUserDTO
-     */
-    permission?: PermissionsEnum;
-
-    /**
-     * @type {boolean}
-     * @memberof PermissionUserDTO
-     */
-    had?: boolean;
+export interface RoleTenantDTO {
 
     /**
      * @type {string}
-     * @memberof PermissionUserDTO
+     * @memberof RoleTenantDTO
      */
-    description?: string | null;
+    roleId: string;
+
+    /**
+     * @type {string}
+     * @memberof RoleTenantDTO
+     */
+    tenantCompanyId: string;
 }

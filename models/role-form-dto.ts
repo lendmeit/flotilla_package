@@ -12,41 +12,36 @@
  * Do not edit the class manually.
  */
 
+import { PermissionScreenDTO } from './permission-screen-dto';
  /**
  * 
  *
  * @export
- * @interface VendorDTO
+ * @interface RoleFormDTO
  */
-export interface VendorDTO {
+export interface RoleFormDTO {
 
     /**
      * @type {string}
-     * @memberof VendorDTO
+     * @memberof RoleFormDTO
      */
     id?: string | null;
 
     /**
-     * @type {boolean}
-     * @memberof VendorDTO
-     */
-    active?: boolean;
-
-    /**
      * @type {string}
-     * @memberof VendorDTO
+     * @memberof RoleFormDTO
      */
     name?: string | null;
 
     /**
-     * @type {string}
-     * @memberof VendorDTO
+     * @type {boolean}
+     * @memberof RoleFormDTO
      */
-    code?: string | null;
+    active?: boolean;
 
     /**
-     * @type {string}
-     * @memberof VendorDTO
+     * @type {Array<PermissionScreenDTO>}
+     * @memberof RoleFormDTO
      */
-    description?: string | null;
+    permissions?: Array<PermissionScreenDTO> | null;
 }

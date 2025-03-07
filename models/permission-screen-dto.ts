@@ -17,25 +17,19 @@ import { PermissionFormDTO } from './permission-form-dto';
  * 
  *
  * @export
- * @interface AdminPermissionsDTO
+ * @interface PermissionScreenDTO
  */
-export interface AdminPermissionsDTO {
+export interface PermissionScreenDTO {
 
     /**
      * @type {string}
-     * @memberof AdminPermissionsDTO
+     * @memberof PermissionScreenDTO
      */
-    userId?: string | null;
-
-    /**
-     * @type {string}
-     * @memberof AdminPermissionsDTO
-     */
-    email?: string | null;
+    screen?: string | null;
 
     /**
      * @type {Array<PermissionFormDTO>}
-     * @memberof AdminPermissionsDTO
+     * @memberof PermissionScreenDTO
      */
     permissions?: Array<PermissionFormDTO> | null;
 }

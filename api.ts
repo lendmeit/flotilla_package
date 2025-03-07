@@ -51,5 +51,4 @@ export * from './apis/tenant-link-api';
 export * from './apis/user-api';
 export * from './apis/user-vehicle-api';
 export * from './apis/vehicle-api';
-export * from './apis/vendor-api';
 
