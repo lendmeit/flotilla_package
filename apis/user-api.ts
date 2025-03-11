@@ -215,17 +215,12 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
-         * @param {string} id 
+         * @param {string} [id] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiUserIdGet: async (id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling apiUserIdGet.');
-            }
-            const localVarPath = `/api/User/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+        apiUserGetFormGet: async (id?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/User/GetForm`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -242,6 +237,10 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
                     ? await configuration.apiKey("Authorization")
                     : await configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            if (id !== undefined) {
+                localVarQueryParameter['id'] = id;
             }
 
             const query = new URLSearchParams(localVarUrlObj.search);
@@ -266,12 +265,12 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiUserIdGetFormGet: async (id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiUserIdGet: async (id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling apiUserIdGetFormGet.');
+                throw new RequiredError('id','Required parameter id was null or undefined when calling apiUserIdGet.');
             }
-            const localVarPath = `/api/User/{id}/GetForm`
+            const localVarPath = `/api/User/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -710,12 +709,12 @@ export const UserApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {string} id 
+         * @param {string} [id] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiUserIdGet(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<UserResponseDTO>>> {
-            const localVarAxiosArgs = await UserApiAxiosParamCreator(configuration).apiUserIdGet(id, options);
+        async apiUserGetFormGet(id?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<GeUsertFormDTO>>> {
+            const localVarAxiosArgs = await UserApiAxiosParamCreator(configuration).apiUserGetFormGet(id, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -727,8 +726,8 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiUserIdGetFormGet(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<GeUsertFormDTO>>> {
-            const localVarAxiosArgs = await UserApiAxiosParamCreator(configuration).apiUserIdGetFormGet(id, options);
+        async apiUserIdGet(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<UserResponseDTO>>> {
+            const localVarAxiosArgs = await UserApiAxiosParamCreator(configuration).apiUserIdGet(id, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -868,12 +867,12 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * 
-         * @param {string} id 
+         * @param {string} [id] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiUserIdGet(id: string, options?: AxiosRequestConfig): Promise<AxiosResponse<UserResponseDTO>> {
-            return UserApiFp(configuration).apiUserIdGet(id, options).then((request) => request(axios, basePath));
+        async apiUserGetFormGet(id?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<GeUsertFormDTO>> {
+            return UserApiFp(configuration).apiUserGetFormGet(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -881,8 +880,8 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiUserIdGetFormGet(id: string, options?: AxiosRequestConfig): Promise<AxiosResponse<GeUsertFormDTO>> {
-            return UserApiFp(configuration).apiUserIdGetFormGet(id, options).then((request) => request(axios, basePath));
+        async apiUserIdGet(id: string, options?: AxiosRequestConfig): Promise<AxiosResponse<UserResponseDTO>> {
+            return UserApiFp(configuration).apiUserIdGet(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -998,13 +997,13 @@ export class UserApi extends BaseAPI {
     }
     /**
      * 
-     * @param {string} id 
+     * @param {string} [id] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public async apiUserIdGet(id: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<UserResponseDTO>> {
-        return UserApiFp(this.configuration).apiUserIdGet(id, options).then((request) => request(this.axios, this.basePath));
+    public async apiUserGetFormGet(id?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<GeUsertFormDTO>> {
+        return UserApiFp(this.configuration).apiUserGetFormGet(id, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
@@ -1013,8 +1012,8 @@ export class UserApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public async apiUserIdGetFormGet(id: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<GeUsertFormDTO>> {
-        return UserApiFp(this.configuration).apiUserIdGetFormGet(id, options).then((request) => request(this.axios, this.basePath));
+    public async apiUserIdGet(id: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<UserResponseDTO>> {
+        return UserApiFp(this.configuration).apiUserIdGet(id, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 

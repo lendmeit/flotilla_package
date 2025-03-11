@@ -70,24 +70,19 @@ export const RoleApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
-         * @param {string} id 
+         * @param {string} [id] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiRoleIdDelete: async (id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling apiRoleIdDelete.');
-            }
-            const localVarPath = `/api/Role/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+        apiRoleGetFormGet: async (id?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Role/GetForm`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions :AxiosRequestConfig = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -97,6 +92,10 @@ export const RoleApiAxiosParamCreator = function (configuration?: Configuration)
                     ? await configuration.apiKey("Authorization")
                     : await configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            if (id !== undefined) {
+                localVarQueryParameter['id'] = id;
             }
 
             const query = new URLSearchParams(localVarUrlObj.search);
@@ -121,12 +120,12 @@ export const RoleApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiRoleIdFormGet: async (id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiRoleIdDelete: async (id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling apiRoleIdFormGet.');
+                throw new RequiredError('id','Required parameter id was null or undefined when calling apiRoleIdDelete.');
             }
-            const localVarPath = `/api/Role/{id}/Form`
+            const localVarPath = `/api/Role/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -134,7 +133,7 @@ export const RoleApiAxiosParamCreator = function (configuration?: Configuration)
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -413,12 +412,12 @@ export const RoleApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {string} id 
+         * @param {string} [id] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiRoleIdDelete(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<boolean>>> {
-            const localVarAxiosArgs = await RoleApiAxiosParamCreator(configuration).apiRoleIdDelete(id, options);
+        async apiRoleGetFormGet(id?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<RoleFormDTO>>> {
+            const localVarAxiosArgs = await RoleApiAxiosParamCreator(configuration).apiRoleGetFormGet(id, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -430,8 +429,8 @@ export const RoleApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiRoleIdFormGet(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<RoleFormDTO>>> {
-            const localVarAxiosArgs = await RoleApiAxiosParamCreator(configuration).apiRoleIdFormGet(id, options);
+        async apiRoleIdDelete(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<boolean>>> {
+            const localVarAxiosArgs = await RoleApiAxiosParamCreator(configuration).apiRoleIdDelete(id, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -514,12 +513,12 @@ export const RoleApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * 
-         * @param {string} id 
+         * @param {string} [id] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiRoleIdDelete(id: string, options?: AxiosRequestConfig): Promise<AxiosResponse<boolean>> {
-            return RoleApiFp(configuration).apiRoleIdDelete(id, options).then((request) => request(axios, basePath));
+        async apiRoleGetFormGet(id?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<RoleFormDTO>> {
+            return RoleApiFp(configuration).apiRoleGetFormGet(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -527,8 +526,8 @@ export const RoleApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiRoleIdFormGet(id: string, options?: AxiosRequestConfig): Promise<AxiosResponse<RoleFormDTO>> {
-            return RoleApiFp(configuration).apiRoleIdFormGet(id, options).then((request) => request(axios, basePath));
+        async apiRoleIdDelete(id: string, options?: AxiosRequestConfig): Promise<AxiosResponse<boolean>> {
+            return RoleApiFp(configuration).apiRoleIdDelete(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -593,13 +592,13 @@ export class RoleApi extends BaseAPI {
     }
     /**
      * 
-     * @param {string} id 
+     * @param {string} [id] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RoleApi
      */
-    public async apiRoleIdDelete(id: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<boolean>> {
-        return RoleApiFp(this.configuration).apiRoleIdDelete(id, options).then((request) => request(this.axios, this.basePath));
+    public async apiRoleGetFormGet(id?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<RoleFormDTO>> {
+        return RoleApiFp(this.configuration).apiRoleGetFormGet(id, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
@@ -608,8 +607,8 @@ export class RoleApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof RoleApi
      */
-    public async apiRoleIdFormGet(id: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<RoleFormDTO>> {
-        return RoleApiFp(this.configuration).apiRoleIdFormGet(id, options).then((request) => request(this.axios, this.basePath));
+    public async apiRoleIdDelete(id: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<boolean>> {
+        return RoleApiFp(this.configuration).apiRoleIdDelete(id, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
