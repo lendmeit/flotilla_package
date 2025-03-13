@@ -210,12 +210,12 @@ export const RoleApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
-         * @param {RoleDTO} body 
+         * @param {RoleFormDTO} body 
          * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiRoleIdPut: async (body: RoleDTO, id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiRoleIdPut: async (body: RoleFormDTO, id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling apiRoleIdPut.');
@@ -266,11 +266,11 @@ export const RoleApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
-         * @param {RoleDTO} [body] 
+         * @param {RoleFormDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiRolePost: async (body?: RoleDTO, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiRolePost: async (body?: RoleFormDTO, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/Role`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -451,12 +451,12 @@ export const RoleApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {RoleDTO} body 
+         * @param {RoleFormDTO} body 
          * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiRoleIdPut(body: RoleDTO, id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<boolean>>> {
+        async apiRoleIdPut(body: RoleFormDTO, id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<boolean>>> {
             const localVarAxiosArgs = await RoleApiAxiosParamCreator(configuration).apiRoleIdPut(body, id, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -465,11 +465,11 @@ export const RoleApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {RoleDTO} [body] 
+         * @param {RoleFormDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiRolePost(body?: RoleDTO, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<string>>> {
+        async apiRolePost(body?: RoleFormDTO, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<string>>> {
             const localVarAxiosArgs = await RoleApiAxiosParamCreator(configuration).apiRolePost(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -540,21 +540,21 @@ export const RoleApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * 
-         * @param {RoleDTO} body 
+         * @param {RoleFormDTO} body 
          * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiRoleIdPut(body: RoleDTO, id: string, options?: AxiosRequestConfig): Promise<AxiosResponse<boolean>> {
+        async apiRoleIdPut(body: RoleFormDTO, id: string, options?: AxiosRequestConfig): Promise<AxiosResponse<boolean>> {
             return RoleApiFp(configuration).apiRoleIdPut(body, id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {RoleDTO} [body] 
+         * @param {RoleFormDTO} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiRolePost(body?: RoleDTO, options?: AxiosRequestConfig): Promise<AxiosResponse<string>> {
+        async apiRolePost(body?: RoleFormDTO, options?: AxiosRequestConfig): Promise<AxiosResponse<string>> {
             return RoleApiFp(configuration).apiRolePost(body, options).then((request) => request(axios, basePath));
         },
         /**
@@ -622,23 +622,23 @@ export class RoleApi extends BaseAPI {
     }
     /**
      * 
-     * @param {RoleDTO} body 
+     * @param {RoleFormDTO} body 
      * @param {string} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RoleApi
      */
-    public async apiRoleIdPut(body: RoleDTO, id: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<boolean>> {
+    public async apiRoleIdPut(body: RoleFormDTO, id: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<boolean>> {
         return RoleApiFp(this.configuration).apiRoleIdPut(body, id, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
-     * @param {RoleDTO} [body] 
+     * @param {RoleFormDTO} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RoleApi
      */
-    public async apiRolePost(body?: RoleDTO, options?: AxiosRequestConfig) : Promise<AxiosResponse<string>> {
+    public async apiRolePost(body?: RoleFormDTO, options?: AxiosRequestConfig) : Promise<AxiosResponse<string>> {
         return RoleApiFp(this.configuration).apiRolePost(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**

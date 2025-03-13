@@ -20,6 +20,7 @@ export * from './company-dto';
 export * from './company-dtopaged-result';
 export * from './company-post-dto';
 export * from './company-tenant-dto';
+export * from './confirm-email-dto';
 export * from './document-dto';
 export * from './document-dtopaged-result';
 export * from './driver-dto';

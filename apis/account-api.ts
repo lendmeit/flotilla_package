@@ -19,6 +19,7 @@ import { Configuration } from '../configuration';
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 import { AuthResponseDTO } from '../models';
 import { CompanyTenantDTO } from '../models';
+import { ConfirmEmailDTO } from '../models';
 import { LoginDTO } from '../models';
 import { ProblemDetails } from '../models';
 import { ResetPasswordModel } from '../models';
@@ -59,6 +60,93 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
                 .replace(`{${"currentPassword"}}`, encodeURIComponent(String(currentPassword)))
                 .replace(`{${"newPassword"}}`, encodeURIComponent(String(newPassword)))
                 .replace(`{${"confirmPassword"}}`, encodeURIComponent(String(confirmPassword)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("Authorization")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {ConfirmEmailDTO} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiAccountConfirmEmailPost: async (body?: ConfirmEmailDTO, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Account/ConfirmEmail`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("Authorization")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiAccountDeleteAccountPost: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Account/DeleteAccount`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -393,6 +481,31 @@ export const AccountApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {ConfirmEmailDTO} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiAccountConfirmEmailPost(body?: ConfirmEmailDTO, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<boolean>>> {
+            const localVarAxiosArgs = await AccountApiAxiosParamCreator(configuration).apiAccountConfirmEmailPost(body, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiAccountDeleteAccountPost(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<boolean>>> {
+            const localVarAxiosArgs = await AccountApiAxiosParamCreator(configuration).apiAccountDeleteAccountPost(options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
          * @param {string} [email] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -493,6 +606,23 @@ export const AccountApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @param {ConfirmEmailDTO} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiAccountConfirmEmailPost(body?: ConfirmEmailDTO, options?: AxiosRequestConfig): Promise<AxiosResponse<boolean>> {
+            return AccountApiFp(configuration).apiAccountConfirmEmailPost(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiAccountDeleteAccountPost(options?: AxiosRequestConfig): Promise<AxiosResponse<boolean>> {
+            return AccountApiFp(configuration).apiAccountDeleteAccountPost(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {string} [email] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -568,6 +698,25 @@ export class AccountApi extends BaseAPI {
      */
     public async apiAccountChangepasswordUserEmailcurrentPasswordnewPasswordconfirmPasswordPost(userEmail: string, currentPassword: string, newPassword: string, confirmPassword: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
         return AccountApiFp(this.configuration).apiAccountChangepasswordUserEmailcurrentPasswordnewPasswordconfirmPasswordPost(userEmail, currentPassword, newPassword, confirmPassword, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
+     * @param {ConfirmEmailDTO} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountApi
+     */
+    public async apiAccountConfirmEmailPost(body?: ConfirmEmailDTO, options?: AxiosRequestConfig) : Promise<AxiosResponse<boolean>> {
+        return AccountApiFp(this.configuration).apiAccountConfirmEmailPost(body, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountApi
+     */
+    public async apiAccountDeleteAccountPost(options?: AxiosRequestConfig) : Promise<AxiosResponse<boolean>> {
+        return AccountApiFp(this.configuration).apiAccountDeleteAccountPost(options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
