@@ -37,6 +37,36 @@ export interface TenantLinkDTO {
      * @type {string}
      * @memberof TenantLinkDTO
      */
+    tenantCompanyName?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof TenantLinkDTO
+     */
+    tenantCompanyDescription?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof TenantLinkDTO
+     */
+    tenantCompanyLogo?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof TenantLinkDTO
+     */
+    tenantCompanyOwner?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof TenantLinkDTO
+     */
+    inviteDate?: string | null;
+
+    /**
+     * @type {string}
+     * @memberof TenantLinkDTO
+     */
     userId?: string | null;
 
     /**
