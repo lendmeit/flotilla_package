@@ -30,18 +30,6 @@ export interface CompanyIdBody {
      * @type {string}
      * @memberof CompanyIdBody
      */
-    logo?: string;
-
-    /**
-     * @type {string}
-     * @memberof CompanyIdBody
-     */
-    code?: string;
-
-    /**
-     * @type {string}
-     * @memberof CompanyIdBody
-     */
     name?: string;
 
     /**
@@ -49,34 +37,4 @@ export interface CompanyIdBody {
      * @memberof CompanyIdBody
      */
     description?: string;
-
-    /**
-     * @type {string}
-     * @memberof CompanyIdBody
-     */
-    id?: string;
-
-    /**
-     * @type {string}
-     * @memberof CompanyIdBody
-     */
-    createBy?: string;
-
-    /**
-     * @type {Date}
-     * @memberof CompanyIdBody
-     */
-    createDate?: Date;
-
-    /**
-     * @type {boolean}
-     * @memberof CompanyIdBody
-     */
-    active?: boolean;
-
-    /**
-     * @type {number}
-     * @memberof CompanyIdBody
-     */
-    isActive?: number;
 }

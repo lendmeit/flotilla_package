@@ -30,18 +30,6 @@ export interface ApiCompanyBody {
      * @type {string}
      * @memberof ApiCompanyBody
      */
-    logo?: string;
-
-    /**
-     * @type {string}
-     * @memberof ApiCompanyBody
-     */
-    code?: string;
-
-    /**
-     * @type {string}
-     * @memberof ApiCompanyBody
-     */
     name?: string;
 
     /**
@@ -49,34 +37,4 @@ export interface ApiCompanyBody {
      * @memberof ApiCompanyBody
      */
     description?: string;
-
-    /**
-     * @type {string}
-     * @memberof ApiCompanyBody
-     */
-    id?: string;
-
-    /**
-     * @type {string}
-     * @memberof ApiCompanyBody
-     */
-    createBy?: string;
-
-    /**
-     * @type {Date}
-     * @memberof ApiCompanyBody
-     */
-    createDate?: Date;
-
-    /**
-     * @type {boolean}
-     * @memberof ApiCompanyBody
-     */
-    active?: boolean;
-
-    /**
-     * @type {number}
-     * @memberof ApiCompanyBody
-     */
-    isActive?: number;
 }

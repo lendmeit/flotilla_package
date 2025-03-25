@@ -165,19 +165,12 @@ export const CompanyApiAxiosParamCreator = function (configuration?: Configurati
          * 
          * @param {string} id 
          * @param {Blob} [logoFile] 
-         * @param {string} [logo] 
-         * @param {string} [code] 
          * @param {string} [name] 
          * @param {string} [description] 
-         * @param {string} [id2] 
-         * @param {string} [createBy] 
-         * @param {Date} [createDate] 
-         * @param {boolean} [active] 
-         * @param {number} [isActive] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiCompanyIdPutForm: async (id: string, logoFile?: Blob, logo?: string, code?: string, name?: string, description?: string, id2?: string, createBy?: string, createDate?: Date, active?: boolean, isActive?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiCompanyIdPutForm: async (id: string, logoFile?: Blob, name?: string, description?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling apiCompanyIdPutForm.');
@@ -208,40 +201,12 @@ export const CompanyApiAxiosParamCreator = function (configuration?: Configurati
                 localVarFormParams.append('LogoFile', logoFile as any);
             }
 
-            if (logo !== undefined) { 
-                localVarFormParams.append('Logo', logo as any);
-            }
-
-            if (code !== undefined) { 
-                localVarFormParams.append('Code', code as any);
-            }
-
             if (name !== undefined) { 
                 localVarFormParams.append('Name', name as any);
             }
 
             if (description !== undefined) { 
                 localVarFormParams.append('Description', description as any);
-            }
-
-            if (id !== undefined) { 
-                localVarFormParams.append('Id', id as any);
-            }
-
-            if (createBy !== undefined) { 
-                localVarFormParams.append('CreateBy', createBy as any);
-            }
-
-            if (createDate !== undefined) { 
-                localVarFormParams.append('CreateDate', createDate as any);
-            }
-
-            if (active !== undefined) { 
-                localVarFormParams.append('Active', active as any);
-            }
-
-            if (isActive !== undefined) { 
-                localVarFormParams.append('IsActive', isActive as any);
             }
 
             localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
@@ -265,19 +230,12 @@ export const CompanyApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {Blob} [logoFile] 
-         * @param {string} [logo] 
-         * @param {string} [code] 
          * @param {string} [name] 
          * @param {string} [description] 
-         * @param {string} [id] 
-         * @param {string} [createBy] 
-         * @param {Date} [createDate] 
-         * @param {boolean} [active] 
-         * @param {number} [isActive] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiCompanyPostForm: async (logoFile?: Blob, logo?: string, code?: string, name?: string, description?: string, id?: string, createBy?: string, createDate?: Date, active?: boolean, isActive?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiCompanyPostForm: async (logoFile?: Blob, name?: string, description?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/Company`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -303,40 +261,12 @@ export const CompanyApiAxiosParamCreator = function (configuration?: Configurati
                 localVarFormParams.append('LogoFile', logoFile as any);
             }
 
-            if (logo !== undefined) { 
-                localVarFormParams.append('Logo', logo as any);
-            }
-
-            if (code !== undefined) { 
-                localVarFormParams.append('Code', code as any);
-            }
-
             if (name !== undefined) { 
                 localVarFormParams.append('Name', name as any);
             }
 
             if (description !== undefined) { 
                 localVarFormParams.append('Description', description as any);
-            }
-
-            if (id !== undefined) { 
-                localVarFormParams.append('Id', id as any);
-            }
-
-            if (createBy !== undefined) { 
-                localVarFormParams.append('CreateBy', createBy as any);
-            }
-
-            if (createDate !== undefined) { 
-                localVarFormParams.append('CreateDate', createDate as any);
-            }
-
-            if (active !== undefined) { 
-                localVarFormParams.append('Active', active as any);
-            }
-
-            if (isActive !== undefined) { 
-                localVarFormParams.append('IsActive', isActive as any);
             }
 
             localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
@@ -487,20 +417,13 @@ export const CompanyApiFp = function(configuration?: Configuration) {
          * 
          * @param {string} id 
          * @param {Blob} [logoFile] 
-         * @param {string} [logo] 
-         * @param {string} [code] 
          * @param {string} [name] 
          * @param {string} [description] 
-         * @param {string} [id2] 
-         * @param {string} [createBy] 
-         * @param {Date} [createDate] 
-         * @param {boolean} [active] 
-         * @param {number} [isActive] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiCompanyIdPutForm(id: string, logoFile?: Blob, logo?: string, code?: string, name?: string, description?: string, id2?: string, createBy?: string, createDate?: Date, active?: boolean, isActive?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<boolean>>> {
-            const localVarAxiosArgs = await CompanyApiAxiosParamCreator(configuration).apiCompanyIdPutForm(id, logoFile, logo, code, name, description, id2, createBy, createDate, active, isActive, options);
+        async apiCompanyIdPutForm(id: string, logoFile?: Blob, name?: string, description?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<boolean>>> {
+            const localVarAxiosArgs = await CompanyApiAxiosParamCreator(configuration).apiCompanyIdPutForm(id, logoFile, name, description, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -509,20 +432,13 @@ export const CompanyApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {Blob} [logoFile] 
-         * @param {string} [logo] 
-         * @param {string} [code] 
          * @param {string} [name] 
          * @param {string} [description] 
-         * @param {string} [id] 
-         * @param {string} [createBy] 
-         * @param {Date} [createDate] 
-         * @param {boolean} [active] 
-         * @param {number} [isActive] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiCompanyPostForm(logoFile?: Blob, logo?: string, code?: string, name?: string, description?: string, id?: string, createBy?: string, createDate?: Date, active?: boolean, isActive?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<string>>> {
-            const localVarAxiosArgs = await CompanyApiAxiosParamCreator(configuration).apiCompanyPostForm(logoFile, logo, code, name, description, id, createBy, createDate, active, isActive, options);
+        async apiCompanyPostForm(logoFile?: Blob, name?: string, description?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<string>>> {
+            const localVarAxiosArgs = await CompanyApiAxiosParamCreator(configuration).apiCompanyPostForm(logoFile, name, description, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -585,38 +501,24 @@ export const CompanyApiFactory = function (configuration?: Configuration, basePa
          * 
          * @param {string} id 
          * @param {Blob} [logoFile] 
-         * @param {string} [logo] 
-         * @param {string} [code] 
          * @param {string} [name] 
          * @param {string} [description] 
-         * @param {string} [id2] 
-         * @param {string} [createBy] 
-         * @param {Date} [createDate] 
-         * @param {boolean} [active] 
-         * @param {number} [isActive] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiCompanyIdPutForm(id: string, logoFile?: Blob, logo?: string, code?: string, name?: string, description?: string, id2?: string, createBy?: string, createDate?: Date, active?: boolean, isActive?: number, options?: AxiosRequestConfig): Promise<AxiosResponse<boolean>> {
-            return CompanyApiFp(configuration).apiCompanyIdPutForm(id, logoFile, logo, code, name, description, id2, createBy, createDate, active, isActive, options).then((request) => request(axios, basePath));
+        async apiCompanyIdPutForm(id: string, logoFile?: Blob, name?: string, description?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<boolean>> {
+            return CompanyApiFp(configuration).apiCompanyIdPutForm(id, logoFile, name, description, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @param {Blob} [logoFile] 
-         * @param {string} [logo] 
-         * @param {string} [code] 
          * @param {string} [name] 
          * @param {string} [description] 
-         * @param {string} [id] 
-         * @param {string} [createBy] 
-         * @param {Date} [createDate] 
-         * @param {boolean} [active] 
-         * @param {number} [isActive] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiCompanyPostForm(logoFile?: Blob, logo?: string, code?: string, name?: string, description?: string, id?: string, createBy?: string, createDate?: Date, active?: boolean, isActive?: number, options?: AxiosRequestConfig): Promise<AxiosResponse<string>> {
-            return CompanyApiFp(configuration).apiCompanyPostForm(logoFile, logo, code, name, description, id, createBy, createDate, active, isActive, options).then((request) => request(axios, basePath));
+        async apiCompanyPostForm(logoFile?: Blob, name?: string, description?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<string>> {
+            return CompanyApiFp(configuration).apiCompanyPostForm(logoFile, name, description, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -675,40 +577,26 @@ export class CompanyApi extends BaseAPI {
      * 
      * @param {string} id 
      * @param {Blob} [logoFile] 
-     * @param {string} [logo] 
-     * @param {string} [code] 
      * @param {string} [name] 
      * @param {string} [description] 
-     * @param {string} [id2] 
-     * @param {string} [createBy] 
-     * @param {Date} [createDate] 
-     * @param {boolean} [active] 
-     * @param {number} [isActive] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CompanyApi
      */
-    public async apiCompanyIdPutForm(id: string, logoFile?: Blob, logo?: string, code?: string, name?: string, description?: string, id2?: string, createBy?: string, createDate?: Date, active?: boolean, isActive?: number, options?: AxiosRequestConfig) : Promise<AxiosResponse<boolean>> {
-        return CompanyApiFp(this.configuration).apiCompanyIdPutForm(id, logoFile, logo, code, name, description, id2, createBy, createDate, active, isActive, options).then((request) => request(this.axios, this.basePath));
+    public async apiCompanyIdPutForm(id: string, logoFile?: Blob, name?: string, description?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<boolean>> {
+        return CompanyApiFp(this.configuration).apiCompanyIdPutForm(id, logoFile, name, description, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
      * @param {Blob} [logoFile] 
-     * @param {string} [logo] 
-     * @param {string} [code] 
      * @param {string} [name] 
      * @param {string} [description] 
-     * @param {string} [id] 
-     * @param {string} [createBy] 
-     * @param {Date} [createDate] 
-     * @param {boolean} [active] 
-     * @param {number} [isActive] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CompanyApi
      */
-    public async apiCompanyPostForm(logoFile?: Blob, logo?: string, code?: string, name?: string, description?: string, id?: string, createBy?: string, createDate?: Date, active?: boolean, isActive?: number, options?: AxiosRequestConfig) : Promise<AxiosResponse<string>> {
-        return CompanyApiFp(this.configuration).apiCompanyPostForm(logoFile, logo, code, name, description, id, createBy, createDate, active, isActive, options).then((request) => request(this.axios, this.basePath));
+    public async apiCompanyPostForm(logoFile?: Blob, name?: string, description?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<string>> {
+        return CompanyApiFp(this.configuration).apiCompanyPostForm(logoFile, name, description, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
