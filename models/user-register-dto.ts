@@ -48,11 +48,5 @@ export interface UserRegisterDTO {
      * @type {string}
      * @memberof UserRegisterDTO
      */
-    roleName?: string | null;
-
-    /**
-     * @type {string}
-     * @memberof UserRegisterDTO
-     */
     companyName: string;
 }

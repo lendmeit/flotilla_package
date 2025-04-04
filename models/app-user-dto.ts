@@ -91,6 +91,12 @@ export interface AppUserDTO {
     active?: boolean;
 
     /**
+     * @type {boolean}
+     * @memberof AppUserDTO
+     */
+    emailConfirmed?: boolean;
+
+    /**
      * @type {Array<SelectDTO>}
      * @memberof AppUserDTO
      */

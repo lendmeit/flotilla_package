@@ -85,6 +85,12 @@ export interface UserResponseDTO {
     phone?: string | null;
 
     /**
+     * @type {boolean}
+     * @memberof UserResponseDTO
+     */
+    emailConfirmed?: boolean;
+
+    /**
      * @type {Array<SelectDTO>}
      * @memberof UserResponseDTO
      */

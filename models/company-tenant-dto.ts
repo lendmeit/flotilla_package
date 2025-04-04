@@ -47,6 +47,12 @@ export interface CompanyTenantDTO {
     userCreationId?: string | null;
 
     /**
+     * @type {string}
+     * @memberof CompanyTenantDTO
+     */
+    logo?: string | null;
+
+    /**
      * @type {boolean}
      * @memberof CompanyTenantDTO
      */

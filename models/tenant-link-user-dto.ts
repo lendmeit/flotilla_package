@@ -24,7 +24,13 @@ export interface TenantLinkUserDTO {
      * @type {string}
      * @memberof TenantLinkUserDTO
      */
-    tenantCompanyId?: string | null;
+    tenantCompanyId: string;
+
+    /**
+     * @type {string}
+     * @memberof TenantLinkUserDTO
+     */
+    roleId: string;
 
     /**
      * @type {string}
